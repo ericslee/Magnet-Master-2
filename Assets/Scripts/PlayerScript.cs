@@ -18,9 +18,16 @@ public class PlayerScript : MonoBehaviour
 	Quaternion leftRotation;
 	Quaternion rightRotation;
 
+	// Powers
+	GameObject targetingReticle;
+	Object targetingReticlePrefab;
+
 	// Use this for initialization
 	void Start()
 	{
+		// load resources
+		targetingReticlePrefab = Resources.Load("Prefabs/Reticle");
+
 		// get distance to ground
 		distToGround = collider.bounds.extents.y;
 		jumpHeight = 100.0f;
@@ -28,6 +35,10 @@ public class PlayerScript : MonoBehaviour
 		frontRotation = Quaternion.Euler(0,180,0);
 		leftRotation = Quaternion.Euler(0,-90,0);
 		rightRotation = Quaternion.Euler(0,90,0);
+
+		// instantiate recticle
+		Vector3 reticlePosition = new Vector3(transform.position.x + 4f, transform.position.y + 3, transform.position.z);   
+		targetingReticle = (GameObject)Instantiate(targetingReticlePrefab, reticlePosition, Quaternion.Euler(90, 0, 0));
 	}
 	
 	void Update()
@@ -38,6 +49,7 @@ public class PlayerScript : MonoBehaviour
 	void HandleInput()
 	{
 		HandleMovement();
+		HandlePowersInput();
 	}
 	
 	void HandleMovement()
@@ -79,6 +91,32 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
+	void HandlePowersInput() 
+	{
+		if (targetingReticle) 
+		{
+			// Move reticle with mouse
+			Vector3 pos = Input.mousePosition;
+			pos.z = transform.position.z - Camera.main.transform.position.z;
+			Vector3 newReticlePos = Camera.main.ScreenToWorldPoint(pos);
+
+			targetingReticle.transform.position = newReticlePos;
+
+			if (Input.GetMouseButtonDown(0)) 
+			{
+				Debug.Log("Applying power");
+			}
+			if (Input.GetMouseButton(0)) 
+			{
+				Debug.Log("Adjusting GAIN");
+			}
+			if (Input.GetMouseButtonDown(1)) 
+			{
+				Debug.Log("Toggle power");
+			}
+		}
+	}
+
 	void Jump()
 	{
 		if (IsGrounded())
@@ -95,7 +133,7 @@ public class PlayerScript : MonoBehaviour
 			transform.rotation = rotation;
 		}
 
-		if (Input.GetKey(KeyCode.Space)) 
+		if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) 
 		{
 			if (jumpValue < jumpHeight) 
 			{
