@@ -9,15 +9,10 @@ public class PlayerScript : MonoBehaviour
 	public float jumpHeight;
 	int health;
 
-	//Sound
-	AudioSource jumpSource;
-	AudioSource takeDamageSource;
-	AudioSource platformGunFireSource;
-	AudioSource gravityGunFireSource;
-	
 	// Controls
 	float distToGround;
 	bool collidingWall; // used for disabling left, right controls when colliding with a wall
+	float jumpValue = 0;
 
 	Quaternion frontRotation;
 	Quaternion leftRotation;
@@ -28,7 +23,7 @@ public class PlayerScript : MonoBehaviour
 	{
 		// get distance to ground
 		distToGround = collider.bounds.extents.y;
-		jumpHeight = 8.0f;
+		jumpHeight = 100.0f;
 		
 		frontRotation = Quaternion.Euler(0,180,0);
 		leftRotation = Quaternion.Euler(0,-90,0);
@@ -74,24 +69,43 @@ public class PlayerScript : MonoBehaviour
 				transform.rotation = leftRotation;
 			}
 		}
-		
-		// Jump
-		if (IsGrounded())
-		{
-			Quaternion rotation = transform.rotation;
-			transform.rotation = Quaternion.identity;
-			collidingWall = false;
-			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
-			{
-				rigidbody.velocity = new Vector3(0, jumpHeight, 0);
-			}
-			transform.rotation = rotation;
-		}
+
+		Jump();
 
 		// FOR DEBUGGING, multi jump
 		if (Input.GetKey(KeyCode.U))
 		{
 			rigidbody.velocity = new Vector3(0, 8, 0);
+		}
+	}
+
+	void Jump()
+	{
+		if (IsGrounded())
+		{
+			Quaternion rotation = transform.rotation;
+			transform.rotation = Quaternion.identity;
+			collidingWall = false;
+			
+			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) 
+			{
+				rigidbody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+			}
+
+			transform.rotation = rotation;
+		}
+
+		if (Input.GetKey(KeyCode.Space)) 
+		{
+			if (jumpValue < jumpHeight) 
+			{
+				rigidbody.AddForce(Vector3.up * 5, ForceMode.Acceleration);
+				jumpValue++;
+			}
+			else 
+			{
+				jumpValue = 0;
+			}
 		}
 	}
 	
