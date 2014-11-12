@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour
 
 		// instantiate recticle
 		Vector3 reticlePosition = new Vector3(transform.position.x + 4f, transform.position.y + 3, transform.position.z);   
-		targetingReticle = (GameObject)Instantiate(targetingReticlePrefab, reticlePosition, Quaternion.Euler(90, 0, 0));
+		targetingReticle = (GameObject)Instantiate(targetingReticlePrefab, reticlePosition, Quaternion.Euler(90, 0, 0));	
 	}
 	
 	void Update()
@@ -50,6 +50,11 @@ public class PlayerScript : MonoBehaviour
 	{
 		HandleMovement();
 		HandlePowersInput();
+
+		// follow player with camera
+		Vector3 playerPosition = transform.position;
+		playerPosition.z = -20f;
+		Camera.main.transform.position = playerPosition;
 	}
 	
 	void HandleMovement()
