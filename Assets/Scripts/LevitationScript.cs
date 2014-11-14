@@ -5,6 +5,8 @@ public class LevitationScript : MonoBehaviour {
 
 	const float INITIAL_LEVITATION_GAIN = 1.0f;
 	const float LEVITATION_RAW_AMOUNT = 3.5f;
+	const float MAX_LEVITATION_GAIN = 2.0f;
+	const float MIN_LEVITATION_GAIN = 0.0f;
 
 	GameObject currentlyLevitatingObj;
 	Vector3 objInitialPosition;
@@ -33,8 +35,9 @@ public class LevitationScript : MonoBehaviour {
 			if (Input.mousePosition.y != mouseClickYPos) 
 			{
 				float newLevitationGain = (float)(Input.mousePosition.y - mouseClickYPos) / 100.0f;
-				if (newLevitationGain > 2.0f) newLevitationGain = 2.0f;
-				else if (newLevitationGain < 0.0f) newLevitationGain = 0.0f;
+				if (newLevitationGain > MAX_LEVITATION_GAIN) newLevitationGain = MAX_LEVITATION_GAIN;
+				else if (newLevitationGain < MIN_LEVITATION_GAIN) 
+					newLevitationGain = MIN_LEVITATION_GAIN;
 
 				levitationGain = newLevitationGain;
 				Debug.Log (levitationGain);
