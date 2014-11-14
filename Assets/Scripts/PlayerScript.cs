@@ -21,12 +21,16 @@ public class PlayerScript : MonoBehaviour
 	// Powers
 	GameObject targetingReticle;
 	Object targetingReticlePrefab;
+	LevitationScript levScript;
 
 	// Use this for initialization
 	void Start()
 	{
 		// load resources
 		targetingReticlePrefab = Resources.Load("Prefabs/Reticle");
+
+		// cache references
+		levScript = GetComponent<LevitationScript>();
 
 		// get distance to ground
 		distToGround = collider.bounds.extents.y;
@@ -110,10 +114,19 @@ public class PlayerScript : MonoBehaviour
 			if (Input.GetMouseButtonDown(0)) 
 			{
 				Debug.Log("Applying power");
+				// check to see if reticle is targeting anything
+
+				Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+				RaycastHit hit;
+				
+				if( Physics.Raycast( ray, out hit, 100 ) )
+				{
+					levScript.SetCurrentlyLevitatingObj(hit.transform.gameObject, Input.mousePosition.y);
+				}
 			}
 			if (Input.GetMouseButton(0)) 
 			{
-				Debug.Log("Adjusting GAIN");
+				//Debug.Log("Adjusting GAIN");
 			}
 			if (Input.GetMouseButtonDown(1)) 
 			{
@@ -137,7 +150,7 @@ public class PlayerScript : MonoBehaviour
 
 			transform.rotation = rotation;
 		}
-
+		/*
 		if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) 
 		{
 			if (jumpValue < jumpHeight) 
@@ -150,6 +163,7 @@ public class PlayerScript : MonoBehaviour
 				jumpValue = 0;
 			}
 		}
+		*/
 	}
 	
 

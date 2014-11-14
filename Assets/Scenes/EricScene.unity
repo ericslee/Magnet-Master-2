@@ -264,6 +264,7 @@ GameObject:
   - 23: {fileID: 576914582}
   - 114: {fileID: 576914586}
   - 54: {fileID: 576914587}
+  - 114: {fileID: 576914588}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Untagged
@@ -349,6 +350,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!114 &576914588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 576914581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f33b6025135e6489b01916a64a1937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &776808128
 GameObject:
   m_ObjectHideFlags: 0
