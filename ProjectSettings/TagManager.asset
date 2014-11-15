@@ -4,6 +4,16 @@
 TagManager:
   tags:
   - Environment
+  - FireWall
+  - WallDrop
+  - KeyDrop
+  - FireBall
+  - Wall3
+  - Wall2
+  - Wall1
+  - Key
+  - Lava
+  - Door
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

@@ -6,6 +6,18 @@ public enum PowerType {Levitation, Gravity, Electricity};
 
 public class PlayerScript : MonoBehaviour
 {
+	// Wall Trigger
+	bool wallDrop = false;
+
+	// Fire Walls Trigger
+	bool fireWall = false;
+
+	// Enemy Shooting Fire Balls Trigger
+	bool fireBall = false;
+
+	// Key Drop Trigger
+	bool keyDrop = false;
+
 	public float jumpHeight;
 	int health;
 
@@ -48,6 +60,7 @@ public class PlayerScript : MonoBehaviour
 	void Update()
 	{
 		HandleInput();
+		HandleObstacles();
 	}
 	
 	void HandleInput()
@@ -199,5 +212,53 @@ public class PlayerScript : MonoBehaviour
 	
 	public void setHealth(int newHealth){
 		health = newHealth;
+	}
+
+	void OnTriggerEnter(Collider c) {
+		if (c.tag.Equals("WallDrop")) {
+			Debug.Log ("WallDrop");
+			wallDrop = true;
+		} else if (c.tag.Equals("FireWall")) {
+			Debug.Log ("FireWall");
+			fireWall = true;
+		} else if (c.tag.Equals("FireBall")) {
+			Debug.Log ("FireBall");
+			fireBall = true;
+		} else if (c.tag.Equals("KeyDrop")) {
+			Debug.Log ("KeyDrop");	
+			keyDrop = true;
+		} else if (c.tag.Equals ("Lava")) {
+			//Lose health
+		} else if (c.tag.Equals ("Door")) {
+			//Level over
+		}
+	}
+
+	void HandleObstacles() {
+		if (wallDrop) {
+			GameObject wall1 = GameObject.FindWithTag("Wall1");
+			GameObject wall2 = GameObject.FindWithTag("Wall2");
+			GameObject wall3 = GameObject.FindWithTag("Wall3");
+
+			//if (wall1.transform.position.y < -23) {
+				wall1.transform.Translate(Vector2.up * 4f * Time.deltaTime);
+			//}
+			if (wall2.transform.position.y > 0.8) {
+				wall2.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
+			}
+			//if (wall3.transform.position.y > -23) {
+				wall3.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
+			//}
+		}
+		if (fireWall) {
+			//Handle particle system fire here
+		}
+		if (fireBall) {
+			//Handle fire ball throwing here
+		}
+		if (keyDrop) {
+			GameObject key = GameObject.FindWithTag("Key");
+			key.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
+		}
 	}
 }
