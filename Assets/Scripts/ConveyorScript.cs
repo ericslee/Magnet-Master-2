@@ -10,6 +10,6 @@ public class ConveyorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate(Vector3.back * 4f * Time.deltaTime);
+		transform.Rotate(Vector3.back * 5f * Time.deltaTime);
 	}
 }

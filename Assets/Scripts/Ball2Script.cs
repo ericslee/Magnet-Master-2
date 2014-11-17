@@ -13,7 +13,7 @@ public class Ball2Script : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (transform.position.y <= -2.2) {
+		if (transform.position.y <= -2.4) {
 			up = true;
 		}
 

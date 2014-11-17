@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
 {
 	// Wall Trigger
 	bool wallDrop = false;
+	bool wallHide = false;
+	bool leverTurn = true;
 
 	// Fire Walls Trigger
 	bool fireWall = false;
@@ -111,6 +113,13 @@ public class PlayerScript : MonoBehaviour
 		{
 			rigidbody.velocity = new Vector3(0, 8, 0);
 		}
+
+		// FOR DEBUGGING, trapping walls go back
+		if (Input.GetKey (KeyCode.H))
+		{
+			wallHide = true;
+			wallDrop = false;
+		}
 	}
 
 	void HandlePowersInput() 
@@ -158,7 +167,7 @@ public class PlayerScript : MonoBehaviour
 			
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) 
 			{
-				rigidbody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+				rigidbody.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
 			}
 
 			transform.rotation = rotation;
@@ -235,20 +244,37 @@ public class PlayerScript : MonoBehaviour
 	}
 
 	void HandleObstacles() {
-		if (wallDrop) {
+		if (wallHide || wallDrop) {
 			GameObject wall1 = GameObject.FindWithTag("Wall1");
 			GameObject wall2 = GameObject.FindWithTag("Wall2");
 			GameObject wall3 = GameObject.FindWithTag("Wall3");
-
-			//if (wall1.transform.position.y < -23) {
-				wall1.transform.Translate(Vector2.up * 4f * Time.deltaTime);
-			//}
-			if (wall2.transform.position.y > 0.8) {
-				wall2.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
+			if (wallHide) {
+				if (leverTurn) {
+					GameObject lever = GameObject.FindWithTag("Lever");
+					lever.transform.Rotate (Vector3.forward * 90f);
+					leverTurn = false;
+				}
+				if (wall1.transform.position.y > -20) {
+					wall1.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
+				}
+				/*if (wall2.transform.position.y < 20) {
+					wall2.transform.Translate(Vector2.up * 4f * Time.deltaTime);
+				}*/
+				if (wall3.transform.position.y < 20) {
+					wall3.transform.Translate(Vector2.up * 12f * Time.deltaTime);
+				}
 			}
-			//if (wall3.transform.position.y > -23) {
-				wall3.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
-			//}
+			if (wallDrop) {
+				if (wall1.transform.position.y < 1) {
+					wall1.transform.Translate(Vector2.up * 12f * Time.deltaTime);
+				}
+				/*if (wall2.transform.position.y > 2) {
+					wall2.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
+				}*/
+				if (wall3.transform.position.y > 1) {
+					wall3.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
+				}
+			}
 		}
 		if (fireWall) {
 			//Handle particle system fire here
