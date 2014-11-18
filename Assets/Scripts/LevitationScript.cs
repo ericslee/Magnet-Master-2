@@ -40,6 +40,12 @@ public class LevitationScript : MonoBehaviour {
 				levitationGain = newLevitationGain;
 			}
 		}
+
+		// drop object
+		if (Input.GetMouseButtonUp(0))
+		{
+			currentlyLevitatingObj = null;
+		}
 	}
 
 	public void SetCurrentlyLevitatingObj(GameObject obj, float mouseYPos)
@@ -50,7 +56,6 @@ public class LevitationScript : MonoBehaviour {
 			objInitialPosition = obj.transform.position;
 			mouseClickYPos = mouseYPos;
 		}
-		Debug.Log(currentlyLevitatingObj.name);
 	}
 
 	// Getters

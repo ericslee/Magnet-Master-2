@@ -29,7 +29,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -99,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0be1c416eb07441addd76977867fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levitationLayerMask:
+    serializedVersion: 2
+    m_Bits: 1536
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

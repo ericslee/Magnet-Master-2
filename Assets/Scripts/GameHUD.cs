@@ -19,7 +19,7 @@ public class GameHUD : MonoBehaviour {
 
 	void OnGUI() 
 	{
-		GUI.Label(new Rect(50, 15, Screen.width / 5, Screen.height / 25), "Lives: " + gameManager.GetTotalLives());
+		GUI.Label(new Rect(50, 15, Screen.width / 5, Screen.height / 10), "Lives: " + gameManager.GetTotalLives());
 
 		// Loss state
 		if (gameManager.GetHasLost()) 
@@ -32,7 +32,7 @@ public class GameHUD : MonoBehaviour {
 		}
 
 		// Powers
-		GUI.Label(new Rect(50, 30, Screen.width / 5, Screen.height / 25), playerScript.GetCurrentPower().ToString());
-		GUI.Label(new Rect(50, 45, Screen.width / 5, Screen.height / 25), "GAIN: " + playerScript.GetCurrentPowerGain());
+		GUI.Label(new Rect(50, 45, Screen.width / 5, Screen.height / 10), playerScript.GetCurrentPower().ToString());
+		GUI.Label(new Rect(50, 75, Screen.width / 5, Screen.height / 10), "GAIN: " + playerScript.GetCurrentPowerGain());
 	}
 }

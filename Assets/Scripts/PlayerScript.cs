@@ -41,6 +41,10 @@ public class PlayerScript : MonoBehaviour
 	ElectricityScript elecScript;
 	PowerType currentActivePower;
 
+	public LayerMask levitationLayerMask;
+	public LayerMask gravityLayerMask;
+	public LayerMask electricyLayerMask;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -149,11 +153,23 @@ public class PlayerScript : MonoBehaviour
 
 				Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
 				RaycastHit hit;
-				
-				if( Physics.Raycast( ray, out hit, 100 ) )
+
+				LayerMask currentMask = levitationLayerMask;
+
+				if (currentActivePower.Equals(PowerType.Gravity)) 
+				{
+					currentMask = gravityLayerMask;
+				}
+				else if (currentActivePower.Equals(PowerType.Electricity))
+				{
+					currentMask = electricyLayerMask;
+				}
+
+				if(Physics.Raycast(ray, out hit, 100, currentMask))
 				{
 					ActivatePower(hit.transform.gameObject, Input.mousePosition.y); 
 				}
+
 			}
 			if (Input.GetMouseButton(0)) 
 			{

@@ -21,14 +21,14 @@ TagManager:
   Builtin Layer 2: Ignore Raycast
   Builtin Layer 3: 
   Builtin Layer 4: Water
-  Builtin Layer 5: UI
+  Builtin Layer 5: 
   Builtin Layer 6: 
   Builtin Layer 7: 
-  User Layer 8: 
-  User Layer 9: 
-  User Layer 10: 
-  User Layer 11: 
-  User Layer 12: 
+  User Layer 8: Reticle
+  User Layer 9: IgnoreAllPowers
+  User Layer 10: LevitatationOnly
+  User Layer 11: GravityOnly
+  User Layer 12: ElectricityOnly
   User Layer 13: 
   User Layer 14: 
   User Layer 15: 
