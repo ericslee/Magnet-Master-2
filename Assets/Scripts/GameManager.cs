@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour {
 	int currentLevel;
 	int totalLives;
 
+	// Game state
+	bool hasLost = false;
+	bool hasWon = false;
+
 	// Checkpoints
 	Vector3 initialSpawnPoint = new Vector3(-15.03494f, 3.715919f, 0.374071f);
 
@@ -43,6 +47,8 @@ public class GameManager : MonoBehaviour {
 		{
 			// restore lives, respawn player
 			totalLives = MAX_LIVES;
+			hasLost = false;
+			hasWon = false;
 			RespawnPlayer();
 		}
 	}
@@ -57,6 +63,7 @@ public class GameManager : MonoBehaviour {
 
 		if (totalLives <= 0) 
 		{
+			hasLost = true;
 			Debug.Log("GAME OVERRRRRRRRRRRRR");
 		}
 	}
@@ -66,6 +73,18 @@ public class GameManager : MonoBehaviour {
 		player.transform.position = initialSpawnPoint;
 	}
 
-	// Getters/setters
+	public void Lose()
+	{
+		hasLost = true;
+	}
+
+	public void Win()
+	{
+		hasWon = true;
+	}
+
+	// Getters
 	public int GetTotalLives() { return totalLives; }
+	public bool GetHasLost() { return hasLost; }
+	public bool GetHasWon() { return hasWon; }
 }

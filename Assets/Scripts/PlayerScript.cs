@@ -245,10 +245,10 @@ public class PlayerScript : MonoBehaviour
 		} else if (c.tag.Equals("KeyDrop")) {
 			Debug.Log ("KeyDrop");	
 			keyDrop = true;
-		} else if (c.tag.Equals ("Lava")) {
-			//Lose health
 		} else if (c.tag.Equals ("Door")) {
 			//Level over
+			gameManager.Win();
+			Debug.Log("LEVEL COMPLETE");
 		}
 	}
 
