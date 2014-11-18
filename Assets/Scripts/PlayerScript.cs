@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
 	GameObject targetingReticle;
 	Object targetingReticlePrefab;
 	LevitationScript levScript;
+	PowerType currentActivePower;
 
 	// Use this for initialization
 	void Start()
@@ -59,7 +60,10 @@ public class PlayerScript : MonoBehaviour
 
 		// instantiate recticle
 		Vector3 reticlePosition = new Vector3(transform.position.x + 4f, transform.position.y + 3, transform.position.z);   
-		targetingReticle = (GameObject)Instantiate(targetingReticlePrefab, reticlePosition, Quaternion.Euler(90, 0, 0));	
+		targetingReticle = (GameObject)Instantiate(targetingReticlePrefab, reticlePosition, Quaternion.Euler(90, 0, -2));	
+
+		// setup powers
+		currentActivePower = PowerType.Levitation;
 	}
 	
 	void Update()
@@ -133,6 +137,7 @@ public class PlayerScript : MonoBehaviour
 			Vector3 pos = Input.mousePosition;
 			pos.z = transform.position.z - Camera.main.transform.position.z;
 			Vector3 newReticlePos = Camera.main.ScreenToWorldPoint(pos);
+			newReticlePos.z = -2;
 
 			targetingReticle.transform.position = newReticlePos;
 
@@ -224,14 +229,6 @@ public class PlayerScript : MonoBehaviour
 		collidingWall = false;
 	}
 
-	public int getHealth(){
-		return health;
-	}
-	
-	public void setHealth(int newHealth){
-		health = newHealth;
-	}
-
 	void OnTriggerEnter(Collider c) {
 		if (c.tag.Equals("WallDrop")) {
 			Debug.Log ("WallDrop");
@@ -295,5 +292,26 @@ public class PlayerScript : MonoBehaviour
 			GameObject key = GameObject.FindWithTag("Key");
 			key.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
 		}
+	}
+
+	// Getters
+	public float GetCurrentPowerGain()
+	{
+		if (currentActivePower.Equals(PowerType.Levitation))
+		{
+			return levScript.GetGain();
+		}
+		else 
+		{
+			return 0;
+		}
+	}
+
+	public int GetHealth(){
+		return health;
+	}
+	
+	public void SetHealth(int newHealth){
+		health = newHealth;
 	}
 }

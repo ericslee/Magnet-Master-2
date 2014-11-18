@@ -55,4 +55,10 @@ public class LevitationScript : MonoBehaviour {
 		}
 		Debug.Log(currentlyLevitatingObj.name);
 	}
+
+	// Getters
+	public float GetGain()
+	{
+		return levitationGain;
+	}
 }

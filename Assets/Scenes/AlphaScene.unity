@@ -6414,7 +6414,6 @@ GameObject:
   - 33: {fileID: 1700579343}
   - 65: {fileID: 1700579342}
   - 23: {fileID: 1700579341}
-  - 114: {fileID: 1700579340}
   - 54: {fileID: 1700579339}
   m_Layer: 0
   m_Name: Enemy
@@ -6438,17 +6437,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &1700579340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1700579338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1700579341
 Renderer:
   m_ObjectHideFlags: 0
@@ -7475,7 +7463,6 @@ GameObject:
   - 33: {fileID: 2035892078}
   - 65: {fileID: 2035892077}
   - 23: {fileID: 2035892076}
-  - 114: {fileID: 2035892075}
   - 54: {fileID: 2035892074}
   m_Layer: 0
   m_Name: Enemy
@@ -7499,17 +7486,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!114 &2035892075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2035892073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &2035892076
 Renderer:
   m_ObjectHideFlags: 0
