@@ -307,11 +307,7 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-	public int GetHealth(){
-		return health;
-	}
-	
-	public void SetHealth(int newHealth){
-		health = newHealth;
-	}
+	public PowerType GetCurrentPower() { return currentActivePower; }
+	public int GetHealth() { return health; }
+	public void SetHealth(int newHealth) { health = newHealth; }
 }
