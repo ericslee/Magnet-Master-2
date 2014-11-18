@@ -20,6 +20,8 @@ public class PlayerScript : MonoBehaviour
 	// Key Drop Trigger
 	bool keyDrop = false;
 
+	GameManager gameManager;
+
 	public float jumpHeight;
 	int health;
 
@@ -44,6 +46,7 @@ public class PlayerScript : MonoBehaviour
 		targetingReticlePrefab = Resources.Load("Prefabs/Reticle");
 
 		// cache references
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		levScript = GetComponent<LevitationScript>();
 
 		// get distance to ground
@@ -203,6 +206,12 @@ public class PlayerScript : MonoBehaviour
 	
 	void OnCollisionEnter(Collision collision)
 	{ 
+		// if collision with hazardous object, lose life
+		if (collision.gameObject.tag.Equals("Lava"))
+		{
+			Debug.Log ("lose life");
+			gameManager.LoseLife();
+		}
 		// environment tag needed in case we want to be able to control 
 		if (collision.gameObject.tag.Equals("Environment") && !IsGrounded())
 		{
