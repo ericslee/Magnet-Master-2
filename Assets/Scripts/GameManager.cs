@@ -28,11 +28,11 @@ public class GameManager : MonoBehaviour {
 		currentLevel = START_LEVEL;
 		totalLives = MAX_LIVES;
 
-		// set up sounds
-		deathSound = GetComponents<AudioSource>()[0];
-
 		// cache references
 		player = GameObject.Find("Player");
+
+		// set up sounds
+		deathSound = GetComponents<AudioSource>()[0];
 	}
 
 	// Update is called once per frame

@@ -15,6 +15,10 @@ public class ElectricityScript : MonoBehaviour {
 	GameObject lightningEmitter;
 	LightningBolt lightningBoltScript;
 
+	// Sounds
+	AudioSource electricityPowerSound;
+	AudioSource turnOnMachinarySound;
+	
 	void Start() 
 	{
 		electricityGain = INITIAL_ELECTRICITY_GAIN;
@@ -22,6 +26,10 @@ public class ElectricityScript : MonoBehaviour {
 		// cache references
 		lightningEmitter = transform.GetChild(0).gameObject;
 		lightningBoltScript = transform.GetChild(0).GetComponent<LightningBolt>();
+
+		// set up sounds
+		electricityPowerSound = GetComponents<AudioSource>()[0];
+		turnOnMachinarySound = GetComponents<AudioSource>()[1];
 	}
 	
 	void Update() 
@@ -50,6 +58,7 @@ public class ElectricityScript : MonoBehaviour {
 			lightningBoltScript.target = null;
 			lightningBoltScript.enabled = false;
 			lightningEmitter.GetComponent<ParticleRenderer>().enabled = false;
+			electricityPowerSound.Stop();
 		}
 	}
 
@@ -60,20 +69,24 @@ public class ElectricityScript : MonoBehaviour {
 			currentlyElectrifiedObject = obj;
 			mouseClickYPos = mouseYPos;
 		}
-		Debug.Log(currentlyElectrifiedObject.name);
 
 		lightningBoltScript.target = obj.transform;
 		if (lightningBoltScript.target)
 		{
 			lightningBoltScript.enabled = true;
 			lightningEmitter.GetComponent<ParticleRenderer>().enabled = true;
+			electricityPowerSound.Play();
 
 			// activate object 
 			//TODO: (only if gain is at certain threshold)
 			MonoBehaviour[] objectScripts = obj.GetComponents<MonoBehaviour>();
 			foreach (MonoBehaviour script in objectScripts)
 			{
-				script.enabled = true;
+				if (script.enabled == false)
+				{
+					script.enabled = true;
+					turnOnMachinarySound.Play();
+				}
 			}
 		}
 	}
