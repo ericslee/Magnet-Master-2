@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
 	GameObject targetingReticle;
 	Object targetingReticlePrefab;
 	LevitationScript levScript;
+	ElectricityScript elecScript;
 	PowerType currentActivePower;
 
 	// Use this for initialization
@@ -49,6 +50,7 @@ public class PlayerScript : MonoBehaviour
 		// cache references
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		levScript = GetComponent<LevitationScript>();
+		elecScript = GetComponent<ElectricityScript>();
 
 		// get distance to ground
 		distToGround = collider.bounds.extents.y;
@@ -143,7 +145,6 @@ public class PlayerScript : MonoBehaviour
 
 			if (Input.GetMouseButtonDown(0)) 
 			{
-				Debug.Log("Applying power");
 				// check to see if reticle is targeting anything
 
 				Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
@@ -151,17 +152,44 @@ public class PlayerScript : MonoBehaviour
 				
 				if( Physics.Raycast( ray, out hit, 100 ) )
 				{
-					levScript.SetCurrentlyLevitatingObj(hit.transform.gameObject, Input.mousePosition.y);
+					ActivatePower(hit.transform.gameObject, Input.mousePosition.y); 
 				}
 			}
 			if (Input.GetMouseButton(0)) 
 			{
-				//Debug.Log("Adjusting GAIN");
 			}
 			if (Input.GetMouseButtonDown(1)) 
 			{
-				Debug.Log("Toggle power");
+				switch (GetCurrentPower())
+				{
+					case PowerType.Levitation:
+						currentActivePower = PowerType.Gravity;
+						break;
+					case PowerType.Gravity:
+						currentActivePower = PowerType.Electricity;
+						break;
+					case PowerType.Electricity:
+						currentActivePower = PowerType.Levitation;
+						break;
+				}
 			}
+		}
+	}
+
+	void ActivatePower(GameObject target, float mouseYPos)
+	{
+		switch (GetCurrentPower())
+		{
+		case PowerType.Levitation:
+			levScript.SetCurrentlyLevitatingObj(target, mouseYPos);
+			break;
+		case PowerType.Gravity:
+			Debug.Log("gravity power");
+			break;
+		case PowerType.Electricity:
+			Debug.Log("electricity power");
+			elecScript.SetElectricityTarget(target, mouseYPos);
+			break;
 		}
 	}
 
@@ -300,6 +328,10 @@ public class PlayerScript : MonoBehaviour
 		if (currentActivePower.Equals(PowerType.Levitation))
 		{
 			return levScript.GetGain();
+		}
+		else if (currentActivePower.Equals(PowerType.Electricity))
+		{
+			return elecScript.GetGain();
 		}
 		else 
 		{

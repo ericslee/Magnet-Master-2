@@ -15,14 +15,12 @@ public class LevitationScript : MonoBehaviour {
 	float levitationGain;
 	float mouseClickYPos;
 
-	// Use this for initialization
-	void Start () 
+	void Start() 
 	{
 		levitationGain = INITIAL_LEVITATION_GAIN;
 	}
 	
-	// Update is called once per frame
-	void Update () 
+	void Update() 
 	{
 		if (Input.GetMouseButton(0) && currentlyLevitatingObj) 
 		{
@@ -40,7 +38,6 @@ public class LevitationScript : MonoBehaviour {
 					newLevitationGain = MIN_LEVITATION_GAIN;
 
 				levitationGain = newLevitationGain;
-				Debug.Log (levitationGain);
 			}
 		}
 	}
