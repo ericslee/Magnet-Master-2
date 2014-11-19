@@ -59,8 +59,6 @@ public class LevitationScript : MonoBehaviour {
 	}
 
 	// Getters
-	public float GetGain()
-	{
-		return levitationGain;
-	}
+	public float GetGain() { return levitationGain; }
+	public float GetMaxGain() { return MAX_LEVITATION_GAIN; }
 }

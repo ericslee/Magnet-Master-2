@@ -67,8 +67,6 @@ public class GravityScript : MonoBehaviour {
 	}
 
 	// Getters
-	public float GetGain()
-	{
-		return gravityGain;
-	}
+	public float GetGain() { return gravityGain; }
+	public float GetMaxGain() { return MAX_GRAVITY_GAIN; }
 }

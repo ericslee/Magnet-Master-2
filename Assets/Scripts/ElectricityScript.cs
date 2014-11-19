@@ -92,8 +92,6 @@ public class ElectricityScript : MonoBehaviour {
 	}
 
 	// Getters
-	public float GetGain()
-	{
-		return electricityGain;
-	}
+	public float GetGain() { return electricityGain; }
+	public float GetMaxGain() { return MAX_ELECTRICITY_GAIN; }
 }

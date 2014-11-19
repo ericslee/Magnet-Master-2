@@ -88,7 +88,7 @@ public class GameHUD : MonoBehaviour {
 	}
 
 	private void DrawGainsBar() {
-		float gainsRatio = 0.5f; //HOOK TO GAIN
+		float gainsRatio = (float)playerScript.GetCurrentPowerGain() / playerScript.GetCurrentPowerMaxGain();
 		
 		// Fraction of the screen width we want the health bar to take up
 		float mult = 0.65f;

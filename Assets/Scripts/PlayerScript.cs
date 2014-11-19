@@ -388,6 +388,26 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
+	public float GetCurrentPowerMaxGain()
+	{
+		if (currentActivePower.Equals(PowerType.Levitation))
+		{
+			return levScript.GetMaxGain();
+		}
+		else if (currentActivePower.Equals(PowerType.Gravity))
+		{
+			return gravScript.GetMaxGain();
+		}
+		else if (currentActivePower.Equals(PowerType.Electricity))
+		{
+			return elecScript.GetMaxGain();
+		}
+		else 
+		{
+			return 1;
+		}
+	}
+
 	public PowerType GetCurrentPower() { return currentActivePower; }
 	public int GetHealth() { return health; }
 	public void SetHealth(int newHealth) { health = newHealth; }
