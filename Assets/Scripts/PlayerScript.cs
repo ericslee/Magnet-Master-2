@@ -46,6 +46,13 @@ public class PlayerScript : MonoBehaviour
 	public LayerMask gravityLayerMask;
 	public LayerMask electricyLayerMask;
 
+	// animation
+	protected Animator animator;
+	static int idleState = Animator.StringToHash("Base Layer.idle");
+	static int walkState = Animator.StringToHash("Base Layer.walk");
+	static int jumpState = Animator.StringToHash("Base Layer.jump");
+	static int pantsuState = Animator.StringToHash("Base Layer.pantsu");
+
 	// Use this for initialization
 	void Start()
 	{
@@ -57,9 +64,11 @@ public class PlayerScript : MonoBehaviour
 		levScript = GetComponent<LevitationScript>();
 		elecScript = GetComponent<ElectricityScript>();
 		gravScript = GetComponent<GravityScript>();
+		animator = GetComponent<Animator>();
 
 		// get distance to ground
-		distToGround = collider.bounds.extents.y;
+		//distToGround = collider.bounds.extents.y;
+		distToGround = 1.0f;
 		jumpHeight = 100.0f;
 		
 		frontRotation = Quaternion.Euler(0,180,0);
@@ -73,7 +82,7 @@ public class PlayerScript : MonoBehaviour
 		// setup powers
 		currentActivePower = PowerType.Levitation;
 	}
-	
+
 	void Update()
 	{
 		HandleInput();
@@ -104,7 +113,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			transform.rotation = leftRotation;
 		}
-		
+
 		if (!collidingWall)
 		{
 			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
@@ -112,13 +121,26 @@ public class PlayerScript : MonoBehaviour
 				transform.rotation = Quaternion.identity;
 				transform.Translate(Vector2.right * 4f * Time.deltaTime);
 				transform.rotation = rightRotation;
+
+				if (animator.GetCurrentAnimatorStateInfo(0).nameHash != jumpState) 
+				{
+					animator.SetBool("Walking", true);
+				}
 			}
 			else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
 			{
 				transform.rotation = Quaternion.identity;
 				transform.Translate(-Vector2.right * 4f * Time.deltaTime);
 				transform.rotation = leftRotation;
+
+				animator.SetBool("Walking", true);
 			}
+		}
+
+		if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) 
+		    || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
+		{
+			animator.SetBool("Walking", false);
 		}
 
 		Jump();
@@ -130,7 +152,7 @@ public class PlayerScript : MonoBehaviour
 		}
 
 		// FOR DEBUGGING, trapping walls go back
-		if (Input.GetKey (KeyCode.H))
+		if (Input.GetKey(KeyCode.H))
 		{
 			wallHide = true;
 			wallDrop = false;
@@ -220,7 +242,10 @@ public class PlayerScript : MonoBehaviour
 			
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) 
 			{
-				rigidbody.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
+				//rigidbody.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
+				rigidbody.velocity = new Vector3(0, 8, 0);
+				animator.SetBool("Walking", false);
+				animator.SetTrigger("Jumping");
 			}
 
 			transform.rotation = rotation;
@@ -246,10 +271,13 @@ public class PlayerScript : MonoBehaviour
 	// checks if player is grounded with three tiny raycasts from the left bound, center, and right bound of the collider
 	bool IsGrounded()
 	{
-		Vector3 leftBound = new Vector3(transform.position.x - (GetComponent<BoxCollider>().size.x / 2), transform.position.y, transform.position.z);
-		Vector3 rightBound = new Vector3(transform.position.x + (GetComponent<BoxCollider>().size.x / 2), transform.position.y, transform.position.z);
-		
-		return (Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f)
+		Vector3 transformPositionWithOffset = transform.position;
+		transformPositionWithOffset.y = transformPositionWithOffset.y + 1.1f;
+
+		Vector3 leftBound = new Vector3(transform.position.x - (GetComponent<BoxCollider>().size.x / 2), transformPositionWithOffset.y, transform.position.z);
+		Vector3 rightBound = new Vector3(transform.position.x + (GetComponent<BoxCollider>().size.x / 2), transformPositionWithOffset.y, transform.position.z);
+
+		return (Physics.Raycast(transformPositionWithOffset, -Vector3.up, distToGround + 0.1f)
 		        || (Physics.Raycast(leftBound, -Vector3.up, distToGround + 0.1f))
 		        || (Physics.Raycast(rightBound, -Vector3.up, distToGround + 0.1f)));
 	}

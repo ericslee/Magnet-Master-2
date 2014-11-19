@@ -13,7 +13,7 @@ public class ElectricityScript : MonoBehaviour {
 	float electricityGain;
 	float mouseClickYPos;
 	GameObject lightningEmitter;
-	LightningBolt lightningBoltScript;
+	public LightningBolt lightningBoltScript;
 
 	// Sounds
 	AudioSource electricityPowerSound;
@@ -24,8 +24,8 @@ public class ElectricityScript : MonoBehaviour {
 		electricityGain = INITIAL_ELECTRICITY_GAIN;
 
 		// cache references
-		lightningEmitter = transform.GetChild(0).gameObject;
-		lightningBoltScript = transform.GetChild(0).GetComponent<LightningBolt>();
+		lightningEmitter = transform.GetChild(2).gameObject;
+		lightningBoltScript = transform.GetChild(2).GetComponent<LightningBolt>();
 
 		// set up sounds
 		electricityPowerSound = GetComponents<AudioSource>()[0];

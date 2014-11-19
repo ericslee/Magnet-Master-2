@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 		totalLives = MAX_LIVES;
 
 		// cache references
-		player = GameObject.Find("Player");
+		player = GameObject.Find("Lucina");
 
 		// set up sounds
 		deathSound = GetComponents<AudioSource>()[0];

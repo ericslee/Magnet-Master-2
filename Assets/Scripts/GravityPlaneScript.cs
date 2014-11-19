@@ -8,7 +8,7 @@ public class GravityPlaneScript : MonoBehaviour {
 
 	void Start() 
 	{
-		player = GameObject.Find("Player");
+		player = GameObject.Find("Lucina");
 		gravScript = player.GetComponent<GravityScript>();
 	}
 	

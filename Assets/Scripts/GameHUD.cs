@@ -10,7 +10,7 @@ public class GameHUD : MonoBehaviour {
 	{
 		// cache references
 		gameManager = GetComponent<GameManager>();
-		playerScript = GameObject.Find("Player").GetComponent<PlayerScript>();
+		playerScript = GameObject.Find("Lucina").GetComponent<PlayerScript>();
 	}
 	
 	void Update () {
