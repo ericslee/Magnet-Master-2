@@ -81,7 +81,7 @@ public class GameHUD : MonoBehaviour {
 		int x = (int)((float)h / healthBar.height * 7) + 1;
 		int y = (int)((float)w /healthBar.width * 7) + 1;
 
-		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.03f), w, h));
+		GUI.BeginGroup(new Rect(Screen.width - w - 10, (int)(Screen.height * 0.03f), w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), healthBar);
 			GUI.DrawTexture(new Rect(x, y, (int)((w - x * 2) * healthRatio), h - y * 2), healthBarFill); 
 		GUI.EndGroup();
