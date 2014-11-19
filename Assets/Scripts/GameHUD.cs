@@ -101,10 +101,11 @@ public class GameHUD : MonoBehaviour {
 		// +1 because it usually looks better with that buffer.
 		int x = (int)((float)h / gainsBar.height * 7) + 1;
 		int y = (int)((float)w /gainsBar.width * 7) + 1;
-		
+
+		int fillHeight = (int)((h - y * 2) * gainsRatio);
 		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.2f), w, h));
 		GUI.DrawTexture(new Rect(0, 0, w, h), gainsBar);
-		GUI.DrawTexture(new Rect(x, y, w - x * 2, (int)((h - y * 2) * gainsRatio)), gainsBarFill); 
+		GUI.DrawTexture(new Rect(x, h - y - fillHeight, w - x * 2, fillHeight), gainsBarFill); 
 		GUI.EndGroup();
 	}
 
