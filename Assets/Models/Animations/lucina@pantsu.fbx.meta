@@ -111,7 +111,7 @@ ModelImporter:
     400102: Lucina:Spine1
     400104: Lucina:Spine2
     400106: //RootNode
-    7400000: mixamo.com
+    7400000: pantsu
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -128,7 +128,141 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: pantsu
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Lucina:Hips
+        weight: 1
+      - path: Lucina:Hips/Lucina:LeftUpLeg
+        weight: 1
+      - path: Lucina:Hips/Lucina:LeftUpLeg/Lucina:LeftLeg
+        weight: 1
+      - path: Lucina:Hips/Lucina:LeftUpLeg/Lucina:LeftLeg/Lucina:LeftFoot
+        weight: 1
+      - path: Lucina:Hips/Lucina:LeftUpLeg/Lucina:LeftLeg/Lucina:LeftFoot/Lucina:LeftToeBase
+        weight: 1
+      - path: Lucina:Hips/Lucina:LeftUpLeg/Lucina:LeftLeg/Lucina:LeftFoot/Lucina:LeftToeBase/Lucina:LeftToe_End
+        weight: 0
+      - path: Lucina:Hips/Lucina:RightUpLeg
+        weight: 1
+      - path: Lucina:Hips/Lucina:RightUpLeg/Lucina:RightLeg
+        weight: 1
+      - path: Lucina:Hips/Lucina:RightUpLeg/Lucina:RightLeg/Lucina:RightFoot
+        weight: 1
+      - path: Lucina:Hips/Lucina:RightUpLeg/Lucina:RightLeg/Lucina:RightFoot/Lucina:RightToeBase
+        weight: 1
+      - path: Lucina:Hips/Lucina:RightUpLeg/Lucina:RightLeg/Lucina:RightFoot/Lucina:RightToeBase/Lucina:RightToe_End
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandIndex1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandIndex1/Lucina:LeftHandIndex2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandIndex1/Lucina:LeftHandIndex2/Lucina:LeftHandIndex3
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandIndex1/Lucina:LeftHandIndex2/Lucina:LeftHandIndex3/Lucina:LeftHandIndex4
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandThumb1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandThumb1/Lucina:LeftHandThumb2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandThumb1/Lucina:LeftHandThumb2/Lucina:LeftHandThumb3
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:LeftShoulder/Lucina:LeftArm/Lucina:LeftForeArm/Lucina:LeftHand/Lucina:LeftHandThumb1/Lucina:LeftHandThumb2/Lucina:LeftHandThumb3/Lucina:LeftHandThumb4
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:Neck
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:Neck/Lucina:Head
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:Neck/Lucina:Head/Lucina:HeadTop_End
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandIndex1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandIndex1/Lucina:RightHandIndex2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandIndex1/Lucina:RightHandIndex2/Lucina:RightHandIndex3
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandIndex1/Lucina:RightHandIndex2/Lucina:RightHandIndex3/Lucina:RightHandIndex4
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandMiddle1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandMiddle1/Lucina:RightHandMiddle2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandMiddle1/Lucina:RightHandMiddle2/Lucina:RightHandMiddle3
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandMiddle1/Lucina:RightHandMiddle2/Lucina:RightHandMiddle3/Lucina:RightHandMiddle4
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandPinky1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandPinky1/Lucina:RightHandPinky2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandPinky1/Lucina:RightHandPinky2/Lucina:RightHandPinky3
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandPinky1/Lucina:RightHandPinky2/Lucina:RightHandPinky3/Lucina:RightHandPinky4
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandRing1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandRing1/Lucina:RightHandRing2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandRing1/Lucina:RightHandRing2/Lucina:RightHandRing3
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandRing1/Lucina:RightHandRing2/Lucina:RightHandRing3/Lucina:RightHandRing4
+        weight: 0
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandThumb1
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandThumb1/Lucina:RightHandThumb2
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandThumb1/Lucina:RightHandThumb2/Lucina:RightHandThumb3
+        weight: 1
+      - path: Lucina:Hips/Lucina:Spine/Lucina:Spine1/Lucina:Spine2/Lucina:RightShoulder/Lucina:RightArm/Lucina:RightForeArm/Lucina:RightHand/Lucina:RightHandThumb1/Lucina:RightHandThumb2/Lucina:RightHandThumb3/Lucina:RightHandThumb4
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
