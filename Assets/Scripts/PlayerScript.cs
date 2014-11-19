@@ -39,6 +39,7 @@ public class PlayerScript : MonoBehaviour
 	Object targetingReticlePrefab;
 	LevitationScript levScript;
 	ElectricityScript elecScript;
+	GravityScript gravScript;
 	PowerType currentActivePower;
 
 	public LayerMask levitationLayerMask;
@@ -55,6 +56,7 @@ public class PlayerScript : MonoBehaviour
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		levScript = GetComponent<LevitationScript>();
 		elecScript = GetComponent<ElectricityScript>();
+		gravScript = GetComponent<GravityScript>();
 
 		// get distance to ground
 		distToGround = collider.bounds.extents.y;
@@ -200,10 +202,9 @@ public class PlayerScript : MonoBehaviour
 			levScript.SetCurrentlyLevitatingObj(target, mouseYPos);
 			break;
 		case PowerType.Gravity:
-			Debug.Log("gravity power");
+			gravScript.SetGravityCenter(target, mouseYPos);
 			break;
 		case PowerType.Electricity:
-			Debug.Log("electricity power");
 			elecScript.SetElectricityTarget(target, mouseYPos);
 			break;
 		}
@@ -344,6 +345,10 @@ public class PlayerScript : MonoBehaviour
 		if (currentActivePower.Equals(PowerType.Levitation))
 		{
 			return levScript.GetGain();
+		}
+		else if (currentActivePower.Equals(PowerType.Gravity))
+		{
+			return gravScript.GetGain();
 		}
 		else if (currentActivePower.Equals(PowerType.Electricity))
 		{

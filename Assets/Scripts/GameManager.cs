@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 	GameObject player;
 
 	// Use this for initialization
-	void Start () 
+	void Start() 
 	{
 		currentLevel = START_LEVEL;
 		totalLives = MAX_LIVES;
@@ -33,10 +33,15 @@ public class GameManager : MonoBehaviour {
 
 		// set up sounds
 		deathSound = GetComponents<AudioSource>()[0];
+
+		// do not allow certain objects to be sucked in by gravity
+		Physics.IgnoreLayerCollision(13, 9, true); // player
+		Physics.IgnoreLayerCollision(13, 8, true); // reticle
+		Physics.IgnoreLayerCollision(13, 11, true); // gravity centers
 	}
 
 	// Update is called once per frame
-	void Update () 
+	void Update() 
 	{
 		HandleInput();
 	}
