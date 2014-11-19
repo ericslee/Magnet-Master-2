@@ -42,7 +42,7 @@ public class GameHUD : MonoBehaviour {
 		Texture2D hBarFill = new Texture2D(width, height);
 		Color[] colors = hBarFill.GetPixels();
 		for (int i = 0; i < colors.Length; i++) {
-			colors[i] = GetColorFrom256Scale(0, 190, 134);
+			colors[i] = GetColorFrom256Scale(0, 190, 134, 0.5f);
 		}
 		hBarFill.SetPixels(colors);
 		hBarFill.Apply();
@@ -56,8 +56,17 @@ public class GameHUD : MonoBehaviour {
 		
 		Texture2D gBarFill = new Texture2D(width, height);
 		Color[] colors = gBarFill.GetPixels();
-		for (int i = 0; i < colors.Length; i++) {
-			colors[i] = GetColorFrom256Scale(177, 6, 57, 0.5f);
+
+		for (int i = 0; i < gBarFill.height; i++) {
+			for (int j = 0; j < gBarFill.width; j++) {
+				if (10 <= j && j <= 12) {
+					colors[gBarFill.width * i + j] = GetColorFrom256Scale(253, 185, 205, 0.65f);
+				} else if (5 <= j && j <= 33) {
+					colors[gBarFill.width * i + j] = GetColorFrom256Scale(210, 44, 94, 0.65f);
+				} else {
+					colors[gBarFill.width * i + j] = GetColorFrom256Scale(177, 6, 57, 0.65f);
+				}
+			}
 		}
 		gBarFill.SetPixels(colors);
 		gBarFill.Apply();
@@ -76,36 +85,36 @@ public class GameHUD : MonoBehaviour {
 		int w = (int)(Screen.width * mult);
 		int h = (int)(w * healthBar.height / healthBar.width);
 
-		// x,y where the health bar fill starts (top left corner of it). 7 comes from the full size border being 7 pixels.
-		// +1 because it usually looks better with that buffer.
-		int x = (int)((float)h / healthBar.height * 7) + 1;
-		int y = (int)((float)w /healthBar.width * 7) + 1;
+		// Bar border thickness in vert and horiz directions. Need to calculate due to resizing from original size.
+		// 7 comes from the full size border being 7 pixels. +1 because it usually looks better with that buffer.
+		int bw = (int)((float)h / healthBar.height * 7) + 1;
+		int bh = (int)((float)w /healthBar.width * 7) + 1;
 
 		GUI.BeginGroup(new Rect(Screen.width - w - 10, (int)(Screen.height * 0.03f), w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), healthBar);
-			GUI.DrawTexture(new Rect(x, y, (int)((w - x * 2) * healthRatio), h - y * 2), healthBarFill); 
+			GUI.DrawTexture(new Rect(bw, bh, (int)((w - bw * 2) * healthRatio), h - bh * 2), healthBarFill); 
 		GUI.EndGroup();
 	}
 
 	private void DrawGainsBar() {
 		float gainsRatio = (float)playerScript.GetCurrentPowerGain() / playerScript.GetCurrentPowerMaxGain();
 		
-		// Fraction of the screen width we want the health bar to take up
+		// Fraction of the screen width we want the gains bar to take up
 		float mult = 0.65f;
 		
-		// New width and height of health bar on screen w.r.t our Screen size
+		// New width and height of gains bar on screen w.r.t our Screen size
 		int h = (int)(Screen.height * mult);
 		int w = (int)(h * gainsBar.width / gainsBar.height);
 		
-		// x,y where the health bar fill starts (top left corner of it). 7 comes from the full size border being 7 pixels.
-		// +1 because it usually looks better with that buffer.
-		int x = (int)((float)h / gainsBar.height * 7) + 1;
-		int y = (int)((float)w /gainsBar.width * 7) + 1;
+		// Bar border thickness in vert and horiz directions. Need to calculate due to resizing from original size.
+		// 7 comes from the full size border being 7 pixels. +1 because it usually looks better with that buffer.
+		int bw = (int)((float)h / gainsBar.height * 7) + 1;
+		int bh = (int)((float)w /gainsBar.width * 7) + 1;
 
-		int fillHeight = (int)((h - y * 2) * gainsRatio);
+		int fillHeight = (int)((h - bh * 2) * gainsRatio);
 		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.2f), w, h));
-		GUI.DrawTexture(new Rect(0, 0, w, h), gainsBar);
-		GUI.DrawTexture(new Rect(x, h - y - fillHeight, w - x * 2, fillHeight), gainsBarFill); 
+			GUI.DrawTexture(new Rect(0, 0, w, h), gainsBar);
+			GUI.DrawTexture(new Rect(bw, h - bh - fillHeight, w - bw * 2, fillHeight), gainsBarFill); 
 		GUI.EndGroup();
 	}
 
