@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour {
 
 	// Getters
 	public int GetTotalLives() { return totalLives; }
+	public int GetMaxLives() { return MAX_LIVES; }
 	public bool GetHasLost() { return hasLost; }
 	public bool GetHasWon() { return hasWon; }
 }
