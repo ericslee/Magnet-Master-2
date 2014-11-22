@@ -17,9 +17,9 @@ public class GameHUD : MonoBehaviour {
 		gameManager = GetComponent<GameManager>();
 		playerScript = GameObject.Find("Lucina").GetComponent<PlayerScript>();
 
-		healthBar = Resources.Load("Textures/health-bar") as Texture2D;
+		healthBar = Resources.Load("Textures/health-bar-with-highlights") as Texture2D;
 		healthBarFill = CreateHealthBarTexture();
-		gainsBar = Resources.Load("Textures/gains-bar") as Texture2D;
+		gainsBar = Resources.Load("Textures/gains-bar-with-highlights") as Texture2D;
 		gainsBarFill = CreateGainsBarTexture();
 	}
 	
