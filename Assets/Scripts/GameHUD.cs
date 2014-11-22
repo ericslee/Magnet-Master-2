@@ -41,8 +41,16 @@ public class GameHUD : MonoBehaviour {
 		
 		Texture2D hBarFill = new Texture2D(width, height);
 		Color[] colors = hBarFill.GetPixels();
-		for (int i = 0; i < colors.Length; i++) {
-			colors[i] = GetColorFrom256Scale(0, 190, 134, 0.5f);
+		for (int i = 0; i < hBarFill.height; i++) {
+			for (int j = 0; j < hBarFill.width; j++) {
+				if (hBarFill.height-1-12 <= i && i <= hBarFill.height-1-10) {
+					colors[hBarFill.width * i + j] = GetColorFrom256Scale(93, 243, 199);
+				} else if (hBarFill.height-1-33 <= i && i <= hBarFill.height-1-5) {
+					colors[hBarFill.width * i + j] = GetColorFrom256Scale(24, 182, 146);
+				} else {
+					colors[hBarFill.width * i + j] = GetColorFrom256Scale(12, 156, 114);
+				}
+			}
 		}
 		hBarFill.SetPixels(colors);
 		hBarFill.Apply();
