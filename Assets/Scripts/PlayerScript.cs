@@ -323,36 +323,22 @@ public class PlayerScript : MonoBehaviour
 	}
 
 	void HandleObstacles() {
-		if (wallHide || wallDrop) {
+		if (wallDrop) {
 			GameObject wall1 = GameObject.FindWithTag("Wall1");
 			GameObject wall2 = GameObject.FindWithTag("Wall2");
 			GameObject wall3 = GameObject.FindWithTag("Wall3");
-			if (wallHide) {
-				if (leverTurn) {
-					GameObject lever = GameObject.FindWithTag("Lever");
-					lever.transform.Rotate (Vector3.forward * 90f);
-					leverTurn = false;
-				}
-				if (wall1.transform.position.y > -20) {
-					wall1.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
-				}
-				/*if (wall2.transform.position.y < 20) {
-					wall2.transform.Translate(Vector2.up * 4f * Time.deltaTime);
-				}*/
-				if (wall3.transform.position.y < 20) {
-					wall3.transform.Translate(Vector2.up * 12f * Time.deltaTime);
-				}
+			if (wall1.transform.position.y < 1) {
+				wall1.transform.Translate(Vector2.up * 12f * Time.deltaTime);
+			} else { 
+				wallDrop = false;
 			}
-			if (wallDrop) {
-				if (wall1.transform.position.y < 1) {
-					wall1.transform.Translate(Vector2.up * 12f * Time.deltaTime);
-				}
-				/*if (wall2.transform.position.y > 2) {
-					wall2.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
-				}*/
-				if (wall3.transform.position.y > 1) {
-					wall3.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
-				}
+	
+			/*if (wall2.transform.position.y > 2) {
+				wall2.transform.Translate(-Vector2.up * 4f * Time.deltaTime);}*/
+			if (wall3.transform.position.y > 1) {
+				wall3.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
+			} else {
+				wallDrop = false;
 			}
 		}
 		if (fireWall) {

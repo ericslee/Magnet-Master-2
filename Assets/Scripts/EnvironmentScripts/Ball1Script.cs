@@ -16,7 +16,7 @@ public class Ball1Script : MonoBehaviour {
 			right = true;
 		}
 
-		if (transform.position.x >= 34) {
+		if (transform.position.x >= 31) {
 			right = false;
 		}
 
