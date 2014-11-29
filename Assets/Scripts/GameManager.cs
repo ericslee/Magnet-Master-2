@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 
 	// References
 	GameObject player;
+	PlayerScript playerScript;
 
 	// Use this for initialization
 	void Start() 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
 
 		// cache references
 		player = GameObject.Find("Lucina");
+		playerScript = player.GetComponent<PlayerScript>();
 
 		// set up sounds
 		deathSound = GetComponents<AudioSource>()[0];
@@ -64,7 +66,7 @@ public class GameManager : MonoBehaviour {
 		deathSound.Play();
 
 		// respawn player
-		RespawnPlayer();
+		// RespawnPlayer();
 
 		if (totalLives <= 0) 
 		{

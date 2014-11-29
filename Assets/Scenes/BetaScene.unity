@@ -1501,7 +1501,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 181040196}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 922de5afffd597841abb9b6c503a7881, type: 3}
   m_PlayOnAwake: 1
@@ -4804,7 +4804,7 @@ GameObject:
   - 23: {fileID: 608087939}
   m_Layer: 9
   m_Name: LavaDamageTrigger
-  m_TagString: Lava
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4855,7 +4855,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 608087938}
   m_LocalRotation: {x: 1.37678782e-07, y: -.707106829, z: .707106829, w: 1.37678782e-07}
-  m_LocalPosition: {x: 105.997345, y: -4.39548397, z: -.316912204}
+  m_LocalPosition: {x: 105.997345, y: -5, z: -.316912204}
   m_LocalScale: {x: 266.32962, y: 1.88539517, z: 3.18413615}
   m_Children: []
   m_Father: {fileID: 1867282370}
@@ -12842,6 +12842,10 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -.0103530893
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
   m_RootGameObject: {fileID: 541186148}
@@ -13642,7 +13646,7 @@ GameObject:
   - 54: {fileID: 1700579339}
   m_Layer: 11
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13658,7 +13662,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
@@ -16199,7 +16203,7 @@ GameObject:
   - 54: {fileID: 2035892074}
   m_Layer: 11
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16215,7 +16219,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
