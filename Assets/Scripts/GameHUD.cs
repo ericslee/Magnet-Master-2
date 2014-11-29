@@ -10,6 +10,9 @@ public class GameHUD : MonoBehaviour {
 	Texture2D healthBarFill;
 	Texture2D gainsBar;
 	Texture2D gainsBarFill;
+	Texture2D powerIconGravity;
+	Texture2D powerIconElectricity;
+	Texture2D powerIconLevitation;
 
 	void Start () 
 	{
@@ -21,6 +24,9 @@ public class GameHUD : MonoBehaviour {
 		healthBarFill = CreateHealthBarTexture();
 		gainsBar = Resources.Load("Textures/gains-bar-with-highlights") as Texture2D;
 		gainsBarFill = CreateGainsBarTexture();
+		powerIconGravity = Resources.Load("Textures/power-icon-gravity") as Texture2D;
+		powerIconElectricity = Resources.Load("Textures/power-icon-electricity") as Texture2D;
+		powerIconLevitation = Resources.Load("Textures/power-icon-levitation") as Texture2D;
 	}
 	
 	void Update () {
@@ -98,7 +104,7 @@ public class GameHUD : MonoBehaviour {
 		int bw = (int)((float)h / healthBar.height * 7) + 1;
 		int bh = (int)((float)w /healthBar.width * 7) + 1;
 
-		GUI.BeginGroup(new Rect(Screen.width - w - 10, (int)(Screen.height * 0.03f), w, h));
+		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.03f), w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), healthBar);
 			GUI.DrawTexture(new Rect(bw, bh, (int)((w - bw * 2) * healthRatio), h - bh * 2), healthBarFill); 
 		GUI.EndGroup();
@@ -126,6 +132,29 @@ public class GameHUD : MonoBehaviour {
 		GUI.EndGroup();
 	}
 
+	// Draws icon with opacity
+	private void DrawIconWithOpacity(int x, int y, int width, int height, Texture2D texture, float alpha) {
+		Color orig = GUI.color;
+		GUI.color = new Color(orig.r, orig.g, orig.b, alpha);
+		GUI.DrawTexture(new Rect(x, y, width, height), texture);
+		GUI.color = orig;
+	}
+
+	private void DrawPowerIcons() {
+		// We want these to be about this scale w.r.t to screen height
+		float scale = 0.081f;
+		int dim = (int) (scale * Screen.height);
+		int padding = 20;
+		int totalWidth = dim * 3 + padding * 2;
+
+		float faded = 0.2f;
+		GUI.BeginGroup(new Rect(Screen.width - totalWidth - 10, 10, totalWidth, dim));
+			DrawIconWithOpacity(0, 0, dim, dim, powerIconLevitation, (playerScript.GetCurrentPower() == PowerType.Levitation) ? 1 : faded);
+			DrawIconWithOpacity(dim + padding, 0, dim, dim, powerIconGravity, (playerScript.GetCurrentPower() == PowerType.Gravity) ? 1 : faded);
+			DrawIconWithOpacity(dim * 2 + padding * 2, 0, dim, dim, powerIconElectricity, (playerScript.GetCurrentPower() == PowerType.Electricity) ? 1 : faded); 
+		GUI.EndGroup();
+	}
+
 	void OnGUI() 
 	{
 		GUI.Label(new Rect(50, 15, Screen.width / 5, Screen.height / 10), "Lives: " + gameManager.GetTotalLives());
@@ -141,8 +170,8 @@ public class GameHUD : MonoBehaviour {
 		}
 
 		// Powers
-		GUI.Label(new Rect(50, 45, Screen.width / 5, Screen.height / 10), playerScript.GetCurrentPower().ToString());
-		GUI.Label(new Rect(50, 75, Screen.width / 5, Screen.height / 10), "GAIN: " + playerScript.GetCurrentPowerGain());
+//		GUI.Label(new Rect(50, 75, Screen.width / 5, Screen.height / 10), "GAIN: " + playerScript.GetCurrentPowerGain());
+		DrawPowerIcons();
 
 		// Health
 		DrawHealthBar();
