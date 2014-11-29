@@ -221,7 +221,7 @@ public class PlayerScript : MonoBehaviour
 		switch (GetCurrentPower())
 		{
 		case PowerType.Levitation:
-			levScript.SetCurrentlyLevitatingObj(target, mouseYPos);
+			StartCoroutine(levScript.SetCurrentlyLevitatingObj(target, mouseYPos));
 			break;
 		case PowerType.Gravity:
 			gravScript.SetGravityCenter(target, mouseYPos);
