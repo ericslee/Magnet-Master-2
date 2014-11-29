@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
 
 	public float jumpHeight;
 	int health;
+	int invincibilityFrames;
 
 	// Controls
 	float distToGround;
@@ -52,6 +53,7 @@ public class PlayerScript : MonoBehaviour
 	static int walkState = Animator.StringToHash("Base Layer.walk");
 	static int jumpState = Animator.StringToHash("Base Layer.jump");
 	static int pantsuState = Animator.StringToHash("Base Layer.pantsu");
+	SkinnedMeshRenderer lucinaRenderer;
 
 	// Use this for initialization
 	void Start()
@@ -65,11 +67,13 @@ public class PlayerScript : MonoBehaviour
 		elecScript = GetComponent<ElectricityScript>();
 		gravScript = GetComponent<GravityScript>();
 		animator = GetComponent<Animator>();
+		lucinaRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
 		// get distance to ground
 		//distToGround = collider.bounds.extents.y;
 		distToGround = 1.0f;
 		jumpHeight = 100.0f;
+		invincibilityFrames = 100;
 		
 		frontRotation = Quaternion.Euler(0,180,0);
 		leftRotation = Quaternion.Euler(0,-90,0);
@@ -93,6 +97,7 @@ public class PlayerScript : MonoBehaviour
 	{
 		HandleMovement();
 		HandlePowersInput();
+		HandleDamage();
 
 		// follow player with camera
 		Vector3 playerPosition = transform.position;
@@ -216,6 +221,24 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
+	void HandleDamage()
+	{
+		invincibilityFrames++;
+
+		// flash character during invincibility
+		if (invincibilityFrames < 100)
+		{
+			if(lucinaRenderer.enabled)
+				lucinaRenderer.enabled = false;
+			else
+				lucinaRenderer.enabled = true;
+		}
+		else if (!lucinaRenderer.enabled) 
+		{
+			lucinaRenderer.enabled = true;
+		}
+	}
+
 	void ActivatePower(GameObject target, float mouseYPos)
 	{
 		switch (GetCurrentPower())
@@ -285,15 +308,22 @@ public class PlayerScript : MonoBehaviour
 	void OnCollisionEnter(Collision collision)
 	{ 
 		// if collision with hazardous object, lose life
-		if (collision.gameObject.tag.Equals("Lava"))
+		if (collision.gameObject.tag.Equals("Hazard") && invincibilityFrames > 100)
 		{
-			Debug.Log ("lose life");
-			gameManager.LoseLife();
+			TakeDamage();
 		}
 		// environment tag needed in case we want to be able to control 
 		if (collision.gameObject.tag.Equals("Environment") && !IsGrounded())
 		{
 			collidingWall = true;
+		}
+	}
+
+	void OnCollisionStay(Collision collisionInfo) 
+	{
+		if (collisionInfo.collider.gameObject.tag.Equals("Hazard") && invincibilityFrames > 100)
+		{
+			TakeDamage();
 		}
 	}
 	
@@ -353,6 +383,21 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
+	void TakeDamage()
+	{
+		gameManager.LoseLife();
+		
+		// knock back
+		Vector3 knockbackForce;
+		if (gameObject.GetComponent<Rigidbody>().velocity.x < 0)
+			knockbackForce = new Vector3(-1000, 350, 0);
+		else
+			knockbackForce = new Vector3(1000, 350, 0);
+		gameObject.GetComponent<Rigidbody>().AddForce(knockbackForce);
+		
+		invincibilityFrames = 0;
+	}
+
 	// Getters
 	public float GetCurrentPowerGain()
 	{
@@ -396,5 +441,6 @@ public class PlayerScript : MonoBehaviour
 
 	public PowerType GetCurrentPower() { return currentActivePower; }
 	public int GetHealth() { return health; }
+	public int GetInvincibilityFrames() { return invincibilityFrames; }
 	public void SetHealth(int newHealth) { health = newHealth; }
 }
