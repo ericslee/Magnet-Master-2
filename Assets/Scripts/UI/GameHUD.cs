@@ -106,7 +106,7 @@ public class GameHUD : MonoBehaviour {
 
 		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.03f), w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), healthBar);
-			GUI.DrawTexture(new Rect(bw, bh, (int)((w - bw * 2) * healthRatio), h - bh * 2), healthBarFill); 
+			if (healthRatio > 0) GUI.DrawTexture(new Rect(bw, bh, (int)((w - bw * 2) * healthRatio), h - bh * 2), healthBarFill);
 		GUI.EndGroup();
 	}
 
