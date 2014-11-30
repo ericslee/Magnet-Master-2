@@ -1501,7 +1501,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 181040196}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 922de5afffd597841abb9b6c503a7881, type: 3}
   m_PlayOnAwake: 1
@@ -2576,6 +2576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2f5b09ef249df4e8554f4cc42a7af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetaspect: 1.77777779
 --- !u!45 &366060447
 Skybox:
   m_ObjectHideFlags: 0

@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
 		if (totalLives <= 0) 
 		{
 			hasLost = true;
-			Debug.Log("GAME OVERRRRRRRRRRRRR");
+			Application.LoadLevel("GameOver"); 
 		}
 	}
 
