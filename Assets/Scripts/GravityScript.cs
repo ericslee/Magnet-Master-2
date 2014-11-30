@@ -58,12 +58,38 @@ public class GravityScript : MonoBehaviour {
 			if (currentGravityCenter)
 			{
 				float timeToGravityCenter = Vector3.Distance(currentGravityCenter.transform.position, obj.transform.position) / 5.0f;
-				iTween.MoveTo(obj, currentGravityCenter.transform.position, timeToGravityCenter);
+
+				// attract to edge of object
+				Vector3 attractionPos = currentGravityCenter.transform.position - 
+					(GetColliderRadius() * (currentGravityCenter.transform.position - obj.transform.position));
+
+				iTween.MoveTo(obj, attractionPos, timeToGravityCenter);
 
 				// parent to gravity center
 				obj.transform.parent = currentGravityCenter.transform;
 			}
 		}
+	}
+
+	float GetColliderRadius()
+	{
+		if (currentGravityCenter)
+		{
+			if (currentGravityCenter.GetComponent<SphereCollider>())
+			{
+				return currentGravityCenter.GetComponent<SphereCollider>().radius;
+			}
+			else if (currentGravityCenter.GetComponent<BoxCollider>())
+			{
+				return currentGravityCenter.GetComponent<BoxCollider>().size.x / 2.0f;
+			}
+			else if (currentGravityCenter.GetComponent<CapsuleCollider>())
+			{
+				return currentGravityCenter.GetComponent<CapsuleCollider>().radius;
+			}
+		}
+
+		return 0;
 	}
 
 	// Getters

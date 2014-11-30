@@ -317,6 +317,12 @@ public class PlayerScript : MonoBehaviour
 		{
 			collidingWall = true;
 		}
+
+		// platform
+		if (collision.gameObject.name.Equals("Platform") || collision.gameObject.name.Equals("Moving Sphere"))
+		{
+			transform.parent = collision.gameObject.transform ; 
+		}
 	}
 
 	void OnCollisionStay(Collision collisionInfo) 
@@ -330,6 +336,8 @@ public class PlayerScript : MonoBehaviour
 	void OnCollisionExit()
 	{
 		collidingWall = false;
+
+		transform.parent = null;
 	}
 
 	void OnTriggerEnter(Collider c) {
