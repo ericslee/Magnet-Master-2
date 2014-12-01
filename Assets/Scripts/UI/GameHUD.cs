@@ -10,6 +10,9 @@ public class GameHUD : MonoBehaviour {
 	Texture2D healthBarFill;
 	Texture2D gainsBar;
 	Texture2D gainsBarFill;
+	Texture2D gainsBarFillGravity;
+	Texture2D gainsBarFillElectricity;
+	Texture2D gainsBarFillLevitation;
 	Texture2D powerIconGravity;
 	Texture2D powerIconElectricity;
 	Texture2D powerIconLevitation;
@@ -20,13 +23,16 @@ public class GameHUD : MonoBehaviour {
 		gameManager = GetComponent<GameManager>();
 		playerScript = GameObject.Find("Lucina").GetComponent<PlayerScript>();
 
-		healthBar = Resources.Load("Textures/health-bar-with-highlights") as Texture2D;
+		healthBar = Resources.Load("Materials/Textures/health-bar-with-highlights") as Texture2D;
 		healthBarFill = CreateHealthBarTexture();
-		gainsBar = Resources.Load("Textures/gains-bar-with-highlights") as Texture2D;
-		gainsBarFill = CreateGainsBarTexture();
-		powerIconGravity = Resources.Load("Textures/power-icon-gravity") as Texture2D;
-		powerIconElectricity = Resources.Load("Textures/power-icon-electricity") as Texture2D;
-		powerIconLevitation = Resources.Load("Textures/power-icon-levitation") as Texture2D;
+		gainsBar = Resources.Load("Materials/Textures/gains-bar-with-highlights") as Texture2D;
+		gainsBarFillGravity = CreateGainsBarTexture(PowerType.Gravity);
+		gainsBarFillElectricity = CreateGainsBarTexture(PowerType.Electricity);
+		gainsBarFillLevitation = CreateGainsBarTexture(PowerType.Levitation);
+		gainsBarFill = gainsBarFillLevitation;
+		powerIconGravity = Resources.Load("Materials/Textures/power-icon-gravity") as Texture2D;
+		powerIconElectricity = Resources.Load("Materials/Textures/power-icon-electricity") as Texture2D;
+		powerIconLevitation = Resources.Load("Materials/Textures/power-icon-levitation") as Texture2D;
 	}
 	
 	void Update () {
@@ -39,6 +45,10 @@ public class GameHUD : MonoBehaviour {
 	
 	private Color GetColorFrom256Scale(int r, int g, int b, float a) {
 		return new Color(r/255f, g/255f, b/255f, a);
+	}
+
+	private Color GetColorFrom256Scale(Vector3 rgb, float a) {
+		return new Color((int)rgb.x/255f, (int)rgb.y/255f, (int)rgb.z/255f, a);
 	}
 
 	private Texture2D CreateHealthBarTexture() {
@@ -64,21 +74,60 @@ public class GameHUD : MonoBehaviour {
 		return hBarFill;
 	}
 
-	private Texture2D CreateGainsBarTexture() {
+	private Texture2D CreateGainsBarTexture(PowerType power) {
 		int width = gainsBar.width;
 		int height = gainsBar.height;
-		
+
 		Texture2D gBarFill = new Texture2D(width, height);
 		Color[] colors = gBarFill.GetPixels();
+		float alpha = 0.65f;
+
+		// Levitation
+		Vector3 lHigh = new Vector3(253, 185, 205);
+		Vector3 lMid = new Vector3(210, 44, 94);
+		Vector3 lLow = new Vector3(177, 6, 57);
+
+		// Gravity
+		Vector3 gHigh = new Vector3(178, 167, 222);
+		Vector3 gMid = new Vector3(112, 94, 184);
+		Vector3 gLow = new Vector3(80, 61, 154);
+
+		// Electricity
+		Vector3 eHigh = new Vector3(165, 218, 218);
+		Vector3 eMid = new Vector3(82, 172, 172);
+		Vector3 eLow = new Vector3(45, 137, 138);
+
+		Vector3 high;
+		Vector3 mid;
+		Vector3 low;
+
+		switch (power) {
+			case PowerType.Levitation:
+				high = lHigh;
+				mid = lMid;
+				low = lLow;
+				break;
+			case PowerType.Gravity:
+				high = gHigh;
+				mid = gMid;
+				low = gLow;
+				break;
+			default:
+				high = eHigh;
+				mid = eMid;
+				low = eLow;
+				break;
+		}
+
 
 		for (int i = 0; i < gBarFill.height; i++) {
 			for (int j = 0; j < gBarFill.width; j++) {
 				if (10 <= j && j <= 12) {
-					colors[gBarFill.width * i + j] = GetColorFrom256Scale(253, 185, 205, 0.65f);
+					colors[gBarFill.width * i + j] = GetColorFrom256Scale(high, alpha);
 				} else if (5 <= j && j <= 33) {
-					colors[gBarFill.width * i + j] = GetColorFrom256Scale(210, 44, 94, 0.65f);
+					colors[gBarFill.width * i + j] = GetColorFrom256Scale(mid, alpha);
 				} else {
-					colors[gBarFill.width * i + j] = GetColorFrom256Scale(177, 6, 57, 0.65f);
+					colors[gBarFill.width * i + j] = GetColorFrom256Scale(low, alpha);
 				}
 			}
 		}
@@ -125,6 +174,17 @@ public class GameHUD : MonoBehaviour {
 		int bw = (int)((float)h / gainsBar.height * 7) + 1;
 		int bh = (int)((float)w /gainsBar.width * 7) + 1;
 
+		switch (playerScript.GetCurrentPower()) {
+			case PowerType.Levitation:
+				gainsBarFill = gainsBarFillLevitation;
+				break;
+			case PowerType.Gravity:
+				gainsBarFill = gainsBarFillGravity;
+				break;
+			default:
+				gainsBarFill = gainsBarFillElectricity;
+				break;
+		}
 		int fillHeight = (int)((h - bh * 2) * gainsRatio);
 		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.2f), w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), gainsBar);
