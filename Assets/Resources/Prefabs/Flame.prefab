@@ -30,7 +30,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 65: {fileID: 6500000}
-  - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
   m_Layer: 0
   m_Name: Flame
@@ -535,18 +534,6 @@ Light:
 --- !u!1002 &10800001
 EditorExtensionImpl:
   serializedVersion: 6
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e53a60575fd4a4e9ec63ae08b63e82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 100108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
