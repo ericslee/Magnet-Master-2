@@ -7,8 +7,9 @@ public enum PlatformMovementPath {horizontal, vertical};
 
 public class MovingPlatformScript : MonoBehaviour {
 
+	public bool isActive = false;
 	public float movementSpeed = 2.0f;
-	public bool isMovingDefaultDirection;
+	public bool isMovingDefaultDirection = true;
 	public float movementRadius;
 	public PlatformMovementPath movementPath = PlatformMovementPath.horizontal;
 	public Vector3 initialPos;
@@ -20,7 +21,6 @@ public class MovingPlatformScript : MonoBehaviour {
 
 	void Start() 
 	{
-		isMovingDefaultDirection = true;
 		initialPos = transform.position;
 
 		if (movementPath.Equals(PlatformMovementPath.horizontal)) 
@@ -39,10 +39,13 @@ public class MovingPlatformScript : MonoBehaviour {
 	
 	void Update() 
 	{
-		if (movementPath.Equals(PlatformMovementPath.horizontal)) currentPos = transform.position.x;
-		else if (movementPath.Equals(PlatformMovementPath.vertical)) currentPos = transform.position.y;
+		if (isActive)
+		{
+			if (movementPath.Equals(PlatformMovementPath.horizontal)) currentPos = transform.position.x;
+			else if (movementPath.Equals(PlatformMovementPath.vertical)) currentPos = transform.position.y;
 
-		Move();
+			Move();
+		}
 	}
 
 	void Move()
