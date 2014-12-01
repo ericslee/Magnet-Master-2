@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: f95090f664d0844cba19540d1fb5fecf
+guid: 43a83c0b6a01144f59296b0d81cea89e
 TextureImporter:
   fileIDToRecycleName:
-    21300000: reticle-glow-yellow
-    21300002: reticle-glow
+    21300000: reticle-glow
+    21300002: reticle-glow-red
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

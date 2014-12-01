@@ -43,6 +43,9 @@ public class PlayerScript : MonoBehaviour
 	GravityScript gravScript;
 	PowerType currentActivePower;
 
+	Texture reticleHoverNormalTexture;
+	Texture reticleHoverGlowTexture;
+
 	public LayerMask levitationLayerMask;
 	public LayerMask gravityLayerMask;
 	public LayerMask electricyLayerMask;
@@ -85,12 +88,17 @@ public class PlayerScript : MonoBehaviour
 
 		// setup powers
 		currentActivePower = PowerType.Levitation;
+
+		// for reticle glow
+		reticleHoverGlowTexture = Resources.Load("Materials/Textures/reticle-glow") as Texture;
+		reticleHoverNormalTexture = Resources.Load("Materials/Textures/reticle-normal") as Texture;
 	}
 
 	void Update()
 	{
 		HandleInput();
 		HandleObstacles();
+		HandlePowerHover();
 	}
 	
 	void HandleInput()
@@ -220,6 +228,41 @@ public class PlayerScript : MonoBehaviour
 			}
 		}
 	}
+
+	void HandlePowerHover() {
+		// check to see if reticle is hovering over anything the current power can be applied to
+		
+		Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+		RaycastHit hit;
+		
+		LayerMask currentMask = levitationLayerMask;
+		
+		if (currentActivePower.Equals(PowerType.Gravity)) 
+		{
+			currentMask = gravityLayerMask;
+		}
+		else if (currentActivePower.Equals(PowerType.Electricity))
+		{
+			currentMask = electricyLayerMask;
+		}
+    
+		Texture currTex = targetingReticle.renderer.material.GetTexture("_MainTex");
+		Debug.Log (currTex);
+	    if (Physics.Raycast(ray, out hit, 100, currentMask))
+	    {
+			if (currTex.name != "reticle-glow")
+			{
+				targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverGlowTexture);
+			}
+	    }
+		else
+		{
+			if (currTex.name != "reticle-normal")
+            {
+			targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverNormalTexture);
+			}
+		}
+    }
 
 	void HandleDamage()
 	{
