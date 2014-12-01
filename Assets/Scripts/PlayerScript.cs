@@ -261,7 +261,6 @@ public class PlayerScript : MonoBehaviour
 		}
     
 		Texture currTex = targetingReticle.renderer.material.GetTexture("_MainTex");
-		Debug.Log (currTex);
 	    if (Physics.Raycast(ray, out hit, 100, currentMask) && !powerIsActive)
 	    {
 			if (currTex.name != "reticle-glow")
