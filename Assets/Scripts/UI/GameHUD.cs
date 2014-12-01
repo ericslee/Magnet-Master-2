@@ -36,7 +36,7 @@ public class GameHUD : MonoBehaviour {
 	}
 	
 	void Update () {
-	
+
 	}
 
 	private Color GetColorFrom256Scale(int r, int g, int b) {
