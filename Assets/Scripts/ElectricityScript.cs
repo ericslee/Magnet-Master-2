@@ -88,6 +88,10 @@ public class ElectricityScript : MonoBehaviour {
 					turnOnMachinarySound.Play();
 				}
 			}
+
+			// disable spark once activated
+			Transform sparks = obj.transform.FindChild("Sparks");
+			if (sparks) sparks.gameObject.SetActive(false);
 		}
 	}
 
