@@ -384,7 +384,7 @@ public class PlayerScript : MonoBehaviour
 		// platform
 		if (collision.gameObject.name.Equals("Platform") || collision.gameObject.name.Equals("Moving Sphere"))
 		{
-			transform.parent = collision.gameObject.transform ; 
+			transform.parent = collision.gameObject.transform; 
 		}
 	}
 
@@ -393,6 +393,13 @@ public class PlayerScript : MonoBehaviour
 		if (collisionInfo.collider.gameObject.tag.Equals("Hazard") && invincibilityFrames > 100)
 		{
 			TakeDamage();
+		}
+
+		// platform
+		if (transform.parent == null 
+		    && (collisionInfo.collider.gameObject.name.Equals("Platform") || collisionInfo.collider.gameObject.name.Equals("Moving Sphere")))
+		{
+			transform.parent = collisionInfo.collider.gameObject.transform; 
 		}
 	}
 	
