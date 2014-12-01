@@ -5,17 +5,23 @@ public class WallScript : MonoBehaviour {
 
 	bool leverDown = false;
 
+	// references
+	GameObject wall1;
+	GameObject wall2;
+	GameObject wall3;
+	GameObject lever;
+
 	// Use this for initialization
 	void Start () {
-		
+		// cache references
+		wall1 = GameObject.FindWithTag("Wall1");
+		wall2 = GameObject.FindWithTag("Wall2");
+		wall3 = GameObject.FindWithTag("Wall3");
+		lever = GameObject.FindWithTag("Lever");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject wall1 = GameObject.FindWithTag("Wall1");
-		GameObject wall2 = GameObject.FindWithTag("Wall2");
-		GameObject wall3 = GameObject.FindWithTag("Wall3");
-		GameObject lever = GameObject.FindWithTag("Lever");
 		if (!leverDown) {
 			lever.transform.Rotate (Vector3.forward * 90f);
 			leverDown = true;
