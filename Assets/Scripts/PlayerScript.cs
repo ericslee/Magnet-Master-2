@@ -45,6 +45,8 @@ public class PlayerScript : MonoBehaviour
 
 	Texture reticleHoverNormalTexture;
 	Texture reticleHoverGlowTexture;
+	Texture reticleHoverGlowRedTexture;
+	bool powerIsActive;
 
 	public LayerMask levitationLayerMask;
 	public LayerMask gravityLayerMask;
@@ -92,18 +94,19 @@ public class PlayerScript : MonoBehaviour
 		// for reticle glow
 		reticleHoverGlowTexture = Resources.Load("Materials/Textures/reticle-glow") as Texture;
 		reticleHoverNormalTexture = Resources.Load("Materials/Textures/reticle-normal") as Texture;
+		reticleHoverGlowRedTexture = Resources.Load("Materials/Textures/reticle-glow-red") as Texture;
 	}
 
 	void Update()
 	{
 		HandleInput();
 		HandleObstacles();
-		HandlePowerHover();
 	}
 	
 	void HandleInput()
 	{
 		HandleMovement();
+		HandlePowersHover();
 		HandlePowersInput();
 		HandleDamage();
 
@@ -204,9 +207,13 @@ public class PlayerScript : MonoBehaviour
 
 				if(Physics.Raycast(ray, out hit, 100, currentMask))
 				{
-					ActivatePower(hit.transform.gameObject, Input.mousePosition.y); 
+					ActivatePower(hit.transform.gameObject, Input.mousePosition.y);
+					powerIsActive = true;
 				}
 
+			}
+			if (Input.GetMouseButtonUp(0)) {
+				powerIsActive = false;
 			}
 			if (Input.GetMouseButton(0)) 
 			{
@@ -229,7 +236,7 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-	void HandlePowerHover() {
+	void HandlePowersHover() {
 		// check to see if reticle is hovering over anything the current power can be applied to
 		
 		Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
@@ -248,13 +255,20 @@ public class PlayerScript : MonoBehaviour
     
 		Texture currTex = targetingReticle.renderer.material.GetTexture("_MainTex");
 		Debug.Log (currTex);
-	    if (Physics.Raycast(ray, out hit, 100, currentMask))
+	    if (Physics.Raycast(ray, out hit, 100, currentMask) && !powerIsActive)
 	    {
 			if (currTex.name != "reticle-glow")
 			{
 				targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverGlowTexture);
 			}
 	    }
+		else if (powerIsActive)
+		{
+			if (currTex.name != "reticle-glow-red")
+			{
+				targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverGlowRedTexture);
+            }
+		}
 		else
 		{
 			if (currTex.name != "reticle-normal")
