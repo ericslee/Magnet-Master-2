@@ -21,9 +21,9 @@ public class Ball1Script : MonoBehaviour {
 		}
 
 		if (right) {
-			transform.Translate(Vector2.right * 4f * Time.deltaTime);
+			transform.Translate(Vector2.right * 2f * Time.deltaTime);
 		} else {
-			transform.Translate(-Vector2.right * 4f * Time.deltaTime);
+			transform.Translate(-Vector2.right * 2f * Time.deltaTime);
 		}
 	}
 }
