@@ -23,16 +23,16 @@ public class GameHUD : MonoBehaviour {
 		gameManager = GetComponent<GameManager>();
 		playerScript = GameObject.Find("Lucina").GetComponent<PlayerScript>();
 
-		healthBar = Resources.Load("Textures/health-bar-with-highlights") as Texture2D;
+		healthBar = Resources.Load("Materials/Textures/health-bar-with-highlights") as Texture2D;
 		healthBarFill = CreateHealthBarTexture();
-		gainsBar = Resources.Load("Textures/gains-bar-with-highlights") as Texture2D;
+		gainsBar = Resources.Load("Materials/Textures/gains-bar-with-highlights") as Texture2D;
 		gainsBarFillGravity = CreateGainsBarTexture(PowerType.Gravity);
 		gainsBarFillElectricity = CreateGainsBarTexture(PowerType.Electricity);
 		gainsBarFillLevitation = CreateGainsBarTexture(PowerType.Levitation);
 		gainsBarFill = gainsBarFillLevitation;
-		powerIconGravity = Resources.Load("Textures/power-icon-gravity") as Texture2D;
-		powerIconElectricity = Resources.Load("Textures/power-icon-electricity") as Texture2D;
-		powerIconLevitation = Resources.Load("Textures/power-icon-levitation") as Texture2D;
+		powerIconGravity = Resources.Load("Materials/Textures/power-icon-gravity") as Texture2D;
+		powerIconElectricity = Resources.Load("Materials/Textures/power-icon-electricity") as Texture2D;
+		powerIconLevitation = Resources.Load("Materials/Textures/power-icon-levitation") as Texture2D;
 	}
 	
 	void Update () {
