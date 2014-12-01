@@ -49,6 +49,13 @@ public class GravityScript : MonoBehaviour {
 				currentGravityPlane.transform.localScale = planeScale;
 
 				// remove platforms from the gravity center's pull if necessary
+				foreach (GameObject obj in gravityTargets)
+				{
+					if (!obj.collider.bounds.Intersects(currentGravityPlane.collider.bounds))
+					{
+						obj.transform.parent = null;
+					}
+				}
 			}
 		}
 
