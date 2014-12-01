@@ -60,6 +60,10 @@ public class PlayerScript : MonoBehaviour
 	static int pantsuState = Animator.StringToHash("Base Layer.pantsu");
 	SkinnedMeshRenderer lucinaRenderer;
 
+	// Level 2 enemies
+	GameObject enemyOne;
+	GameObject enemyTwo;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -73,6 +77,9 @@ public class PlayerScript : MonoBehaviour
 		gravScript = GetComponent<GravityScript>();
 		animator = GetComponent<Animator>();
 		lucinaRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+
+		enemyOne = GameObject.Find("Enemy1").transform.GetChild(0).gameObject;
+		enemyTwo = GameObject.Find("Enemy2").transform.GetChild(0).gameObject;
 
 		// get distance to ground
 		//distToGround = collider.bounds.extents.y;
@@ -404,9 +411,11 @@ public class PlayerScript : MonoBehaviour
 		} else if (c.tag.Equals("FireWall")) {
 			Debug.Log ("FireWall");
 			fireWall = true;
+			enemyOne.GetComponent<EnemyScript>().StartAttacking();
 		} else if (c.tag.Equals("FireBall")) {
 			Debug.Log ("FireBall");
 			fireBall = true;
+			enemyTwo.GetComponent<EnemyScript>().StartAttacking();
 		} else if (c.tag.Equals("KeyDrop")) {
 			Debug.Log ("KeyDrop");	
 			keyDrop = true;
@@ -414,6 +423,10 @@ public class PlayerScript : MonoBehaviour
 			//Level over
 			gameManager.Win();
 			Debug.Log("LEVEL COMPLETE");
+		}
+		else if (c.tag.Equals("Hazard") && invincibilityFrames > 100)
+		{
+			TakeDamage ();
 		}
 	}
 
