@@ -173,13 +173,6 @@ public class PlayerScript : MonoBehaviour
 		{
 			rigidbody.velocity = new Vector3(0, 8, 0);
 		}
-
-		// FOR DEBUGGING, trapping walls go back
-		if (Input.GetKey(KeyCode.H))
-		{
-			wallHide = true;
-			wallDrop = false;
-		}
 	}
 
 	void HandlePowersInput() 

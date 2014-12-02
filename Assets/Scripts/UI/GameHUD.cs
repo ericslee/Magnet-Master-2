@@ -217,8 +217,6 @@ public class GameHUD : MonoBehaviour {
 
 	void OnGUI() 
 	{
-		GUI.Label(new Rect(50, 15, Screen.width / 5, Screen.height / 10), "Lives: " + gameManager.GetTotalLives());
-
 		// Loss state
 		if (gameManager.GetHasLost()) 
 		{
