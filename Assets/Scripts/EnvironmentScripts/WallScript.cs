@@ -24,12 +24,14 @@ public class WallScript : MonoBehaviour {
 	void Update () {
 		if (!leverDown) {
 			lever.transform.Rotate (Vector3.forward * 90f);
+			transform.Translate(-Vector2.right*1.25f);
+			transform.Translate (Vector2.up);
 			leverDown = true;
 		}
 		if (wall1.transform.position.y > -20) {
 			wall1.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
 		}
-		if (wall3.transform.position.y < 20) {
+		if (wall3.transform.position.y < 25) {
 			wall3.transform.Translate(Vector2.up * 12f * Time.deltaTime);
 		}
 	}

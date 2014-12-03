@@ -319,7 +319,7 @@ public class PlayerScript : MonoBehaviour
 			transform.rotation = Quaternion.identity;
 			collidingWall = false;
 			
-			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) 
+			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow)) 
 			{
 				//rigidbody.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
 				rigidbody.velocity = new Vector3(0, 8, 0);
