@@ -422,7 +422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &12905602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,7 +3678,7 @@ GameObject:
   - 33: {fileID: 289119601}
   - 65: {fileID: 289119600}
   - 23: {fileID: 289119599}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Descending Platform
   m_TagString: Wall2
   m_Icon: {fileID: 0}
@@ -20254,7 +20254,7 @@ Transform:
   m_Children:
   - {fileID: 1617806763}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!82 &1537002028
 AudioSource:
   m_ObjectHideFlags: 0
