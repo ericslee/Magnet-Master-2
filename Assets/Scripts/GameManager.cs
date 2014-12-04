@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
 
 	// Sound
 	AudioSource deathSound;
+	AudioSource level3StartSound;
 
 	// References
 	GameObject player;
@@ -35,11 +36,14 @@ public class GameManager : MonoBehaviour {
 
 		// set up sounds
 		deathSound = GetComponents<AudioSource>()[0];
+		level3StartSound = GetComponents<AudioSource>()[2];
 
 		// do not allow certain objects to be sucked in by gravity
 		Physics.IgnoreLayerCollision(13, 9, true); // player
 		Physics.IgnoreLayerCollision(13, 8, true); // reticle
 		Physics.IgnoreLayerCollision(13, 11, true); // gravity centers
+
+		StartLevel(3);
 	}
 
 	// Update is called once per frame
@@ -57,6 +61,14 @@ public class GameManager : MonoBehaviour {
 			hasLost = false;
 			hasWon = false;
 			RespawnPlayer();
+		}
+	}
+
+	void StartLevel(int levelNum) 
+	{
+		if (levelNum == 3)
+		{
+			level3StartSound.Play();
 		}
 	}
 

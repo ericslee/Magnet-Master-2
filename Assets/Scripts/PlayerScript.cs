@@ -64,6 +64,13 @@ public class PlayerScript : MonoBehaviour
 	GameObject enemyOne;
 	GameObject enemyTwo;
 
+	// Sounds
+	AudioSource jumpVoiceOne;
+	AudioSource jumpVoiceTwo;
+	AudioSource damageVoiceOne;
+	AudioSource damageVoiceTwo;
+	AudioSource damageVoiceThree;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -80,6 +87,12 @@ public class PlayerScript : MonoBehaviour
 
 		enemyOne = GameObject.Find("Enemy1").transform.GetChild(0).gameObject;
 		enemyTwo = GameObject.Find("Enemy2").transform.GetChild(0).gameObject;
+
+		jumpVoiceOne = GetComponents<AudioSource>()[4];
+		jumpVoiceTwo = GetComponents<AudioSource>()[5];
+		damageVoiceOne = GetComponents<AudioSource>()[6];
+		damageVoiceTwo = GetComponents<AudioSource>()[7];
+		damageVoiceThree = GetComponents<AudioSource>()[8];
 
 		// get distance to ground
 		//distToGround = collider.bounds.extents.y;
@@ -325,6 +338,13 @@ public class PlayerScript : MonoBehaviour
 				rigidbody.velocity = new Vector3(0, 8, 0);
 				animator.SetBool("Walking", false);
 				animator.SetTrigger("Jumping");
+
+				// play sound
+				int soundChoice = Random.Range(0, 2);
+				if (soundChoice == 0)
+					jumpVoiceOne.Play();
+				else
+					jumpVoiceTwo.Play();
 			}
 
 			transform.rotation = rotation;
@@ -425,7 +445,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (c.tag.Equals("Hazard") && invincibilityFrames > 100)
 		{
-			TakeDamage ();
+			TakeDamage();
 		}
 	}
 
@@ -463,6 +483,21 @@ public class PlayerScript : MonoBehaviour
 	void TakeDamage()
 	{
 		gameManager.LoseLife();
+
+		// SFX
+		int damageVoiceChoice = Random.Range(0, 3);
+		switch (damageVoiceChoice)
+		{
+			case 0:
+				damageVoiceOne.Play();
+				break;
+			case 1:
+				damageVoiceTwo.Play();
+				break;
+			default:
+				damageVoiceThree.Play();
+				break;
+		}
 		
 		// knock back
 		Vector3 knockbackForce;
