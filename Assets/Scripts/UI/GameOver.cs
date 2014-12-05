@@ -22,7 +22,7 @@ public class GameOver : MonoBehaviour {
 		// Load the main scene 
 		if (GUILayout.Button("New Game")) 
 		{ 
-			Application.LoadLevel("BetaScene"); 
+			Application.LoadLevel("FinalScene"); 
 		}
 		
 		if (GUILayout.Button("Quit")) 
