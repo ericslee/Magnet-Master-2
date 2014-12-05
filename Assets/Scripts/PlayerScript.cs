@@ -85,8 +85,8 @@ public class PlayerScript : MonoBehaviour
 		animator = GetComponent<Animator>();
 		lucinaRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
-		enemyOne = GameObject.Find("Enemy1").transform.GetChild(0).gameObject;
-		enemyTwo = GameObject.Find("Enemy2").transform.GetChild(0).gameObject;
+		enemyOne = GameObject.Find("Enemies").transform.GetChild(0).transform.GetChild(0).gameObject;
+		enemyTwo = GameObject.Find("Enemies").transform.GetChild(1).transform.GetChild(0).gameObject;
 
 		jumpVoiceOne = GetComponents<AudioSource>()[4];
 		jumpVoiceTwo = GetComponents<AudioSource>()[5];
