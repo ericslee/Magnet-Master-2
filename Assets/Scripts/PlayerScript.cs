@@ -121,6 +121,8 @@ public class PlayerScript : MonoBehaviour
 	{
 		HandleInput();
 		HandleObstacles();
+
+		if (animator.GetCurrentAnimatorStateInfo(0).nameHash.Equals(jumpState)) Debug.Log ("jumping");
 	}
 	
 	void HandleInput()
@@ -169,7 +171,10 @@ public class PlayerScript : MonoBehaviour
 				transform.Translate(-Vector2.right * 4f * Time.deltaTime);
 				transform.rotation = leftRotation;
 
-				animator.SetBool("Walking", true);
+				if (animator.GetCurrentAnimatorStateInfo(0).nameHash != jumpState) 
+				{
+					animator.SetBool("Walking", true);
+				}
 			}
 		}
 
@@ -336,7 +341,7 @@ public class PlayerScript : MonoBehaviour
 			{
 				//rigidbody.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
 				rigidbody.velocity = new Vector3(0, 8, 0);
-				animator.SetBool("Walking", false);
+				//animator.SetBool("Walking", false);
 				animator.SetTrigger("Jumping");
 
 				// play sound
