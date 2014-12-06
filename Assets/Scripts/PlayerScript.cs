@@ -70,6 +70,7 @@ public class PlayerScript : MonoBehaviour
 	AudioSource damageVoiceOne;
 	AudioSource damageVoiceTwo;
 	AudioSource damageVoiceThree;
+	AudioSource damageVoiceFour;
 
 	// Use this for initialization
 	void Start()
@@ -93,6 +94,7 @@ public class PlayerScript : MonoBehaviour
 		damageVoiceOne = GetComponents<AudioSource>()[6];
 		damageVoiceTwo = GetComponents<AudioSource>()[7];
 		damageVoiceThree = GetComponents<AudioSource>()[8];
+		damageVoiceFour = GetComponents<AudioSource>()[9];
 
 		// get distance to ground
 		//distToGround = collider.bounds.extents.y;
@@ -488,7 +490,7 @@ public class PlayerScript : MonoBehaviour
 		gameManager.LoseLife();
 
 		// SFX
-		int damageVoiceChoice = Random.Range(0, 3);
+		int damageVoiceChoice = Random.Range(0, 4);
 		switch (damageVoiceChoice)
 		{
 			case 0:
@@ -497,8 +499,11 @@ public class PlayerScript : MonoBehaviour
 			case 1:
 				damageVoiceTwo.Play();
 				break;
-			default:
+			case 2:
 				damageVoiceThree.Play();
+				break;
+			default:
+				damageVoiceFour.Play();
 				break;
 		}
 		
