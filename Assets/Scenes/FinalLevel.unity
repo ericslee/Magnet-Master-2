@@ -6844,7 +6844,7 @@ Transform:
   m_PrefabInternal: {fileID: 977403398}
   m_GameObject: {fileID: 541186148}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 48.6237946, y: 2.60653639, z: .0155785056}
+  m_LocalPosition: {x: -14.5474396, y: 2.60653639, z: .0155860363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 262566541}
@@ -6904,6 +6904,7 @@ MonoBehaviour:
     m_Bits: 4294963450
   normalKnockback: {x: 1000, y: 350, z: 0}
   lavaKnockback: {x: 1000, y: 750, z: 0}
+  panicVoice: {fileID: 0}
 --- !u!136 &541186153
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12717,7 +12718,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 48.6237946
+      value: -14.5474396
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12725,7 +12726,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.z
-      value: .0155785056
+      value: .0155860363
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalRotation.x
