@@ -59,6 +59,7 @@ public class PlayerScript : MonoBehaviour
 	AudioSource damageVoiceTwo;
 	AudioSource damageVoiceThree;
 	AudioSource damageVoiceFour;
+	public AudioSource panicVoice;
 
 	// Use this for initialization
 	void Start()
@@ -81,6 +82,7 @@ public class PlayerScript : MonoBehaviour
 		damageVoiceTwo = GetComponents<AudioSource>()[7];
 		damageVoiceThree = GetComponents<AudioSource>()[8];
 		damageVoiceFour = GetComponents<AudioSource>()[9];
+		panicVoice = GetComponents<AudioSource>()[10];
 
 		// get distance to ground
 		//distToGround = collider.bounds.extents.y;
@@ -382,6 +384,10 @@ public class PlayerScript : MonoBehaviour
 		{
 			TakeDamage(lavaKnockback);
 			SetOnFire();
+		}
+		else if (collision.gameObject.tag.Equals("InstantDeath") && invincibilityFrames > 100) 
+		{
+			gameManager.Die();	
 		}
 		// environment tag needed in case we want to be able to control 
 		if (collision.gameObject.tag.Equals("Environment") && !IsGrounded())

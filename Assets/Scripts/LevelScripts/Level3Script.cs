@@ -8,6 +8,7 @@ public class Level3Script : MonoBehaviour {
 
 	// Wall Trigger
 	bool wallDrop = false;
+	bool crushingWallDrop = false;
 
 	// Fire Walls Trigger
 	bool fireWall = false;
@@ -48,8 +49,10 @@ public class Level3Script : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider c) {
-		if (c.tag.Equals("WallDrop")) {
+		if (c.tag.Equals("WallDrop") && !crushingWallDrop) {
 			wallDrop = true;
+			crushingWallDrop = true;
+			playerScript.panicVoice.PlayDelayed(1.0f);
 		} else if (c.tag.Equals("FireWall")) {
 			fireWall = true;
 			enemyOne.GetComponent<EnemyScript>().StartAttacking();
@@ -75,23 +78,21 @@ public class Level3Script : MonoBehaviour {
 
 	void HandleObstacles() {
 		if (wallDrop) {
-
 			if (wall1.transform.position.y < 1) {
 				wall1.transform.Translate(Vector2.up * 12f * Time.deltaTime);
-			} else { 
-				wallDrop = false;
-			}
-			/*
-			if (wall2.transform.position.y > -12) {
 			} else {
 				wallDrop = false;
 			}
-			*/
 			if (wall3.transform.position.y > 1) {
 				wall3.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
 			} else {
 				wallDrop = false;
 			}
+		}
+		if (crushingWallDrop) {
+			if (wall2.transform.position.y > 10) {
+				wall2.transform.Translate(-Vector2.up * 1f * Time.deltaTime);
+			} 
 		}
 		if (fireWall) {
 			//Handle particle system fire here

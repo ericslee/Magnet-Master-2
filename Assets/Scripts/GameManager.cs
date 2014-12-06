@@ -82,9 +82,14 @@ public class GameManager : MonoBehaviour {
 
 		if (totalLives <= 0) 
 		{
-			hasLost = true;
-			Application.LoadLevel("GameOver"); 
+			Die();
 		}
+	}
+
+	public void Die()
+	{
+		hasLost = true;
+		Application.LoadLevel("GameOver"); 
 	}
 
 	void RespawnPlayer()
