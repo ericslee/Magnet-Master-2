@@ -5035,7 +5035,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -15.2805786
+      value: -14.803483
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5043,7 +5043,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.z
-      value: .0155861238
+      value: .015586067
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6829,7 +6829,7 @@ Transform:
   m_PrefabInternal: {fileID: 384101347}
   m_GameObject: {fileID: 541186148}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -15.2805786, y: 2.60653639, z: .0155861238}
+  m_LocalPosition: {x: -14.803483, y: 2.60653639, z: .015586067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 262566541}
@@ -8055,7 +8055,7 @@ GameObject:
   - 23: {fileID: 608087939}
   m_Layer: 9
   m_Name: LavaDamageTrigger
-  m_TagString: Hazard
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

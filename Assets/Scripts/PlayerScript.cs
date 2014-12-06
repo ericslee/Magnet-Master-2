@@ -52,6 +52,12 @@ public class PlayerScript : MonoBehaviour
 	public LayerMask gravityLayerMask;
 	public LayerMask electricyLayerMask;
 
+	// Damage
+	Vector2 normalKnockback = new Vector3(1000, 350, 0);
+	Vector2 lavaKnockback = new Vector3(1000, 750, 0);
+	Object onFirePrefab;
+	GameObject currentOnFireObject;
+
 	// animation
 	protected Animator animator;
 	static int idleState = Animator.StringToHash("Base Layer.idle");
@@ -77,6 +83,7 @@ public class PlayerScript : MonoBehaviour
 	{
 		// load resources
 		targetingReticlePrefab = Resources.Load("Prefabs/Reticle");
+		onFirePrefab = Resources.Load("Prefabs/OnFire");
 
 		// cache references
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -391,7 +398,12 @@ public class PlayerScript : MonoBehaviour
 		// if collision with hazardous object, lose life
 		if (collision.gameObject.tag.Equals("Hazard") && invincibilityFrames > 100)
 		{
-			TakeDamage();
+			TakeDamage(normalKnockback);
+		}
+		else if (collision.gameObject.tag.Equals("Lava") && invincibilityFrames > 100)
+		{
+			TakeDamage(lavaKnockback);
+			SetOnFire();
 		}
 		// environment tag needed in case we want to be able to control 
 		if (collision.gameObject.tag.Equals("Environment") && !IsGrounded())
@@ -410,7 +422,12 @@ public class PlayerScript : MonoBehaviour
 	{
 		if (collisionInfo.collider.gameObject.tag.Equals("Hazard") && invincibilityFrames > 100)
 		{
-			TakeDamage();
+			TakeDamage(normalKnockback);
+		}
+		else if (collisionInfo.collider.gameObject.tag.Equals("Lava") && invincibilityFrames > 100)
+		{
+			TakeDamage(lavaKnockback);
+			SetOnFire();
 		}
 
 		// platform
@@ -450,7 +467,12 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (c.tag.Equals("Hazard") && invincibilityFrames > 100)
 		{
-			TakeDamage();
+			TakeDamage(normalKnockback);
+		}
+		else if (c.tag.Equals("Lava") && invincibilityFrames > 100)
+		{
+			TakeDamage(lavaKnockback);
+			SetOnFire();
 		}
 	}
 
@@ -485,7 +507,7 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
-	void TakeDamage()
+	void TakeDamage(Vector3 knockback)
 	{
 		gameManager.LoseLife();
 
@@ -508,14 +530,22 @@ public class PlayerScript : MonoBehaviour
 		}
 		
 		// knock back
-		Vector3 knockbackForce;
+		Vector3 knockbackForce = knockback;
 		if (gameObject.GetComponent<Rigidbody>().velocity.x < 0)
-			knockbackForce = new Vector3(-1000, 350, 0);
-		else
-			knockbackForce = new Vector3(1000, 350, 0);
+			knockbackForce.x = -knockback.x;
 		gameObject.GetComponent<Rigidbody>().AddForce(knockbackForce);
 		
 		invincibilityFrames = 0;
+	}
+
+	void SetOnFire()
+	{
+		if (!currentOnFireObject) 
+		{
+			currentOnFireObject = (GameObject)Instantiate(onFirePrefab, transform.position, Quaternion.identity);
+			currentOnFireObject.transform.parent = transform;
+			Destroy(currentOnFireObject, 2.0f);
+		}
 	}
 
 	// Getters
