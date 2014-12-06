@@ -6,20 +6,6 @@ public enum PowerType {Levitation, Gravity, Electricity};
 
 public class PlayerScript : MonoBehaviour
 {
-	// Wall Trigger
-	bool wallDrop = false;
-	bool wallHide = false;
-	bool leverTurn = true;
-
-	// Fire Walls Trigger
-	bool fireWall = false;
-
-	// Enemy Shooting Fire Balls Trigger
-	bool fireBall = false;
-
-	// Key Drop Trigger
-	bool keyDrop = false;
-
 	GameManager gameManager;
 
 	public float jumpHeight;
@@ -53,8 +39,8 @@ public class PlayerScript : MonoBehaviour
 	public LayerMask electricyLayerMask;
 
 	// Damage
-	Vector2 normalKnockback = new Vector3(1000, 350, 0);
-	Vector2 lavaKnockback = new Vector3(1000, 750, 0);
+	public Vector3 normalKnockback = new Vector3(1000, 350, 0);
+	public Vector3 lavaKnockback = new Vector3(1000, 750, 0);
 	Object onFirePrefab;
 	GameObject currentOnFireObject;
 
@@ -65,10 +51,6 @@ public class PlayerScript : MonoBehaviour
 	static int jumpState = Animator.StringToHash("Base Layer.jump");
 	static int pantsuState = Animator.StringToHash("Base Layer.pantsu");
 	SkinnedMeshRenderer lucinaRenderer;
-
-	// Level 2 enemies
-	GameObject enemyOne;
-	GameObject enemyTwo;
 
 	// Sounds
 	AudioSource jumpVoiceOne;
@@ -92,9 +74,6 @@ public class PlayerScript : MonoBehaviour
 		gravScript = GetComponent<GravityScript>();
 		animator = GetComponent<Animator>();
 		lucinaRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-
-		enemyOne = GameObject.Find("Enemies").transform.GetChild(0).transform.GetChild(0).gameObject;
-		enemyTwo = GameObject.Find("Enemies").transform.GetChild(1).transform.GetChild(0).gameObject;
 
 		jumpVoiceOne = GetComponents<AudioSource>()[4];
 		jumpVoiceTwo = GetComponents<AudioSource>()[5];
@@ -129,7 +108,12 @@ public class PlayerScript : MonoBehaviour
 	void Update()
 	{
 		HandleInput();
-		HandleObstacles();
+		HandleDamage();
+
+		// follow player with camera
+		Vector3 playerPosition = transform.position;
+		playerPosition.z = -20f;
+		Camera.main.transform.position = playerPosition;
 	}
 	
 	void HandleInput()
@@ -137,12 +121,6 @@ public class PlayerScript : MonoBehaviour
 		HandleMovement();
 		HandlePowersHover();
 		HandlePowersInput();
-		HandleDamage();
-
-		// follow player with camera
-		Vector3 playerPosition = transform.position;
-		playerPosition.z = -20f;
-		Camera.main.transform.position = playerPosition;
 	}
 	
 	void HandleMovement()
@@ -445,69 +423,7 @@ public class PlayerScript : MonoBehaviour
 		transform.parent = null;
 	}
 
-	void OnTriggerEnter(Collider c) {
-		if (c.tag.Equals("WallDrop")) {
-			Debug.Log ("WallDrop");
-			wallDrop = true;
-		} else if (c.tag.Equals("FireWall")) {
-			Debug.Log ("FireWall");
-			fireWall = true;
-			enemyOne.GetComponent<EnemyScript>().StartAttacking();
-		} else if (c.tag.Equals("FireBall")) {
-			Debug.Log ("FireBall");
-			fireBall = true;
-			enemyTwo.GetComponent<EnemyScript>().StartAttacking();
-		} else if (c.tag.Equals("KeyDrop")) {
-			Debug.Log ("KeyDrop");	
-			keyDrop = true;
-		} else if (c.tag.Equals ("Door")) {
-			//Level over
-			gameManager.Win();
-			Debug.Log("LEVEL COMPLETE");
-		}
-		else if (c.tag.Equals("Hazard") && invincibilityFrames > 100)
-		{
-			TakeDamage(normalKnockback);
-		}
-		else if (c.tag.Equals("Lava") && invincibilityFrames > 100)
-		{
-			TakeDamage(lavaKnockback);
-			SetOnFire();
-		}
-	}
-
-	void HandleObstacles() {
-		if (wallDrop) {
-			GameObject wall1 = GameObject.FindWithTag("Wall1");
-			GameObject wall2 = GameObject.FindWithTag("Wall2");
-			GameObject wall3 = GameObject.FindWithTag("Wall3");
-			if (wall1.transform.position.y < 1) {
-				wall1.transform.Translate(Vector2.up * 12f * Time.deltaTime);
-			} else { 
-				wallDrop = false;
-			}
-	
-			/*if (wall2.transform.position.y > 2) {
-				wall2.transform.Translate(-Vector2.up * 4f * Time.deltaTime);}*/
-			if (wall3.transform.position.y > 1) {
-				wall3.transform.Translate(-Vector2.up * 12f * Time.deltaTime);
-			} else {
-				wallDrop = false;
-			}
-		}
-		if (fireWall) {
-			//Handle particle system fire here
-		}
-		if (fireBall) {
-			//Handle fire ball throwing here
-		}
-		if (keyDrop) {
-			GameObject key = GameObject.FindWithTag("Key");
-			key.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
-		}
-	}
-
-	void TakeDamage(Vector3 knockback)
+	public void TakeDamage(Vector3 knockback)
 	{
 		gameManager.LoseLife();
 
@@ -538,7 +454,7 @@ public class PlayerScript : MonoBehaviour
 		invincibilityFrames = 0;
 	}
 
-	void SetOnFire()
+	public void SetOnFire()
 	{
 		if (!currentOnFireObject) 
 		{
