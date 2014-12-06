@@ -11,7 +11,8 @@ GameObject:
   - 15: {fileID: 1500000}
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
-  m_Layer: 0
+  - 114: {fileID: 11400000}
+  m_Layer: 12
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,9 +28,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -7.68312597, y: .841188073, z: -1.22250891}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
+  m_LocalPosition: {x: -.773142874, y: -1.03848016, z: .759276688}
+  m_LocalScale: {x: 1, y: 1, z: .581373036}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,7 +82,7 @@ EllipsoidParticleEmitter:
   minSize: .00999999978
   maxSize: .100000001
   minEnergy: 0
-  maxEnergy: .75
+  maxEnergy: .579999983
   minEmission: 6.5
   maxEmission: 50
   worldVelocity: {x: 0, y: 0, z: 0}
@@ -132,6 +133,18 @@ ParticleRenderer:
 --- !u!1002 &2600001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9601d5252187b2458890efc43984589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

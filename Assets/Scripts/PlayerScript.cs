@@ -121,8 +121,6 @@ public class PlayerScript : MonoBehaviour
 	{
 		HandleInput();
 		HandleObstacles();
-
-		if (animator.GetCurrentAnimatorStateInfo(0).nameHash.Equals(jumpState)) Debug.Log ("jumping");
 	}
 	
 	void HandleInput()
