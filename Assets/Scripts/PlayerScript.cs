@@ -113,7 +113,8 @@ public class PlayerScript : MonoBehaviour
 		reticleHoverNormalTexture = Resources.Load("Materials/Textures/reticle-normal") as Texture;
 		reticleHoverGlowRedTexture = Resources.Load("Materials/Textures/reticle-glow-red") as Texture;
 
-		guiCamera = GameObject.Find("GUI Camera").camera;
+		GameObject guiCameraObject = GameObject.Find("GUI Camera");
+		if (guiCameraObject) guiCamera = guiCameraObject.camera;
 	}
 
 	void Update()
