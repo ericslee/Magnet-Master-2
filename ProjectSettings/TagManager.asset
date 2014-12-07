@@ -19,6 +19,8 @@ TagManager:
   - Hazard
   - InstantDeath
   - FinalDoor
+  - Level2Door
+  - SF_Door
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
