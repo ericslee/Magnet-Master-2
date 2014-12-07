@@ -29,14 +29,22 @@ public class Level3Script : MonoBehaviour {
 	GameObject wall2;
 	GameObject wall3;
 
+	// audio sound
+	AudioSource powerCollectSFX;
+
+	TutorialTextScript electricityText;
+	Vector3 electricityTextPosition;
+
 	void Start() 
 	{
 		// cache references
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		enemyOne = GameObject.Find("Enemies").transform.GetChild(0).transform.GetChild(0).gameObject;
 		enemyTwo = GameObject.Find("Enemies").transform.GetChild(1).transform.GetChild(0).gameObject;
+		powerCollectSFX = GetComponents<AudioSource>()[13];
 		playerScript = GetComponent<PlayerScript>();
-
+		electricityText = GameObject.Find("ElectricityText").GetComponent<TutorialTextScript>();;
+		electricityTextPosition = new Vector3(464.1634f, -0.582355f, 0.6604137f);
 		wall1 = GameObject.FindWithTag("Wall1");
 		wall2 = GameObject.FindWithTag("Wall2");
 		wall3 = GameObject.FindWithTag("Wall3");
@@ -73,6 +81,16 @@ public class Level3Script : MonoBehaviour {
 		{
 			playerScript.TakeDamage(playerScript.lavaKnockback);
 			playerScript.SetOnFire();
+		}
+		else if (c.gameObject.name.Equals("ElectricityPower"))
+		{
+			gameManager.SetHasElectricity(true);
+			Destroy(c.gameObject);
+			if (powerCollectSFX) powerCollectSFX.Play();
+			
+			electricityText.SetTutorialPosition(electricityTextPosition);
+			electricityText.SetTimeIn(1.0f);
+			electricityText.EnterText();
 		}
 	}
 
