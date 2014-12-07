@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour {
 	{
 		SetUpForNewLevel();
 
-		if (level == 1)
+		if (level == 2)
 		{
 			playerScript.GetComponent<Level1Script>().enabled = false;
 			playerScript.GetComponent<Level3Script>().enabled = false;
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour {
 			level3Music.Stop();
 			level2Music.Play();
 		}
-		else if (level == 2)
+		else if (level == 3)
 		{
 			playerScript.GetComponent<Level1Script>().enabled = false;
 			playerScript.GetComponent<Level2Script>().enabled = false;
