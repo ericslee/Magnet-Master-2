@@ -60,7 +60,7 @@ public class Level3Script : MonoBehaviour {
 			enemyTwo.GetComponent<EnemyScript>().StartAttacking();
 		} else if (c.tag.Equals("KeyDrop")) {
 			keyDrop = true;
-		} else if (c.tag.Equals ("Door")) {
+		} else if (c.tag.Equals ("FinalDoor")) {
 			//Level over
 			gameManager.Win();
 			Debug.Log("LEVEL COMPLETE");
