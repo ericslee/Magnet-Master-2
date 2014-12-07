@@ -376,6 +376,7 @@ GameObject:
   - 23: {fileID: 43753306}
   - 54: {fileID: 43753305}
   - 65: {fileID: 43753304}
+  - 114: {fileID: 43753308}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -451,6 +452,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 43753302}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &43753308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43753302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &85504764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,6 +1816,7 @@ GameObject:
   - 23: {fileID: 125330500}
   - 54: {fileID: 125330499}
   - 65: {fileID: 125330498}
+  - 114: {fileID: 125330502}
   m_Layer: 0
   m_Name: Barrel-2
   m_TagString: Barrel
@@ -1879,6 +1892,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125330496}
   m_Mesh: {fileID: 4300006, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &125330502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125330496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &149710364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,6 +2339,7 @@ GameObject:
   - 23: {fileID: 229425867}
   - 54: {fileID: 229425866}
   - 65: {fileID: 229425865}
+  - 114: {fileID: 229425869}
   m_Layer: 0
   m_Name: Barrel-2
   m_TagString: Barrel
@@ -2390,6 +2415,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 229425863}
   m_Mesh: {fileID: 4300006, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &229425869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229425863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &240652705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3679,6 +3715,7 @@ GameObject:
   - 23: {fileID: 441162689}
   - 54: {fileID: 441162688}
   - 65: {fileID: 441162687}
+  - 114: {fileID: 441162691}
   m_Layer: 0
   m_Name: Barrel-1
   m_TagString: Barrel
@@ -3754,6 +3791,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 441162685}
   m_Mesh: {fileID: 4300000, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &441162691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441162685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &447090860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3910,6 +3958,7 @@ GameObject:
   - 23: {fileID: 459560321}
   - 54: {fileID: 459560320}
   - 65: {fileID: 459560319}
+  - 114: {fileID: 459560323}
   m_Layer: 0
   m_Name: Barrel-1
   m_TagString: Barrel
@@ -3985,6 +4034,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 459560317}
   m_Mesh: {fileID: 4300000, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &459560323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 459560317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &464274627
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,6 +4143,7 @@ GameObject:
   - 23: {fileID: 504797575}
   - 54: {fileID: 504797577}
   - 65: {fileID: 504797578}
+  - 114: {fileID: 504797579}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -4158,6 +4219,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.8975575, y: 2.85353923, z: 4.85837555}
   m_Center: {x: 2.60770321e-08, y: -5.96046803e-08, z: 2.42918587}
+--- !u!114 &504797579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 504797573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508840488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,6 +4548,7 @@ GameObject:
   - 23: {fileID: 577136687}
   - 54: {fileID: 577136686}
   - 65: {fileID: 577136685}
+  - 114: {fileID: 577136689}
   m_Layer: 0
   m_Name: Barrel-1
   m_TagString: Barrel
@@ -4551,6 +4624,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 577136683}
   m_Mesh: {fileID: 4300000, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &577136689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577136683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &582841646
 GameObject:
   m_ObjectHideFlags: 0
@@ -4694,6 +4778,7 @@ GameObject:
   - 23: {fileID: 597115691}
   - 54: {fileID: 597115693}
   - 65: {fileID: 597115694}
+  - 114: {fileID: 597115695}
   m_Layer: 0
   m_Name: Barrel-4
   m_TagString: Barrel
@@ -4769,6 +4854,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.63942099, y: 5.60914087, z: 2.89755797}
   m_Center: {x: -2.38418579e-07, y: -1.19209304e-07, z: 1.44877708}
+--- !u!114 &597115695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 597115689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &608716080
 GameObject:
   m_ObjectHideFlags: 0
@@ -5009,6 +5105,7 @@ GameObject:
   - 23: {fileID: 641633152}
   - 54: {fileID: 641633151}
   - 65: {fileID: 641633150}
+  - 114: {fileID: 641633154}
   m_Layer: 0
   m_Name: Barrel-2
   m_TagString: Barrel
@@ -5084,6 +5181,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 641633148}
   m_Mesh: {fileID: 4300006, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &641633154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 641633148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &641765676
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,6 +5342,7 @@ GameObject:
   - 23: {fileID: 701784720}
   - 54: {fileID: 701784719}
   - 65: {fileID: 701784718}
+  - 114: {fileID: 701784722}
   m_Layer: 0
   m_Name: Barrel-4
   m_TagString: Barrel
@@ -5309,6 +5418,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701784716}
   m_Mesh: {fileID: 4300002, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &701784722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 701784716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &719911234
 GameObject:
   m_ObjectHideFlags: 0
@@ -5745,6 +5865,7 @@ GameObject:
   - 23: {fileID: 802234761}
   - 54: {fileID: 802234763}
   - 65: {fileID: 802234764}
+  - 114: {fileID: 802234765}
   m_Layer: 0
   m_Name: Barrel-1
   m_TagString: Barrel
@@ -5820,6 +5941,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.89634323, y: 2.86690903, z: 4.85837555}
   m_Center: {x: 0, y: -3.45208278e-14, z: 2.42918587}
+--- !u!114 &802234765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802234759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &803129028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6074,6 +6206,7 @@ GameObject:
   - 23: {fileID: 838749905}
   - 54: {fileID: 838749904}
   - 65: {fileID: 838749903}
+  - 114: {fileID: 838749907}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -6149,6 +6282,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838749901}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &838749907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 838749901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &839564496
 GameObject:
   m_ObjectHideFlags: 0
@@ -6420,6 +6564,7 @@ GameObject:
   - 23: {fileID: 896330773}
   - 54: {fileID: 896330772}
   - 65: {fileID: 896330771}
+  - 114: {fileID: 896330775}
   m_Layer: 0
   m_Name: Barrel-1
   m_TagString: Barrel
@@ -6495,6 +6640,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 896330769}
   m_Mesh: {fileID: 4300000, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &896330775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 896330769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &896333086
 GameObject:
   m_ObjectHideFlags: 0
@@ -6507,6 +6663,7 @@ GameObject:
   - 23: {fileID: 896333089}
   - 54: {fileID: 896333088}
   - 65: {fileID: 896333087}
+  - 114: {fileID: 896333092}
   m_Layer: 0
   m_Name: Barrel-2
   m_TagString: Barrel
@@ -6582,6 +6739,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 510459330}
   m_RootOrder: 9
+--- !u!114 &896333092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 896333086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &903097796
 GameObject:
   m_ObjectHideFlags: 0
@@ -6693,6 +6861,7 @@ GameObject:
   - 23: {fileID: 956004714}
   - 54: {fileID: 956004713}
   - 65: {fileID: 956004712}
+  - 114: {fileID: 956004716}
   m_Layer: 0
   m_Name: Barrel-2
   m_TagString: Barrel
@@ -6768,6 +6937,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 956004710}
   m_Mesh: {fileID: 4300006, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &956004716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 956004710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &964341228
 Prefab:
   m_ObjectHideFlags: 0
@@ -6857,6 +7037,7 @@ GameObject:
   - 23: {fileID: 968724865}
   - 54: {fileID: 968724864}
   - 65: {fileID: 968724863}
+  - 114: {fileID: 968724867}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -6932,6 +7113,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 968724861}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &968724867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968724861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &969063342
 GameObject:
   m_ObjectHideFlags: 0
@@ -7196,6 +7388,7 @@ GameObject:
   - 23: {fileID: 1039765534}
   - 54: {fileID: 1039765533}
   - 65: {fileID: 1039765532}
+  - 114: {fileID: 1039765536}
   m_Layer: 0
   m_Name: Barrel-4
   m_TagString: Barrel
@@ -7271,6 +7464,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039765530}
   m_Mesh: {fileID: 4300002, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1039765536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1039765530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1043946383
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,6 +7618,7 @@ GameObject:
   - 23: {fileID: 1061544112}
   - 54: {fileID: 1061544111}
   - 65: {fileID: 1061544110}
+  - 114: {fileID: 1061544114}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -7489,6 +7694,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061544108}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1061544114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061544108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1071741847
 GameObject:
   m_ObjectHideFlags: 0
@@ -8233,6 +8449,7 @@ GameObject:
   - 23: {fileID: 1147454442}
   - 54: {fileID: 1147454441}
   - 65: {fileID: 1147454440}
+  - 114: {fileID: 1147454444}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -8308,6 +8525,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1147454438}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1147454444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1147454438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1165416946
 GameObject:
   m_ObjectHideFlags: 0
@@ -8378,6 +8606,7 @@ GameObject:
   - 23: {fileID: 1168163164}
   - 54: {fileID: 1168163163}
   - 65: {fileID: 1168163162}
+  - 114: {fileID: 1168163166}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -8453,6 +8682,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1168163160}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1168163166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1168163160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1182683039
 GameObject:
   m_ObjectHideFlags: 0
@@ -9164,6 +9404,7 @@ GameObject:
   - 23: {fileID: 1324301271}
   - 54: {fileID: 1324301270}
   - 65: {fileID: 1324301269}
+  - 114: {fileID: 1324301273}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -9239,6 +9480,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1324301267}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1324301273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1324301267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1324576396
 GameObject:
   m_ObjectHideFlags: 0
@@ -9279,6 +9531,7 @@ GameObject:
   - 23: {fileID: 1345265601}
   - 54: {fileID: 1345265600}
   - 65: {fileID: 1345265599}
+  - 114: {fileID: 1345265603}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -9354,6 +9607,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1345265597}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1345265603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1345265597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1349816844
 GameObject:
   m_ObjectHideFlags: 0
@@ -9578,6 +9842,7 @@ GameObject:
   - 23: {fileID: 1412701002}
   - 54: {fileID: 1412701001}
   - 65: {fileID: 1412701000}
+  - 114: {fileID: 1412701004}
   m_Layer: 0
   m_Name: Barrel-2
   m_TagString: Barrel
@@ -9653,6 +9918,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1412700998}
   m_Mesh: {fileID: 4300006, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1412701004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412700998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1423832738
 GameObject:
   m_ObjectHideFlags: 0
@@ -9754,6 +10030,7 @@ GameObject:
   - 23: {fileID: 1430603005}
   - 54: {fileID: 1430603004}
   - 65: {fileID: 1430603003}
+  - 114: {fileID: 1430603007}
   m_Layer: 0
   m_Name: Barrel-4
   m_TagString: Barrel
@@ -9829,6 +10106,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430603001}
   m_Mesh: {fileID: 4300002, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1430603007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1430603001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1453390388
 GameObject:
   m_ObjectHideFlags: 0
@@ -9927,6 +10215,7 @@ GameObject:
   - 23: {fileID: 1456048583}
   - 54: {fileID: 1456048582}
   - 65: {fileID: 1456048581}
+  - 114: {fileID: 1456048585}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -10002,6 +10291,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1456048579}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1456048585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1456048579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1462734806
 GameObject:
   m_ObjectHideFlags: 0
@@ -11760,6 +12060,7 @@ GameObject:
   - 23: {fileID: 1714937382}
   - 54: {fileID: 1714937381}
   - 65: {fileID: 1714937380}
+  - 114: {fileID: 1714937384}
   m_Layer: 0
   m_Name: Barrel-4
   m_TagString: Barrel
@@ -11835,6 +12136,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1714937378}
   m_Mesh: {fileID: 4300002, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1714937384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714937378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1725748388
 GameObject:
   m_ObjectHideFlags: 0
@@ -11877,6 +12189,7 @@ GameObject:
   - 23: {fileID: 1728239671}
   - 54: {fileID: 1728239670}
   - 65: {fileID: 1728239669}
+  - 114: {fileID: 1728239673}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -11952,6 +12265,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1728239667}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1728239673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1728239667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1745876499
 GameObject:
   m_ObjectHideFlags: 0
@@ -12401,6 +12725,7 @@ GameObject:
   - 23: {fileID: 1836247383}
   - 54: {fileID: 1836247382}
   - 65: {fileID: 1836247381}
+  - 114: {fileID: 1836247385}
   m_Layer: 0
   m_Name: Barrel-1
   m_TagString: Barrel
@@ -12476,6 +12801,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1836247379}
   m_Mesh: {fileID: 4300000, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &1836247385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836247379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1838087683
 GameObject:
   m_ObjectHideFlags: 0
@@ -13487,6 +13823,7 @@ GameObject:
   - 23: {fileID: 2048360543}
   - 54: {fileID: 2048360546}
   - 65: {fileID: 2048360547}
+  - 114: {fileID: 2048360548}
   m_Layer: 0
   m_Name: Barrel-2
   m_TagString: Barrel
@@ -13562,6 +13899,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.87983441, y: 2.89165068, z: 4.85837555}
   m_Center: {x: 0, y: -1.19209318e-07, z: 2.42918539}
+--- !u!114 &2048360548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2048360542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2065382632
 GameObject:
   m_ObjectHideFlags: 0
@@ -13843,6 +14191,7 @@ GameObject:
   - 23: {fileID: 2099181588}
   - 54: {fileID: 2099181587}
   - 65: {fileID: 2099181586}
+  - 114: {fileID: 2099181590}
   m_Layer: 0
   m_Name: Barrel-3
   m_TagString: Barrel
@@ -13918,6 +14267,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2099181584}
   m_Mesh: {fileID: 4300004, guid: 202138bb82c74b34090ae757b3d0cae7, type: 3}
+--- !u!114 &2099181590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2099181584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e735b0d88ab44d81ab54d2ab64ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2105124696
 GameObject:
   m_ObjectHideFlags: 0
