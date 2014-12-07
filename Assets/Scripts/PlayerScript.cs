@@ -198,8 +198,8 @@ public class PlayerScript : MonoBehaviour
 		{
 			// Move reticle with mouse
 			Vector3 pos = Input.mousePosition;
-			pos.z = transform.position.z - Camera.main.transform.position.z;
-			Vector3 newReticlePos = Camera.main.ScreenToWorldPoint(pos);
+			pos.z = transform.position.z - guiCamera.transform.position.z;
+			Vector3 newReticlePos = guiCamera.ScreenToWorldPoint(pos);
 			newReticlePos.z = reticleZPos;
 
 			//Debug.Log (reticleZPos);
