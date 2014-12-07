@@ -65,6 +65,8 @@ public class Level1Script : MonoBehaviour {
 		{
 			gameManager.SetHasGravity(true);
 			Destroy(c.gameObject);
+			player.GetComponent<GravityScript>().gravityTargets.Clear();
+			Debug.Log ("COUNT OF TARGETS: " + player.GetComponent<GravityScript>().gravityTargets.Count);
 			if (powerCollectSFX) powerCollectSFX.Play();
 
 			gravityText.SetTutorialPosition(gravityTextPosition);

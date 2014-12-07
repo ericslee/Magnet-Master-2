@@ -12,7 +12,7 @@ public class GravityScript : MonoBehaviour {
 	GameObject currentGravityCenter;
 	GameObject currentGravityPlane;
 	Object gravityPlanePrefab;
-	HashSet<GameObject> gravityTargets = new HashSet<GameObject>(); // set of objects to be affected by gravity
+	public HashSet<GameObject> gravityTargets = new HashSet<GameObject>(); // set of objects to be affected by gravity
 
 	// adjusting gain
 	float gravityGain;
@@ -51,7 +51,7 @@ public class GravityScript : MonoBehaviour {
 				// remove platforms from the gravity center's pull if necessary
 				foreach (GameObject obj in gravityTargets)
 				{
-					if (!obj.collider.bounds.Intersects(currentGravityPlane.collider.bounds))
+					if (obj && !obj.collider.bounds.Intersects(currentGravityPlane.collider.bounds))
 					{
 						obj.transform.parent = null;
 					}

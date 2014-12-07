@@ -9,6 +9,8 @@ public class LevitationScript : MonoBehaviour {
 	const float MIN_LEVITATION_GAIN = 0.0f;
 
 	GameObject currentlyLevitatingObj;
+	GameObject emptyLevitationGameObjectHelper;
+	Transform currentlyLevitatingObjPrevParent;
 	Vector3 objInitialPosition;
 
 	// adjusting gain
@@ -28,17 +30,22 @@ public class LevitationScript : MonoBehaviour {
 
 		// set up sounds
 		initialLevitationSound = GetComponents<AudioSource>()[2];
+
+		emptyLevitationGameObjectHelper = new GameObject("LevitationHelper");
 	}
 	
 	void Update() 
 	{
 		if (Input.GetMouseButton(0) && currentlyLevitatingObj && canControlLevitation) 
 		{
+			// increment y position of object
+			emptyLevitationGameObjectHelper.transform.Translate(Vector2.up * (levitationGain * 1.5f)  * Time.deltaTime);
+			/*
 			Vector3 levitatedPosition = currentlyLevitatingObj.transform.position;
 			levitatedPosition.y = objInitialPosition.y + 
 				(levitationGain * LEVITATION_RAW_AMOUNT);
 			currentlyLevitatingObj.transform.position = levitatedPosition;
-			
+			*/
 			// adjust gain if necessary
 			if (Input.mousePosition.y != mouseClickYPos) 
 			{
@@ -61,7 +68,8 @@ public class LevitationScript : MonoBehaviour {
 				{
 					objRB.isKinematic = false;
 				}
-				
+
+				currentlyLevitatingObj.transform.parent = currentlyLevitatingObjPrevParent;
 				currentlyLevitatingObj = null;
 				levitationGain = INITIAL_LEVITATION_GAIN;
 				canControlLevitation = false;
@@ -76,6 +84,9 @@ public class LevitationScript : MonoBehaviour {
 			currentlyLevitatingObj = obj;
 			objInitialPosition = obj.transform.position;
 			mouseClickYPos = mouseYPos;
+			currentlyLevitatingObjPrevParent = obj.transform.parent;
+			emptyLevitationGameObjectHelper.transform.position = currentlyLevitatingObj.transform.position;
+			obj.transform.parent = emptyLevitationGameObjectHelper.transform;
 
 			// set to isKinematic
 			Rigidbody objRB = obj.rigidbody;
