@@ -4,11 +4,18 @@ using System.Collections;
 public class Level1Script : MonoBehaviour {
 
 	GameManager gameManager;
+	bool keyCollected = false;
+
+	// Sounds
+	AudioSource keyCollectSFX;
+	AudioSource doorRattleSFX;
 
 	void Start() 
 	{
 		// cache references
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		keyCollectSFX = GetComponents<AudioSource>()[11];
+		doorRattleSFX = GetComponents<AudioSource>()[12];
 	}
 	
 	void Update() 
@@ -28,7 +35,24 @@ public class Level1Script : MonoBehaviour {
 		}
 		else if (c.tag.Equals("Door"))
 		{
-			gameManager.StartLevel(3);
+			if (keyCollected)
+			{
+				gameManager.StartLevel(3);
+			}
+			else 
+			{
+				if (doorRattleSFX) doorRattleSFX.Play();
+			}
+		}
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.name.Equals("Key"))
+		{
+			keyCollected = true;
+			Destroy(collision.gameObject);
+			if (keyCollectSFX) keyCollectSFX.Play();
 		}
 	}
 }
