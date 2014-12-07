@@ -91,6 +91,10 @@ public class GameManager : MonoBehaviour {
 			hasWon = false;
 			RespawnPlayer();
 		}
+		if (Input.GetKey (KeyCode.Escape)) {
+			Application.Quit();
+			Debug.Log ("Application.Quit() only works in build, not in editor"); 
+		}
 	}
 
 	public void StartLevel(int levelNum) 
