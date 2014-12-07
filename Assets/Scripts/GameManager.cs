@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour {
 	public void Die()
 	{
 		hasLost = true;
-		Application.LoadLevel("GameOver"); 
+		Application.LoadLevel("GameOver2"); 
 	}
 
 	void RespawnPlayer()
@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour {
 	public void Win()
 	{
 		hasWon = true;
+		Application.LoadLevel("WinScene"); 
 	}
 
 	// Getters

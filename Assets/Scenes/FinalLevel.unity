@@ -2427,11 +2427,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 181040199}
   - 114: {fileID: 181040198}
-  - 114: {fileID: 181040197}
   - 82: {fileID: 181040200}
   - 82: {fileID: 181040201}
   - 82: {fileID: 181040202}
   - 82: {fileID: 181040203}
+  - 82: {fileID: 181040197}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2439,18 +2439,65 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &181040197
-MonoBehaviour:
+--- !u!82 &181040197
+AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 3d0a98a4e51ae234aa3dca44d64c3f42,
+  m_PrefabParentObject: {fileID: 8200008, guid: 3d0a98a4e51ae234aa3dca44d64c3f42,
     type: 2}
   m_PrefabInternal: {fileID: 395518623}
   m_GameObject: {fileID: 181040196}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7d1d36cee122a4ca4febd2d06649ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 380a1945ab6a53649b4f44c6a440aedf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: .300000012
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &181040198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7854,7 +7901,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 3557a4d50e97900418b9eed0170ba127, type: 2}
+  - {fileID: 2100000, guid: 58ff9e03c19f79742a3b0c3761eeafdd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -9160,6 +9207,7 @@ GameObject:
   - 82: {fileID: 541186176}
   - 82: {fileID: 541186175}
   - 82: {fileID: 541186174}
+  - 82: {fileID: 541186177}
   m_Layer: 9
   m_Name: Lucina
   m_TagString: Player
@@ -10151,6 +10199,65 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &541186177
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200028, guid: 3d0371b6144ccf84c863400b4e22f5db,
+    type: 2}
+  m_PrefabInternal: {fileID: 977403398}
+  m_GameObject: {fileID: 541186148}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 380a1945ab6a53649b4f44c6a440aedf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -17441,7 +17548,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 3557a4d50e97900418b9eed0170ba127, type: 2}
+  - {fileID: 2100000, guid: 58ff9e03c19f79742a3b0c3761eeafdd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -37869,7 +37976,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 3557a4d50e97900418b9eed0170ba127, type: 2}
+  - {fileID: 2100000, guid: 58ff9e03c19f79742a3b0c3761eeafdd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

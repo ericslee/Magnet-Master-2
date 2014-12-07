@@ -1,0 +1,110 @@
+Initialize engine version: 4.5.3f3 (fca41a4fabea)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 750M      (ID=0xfe4)
+    Vendor:   NVIDIA
+    VRAM:     1988 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+- Completed reload, in  0.079 seconds
+desktop: 3200x1800 60Hz; virtual: 3200x1800 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\System.Core.dll (this message is harmless)
+The AnimationClip 'idle' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'jump' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'walk' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'pantsu' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+Default clip could not be found in attached animations list.
+ 
+(Filename:  Line: 395)
+
+WARNING: Shader Unsupported: 'Hidden/Nature/Tree Creator Leaves Optimized' - Pass '' shader state not supported
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+UnloadTime: 0.958719 ms
+The AnimationClip 'idle' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'jump' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'walk' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'pantsu' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+Default clip could not be found in attached animations list.
+ 
+(Filename:  Line: 395)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 75 unused Assets to reduce memory usage. Loaded Objects now: 5497.
+Total: 1.715430 ms (FindLiveObjects: 0.206672 ms CreateObjectMapping: 0.063914 ms MarkObjects: 0.367159 ms  DeleteObjects: 0.685332 ms)
+
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\System.dll (this message is harmless)
+NullReferenceException: Object reference not set to an instance of an object
+  at GameManager.OnLevelWasLoaded (Int32 level) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Boo.Lang.dll (this message is harmless)
+WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
+UnloadTime: 16.468973 ms
+The AnimationClip 'idle' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'jump' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'walk' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+The AnimationClip 'pantsu' used by the Animation component 'Lucina' must be marked as Legacy.
+ 
+(Filename:  Line: 1998)
+
+Default clip could not be found in attached animations list.
+ 
+(Filename:  Line: 395)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 139 unused Assets to reduce memory usage. Loaded Objects now: 2207.
+Total: 5.218604 ms (FindLiveObjects: 0.137159 ms CreateObjectMapping: 0.055983 ms MarkObjects: 0.361094 ms  DeleteObjects: 3.843740 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Level3Script.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
