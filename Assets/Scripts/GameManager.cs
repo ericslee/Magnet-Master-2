@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour {
 	bool hasLost = false;
 	bool hasWon = false;
 
+	// Power state
+	bool hasLevitation = false;
+	bool hasGravity = false;
+	bool hasElectricity = false;
+
 	// Checkpoints
 	Vector3 initialSpawnPoint = new Vector3(-15.03494f, 3.715919f, 0.374071f);
 
@@ -118,7 +123,6 @@ public class GameManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level)
 	{
-		Debug.Log (level);
 		SetUpForNewLevel();
 		if (level == 1)
 		{
@@ -172,7 +176,13 @@ public class GameManager : MonoBehaviour {
 	// Getters
 	public int GetTotalLives() { return totalLives; }
 	public int GetMaxLives() { return MAX_LIVES; }
+	public bool GetHasLevitation() { return hasLevitation; }
+	public bool GetHasGravity() { return hasGravity; }
+	public bool GetHasElectricity() { return hasElectricity; }
 	public bool GetHasLost() { return hasLost; }
 	public bool GetHasWon() { return hasWon; }
 	public void SetCurrentLevel(int level) { currentLevel = level; }
+	public void SetHasLevitation(bool b) { hasLevitation = b; }
+	public void SetHasGravity(bool b) { hasGravity = b; }
+	public void SetHasElectricity(bool b) { hasElectricity = b; }
 }

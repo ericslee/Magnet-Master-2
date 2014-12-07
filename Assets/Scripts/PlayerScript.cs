@@ -231,17 +231,20 @@ public class PlayerScript : MonoBehaviour
 			}
 			if (Input.GetMouseButtonDown(1)) 
 			{
-				switch (GetCurrentPower())
+				if (GetCurrentPower().Equals(PowerType.Levitation))
 				{
-					case PowerType.Levitation:
-						currentActivePower = PowerType.Gravity;
-						break;
-					case PowerType.Gravity:
-						currentActivePower = PowerType.Electricity;
-						break;
-					case PowerType.Electricity:
-						currentActivePower = PowerType.Levitation;
-						break;
+					if (gameManager.GetHasGravity()) currentActivePower = PowerType.Gravity;
+					else if (gameManager.GetHasElectricity()) currentActivePower = PowerType.Electricity;
+				}
+				else if (GetCurrentPower().Equals(PowerType.Gravity))
+				{
+					if (gameManager.GetHasElectricity()) currentActivePower = PowerType.Electricity;
+					else if (gameManager.GetHasLevitation()) currentActivePower = PowerType.Levitation;
+				}
+				else if (GetCurrentPower().Equals(PowerType.Electricity))
+				{
+					if (gameManager.GetHasLevitation()) currentActivePower = PowerType.Levitation;
+					else if (gameManager.GetHasGravity()) currentActivePower = PowerType.Gravity;
 				}
 			}
 		}

@@ -4,18 +4,24 @@ using System.Collections;
 public class Level1Script : MonoBehaviour {
 
 	GameManager gameManager;
+	GameObject player;
+	PlayerScript playerScript;
 	bool keyCollected = false;
 
 	// Sounds
 	AudioSource keyCollectSFX;
 	AudioSource doorRattleSFX;
+	AudioSource powerCollectSFX;
 
 	void Start() 
 	{
 		// cache references
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		player = GameObject.Find("Lucina");
+		playerScript = player.GetComponent<PlayerScript>();
 		keyCollectSFX = GetComponents<AudioSource>()[11];
 		doorRattleSFX = GetComponents<AudioSource>()[12];
+		powerCollectSFX = GetComponents<AudioSource>()[13];
 	}
 	
 	void Update() 
@@ -27,11 +33,15 @@ public class Level1Script : MonoBehaviour {
 	{
 		if (c.gameObject.name.Equals("LevitationPower"))
 		{
-			Debug.Log("levitation power obtained");
+			gameManager.SetHasLevitation(true);
+			Destroy(c.gameObject);
+			if (powerCollectSFX) powerCollectSFX.Play();
 		}
 		else if (c.gameObject.name.Equals("GravityPower"))
 		{
-			Debug.Log("Gravity power obtained");
+			gameManager.SetHasGravity(true);
+			Destroy(c.gameObject);
+			if (powerCollectSFX) powerCollectSFX.Play();
 		}
 		else if (c.tag.Equals("Door"))
 		{
