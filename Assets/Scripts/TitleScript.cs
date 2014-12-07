@@ -2,43 +2,24 @@
 using System.Collections;
 
 public class TitleScript : MonoBehaviour {
-	
-	private GUIStyle buttonStyle; 
-	private Texture newGameButton; 
-	// Use this for initialization 
-	void Start () {
-		newGameButton = (Texture)Resources.Load("Resources/Materials/Textures/ngb");
-	} 
-	
-	// Update is called once per frame 
-	void Update () { 
-		if (Input.GetKey (KeyCode.Escape)) {
-			Application.Quit();
-			Debug.Log ("Application.Quit() only works in build, not in editor"); 
-		}
-	} 
 
-	void OnGUI (){ 
-		GUILayout.BeginArea(new Rect(Screen.width/2-300, Screen.height/2-300, 400,400));
-		                             //175, 425)); 
-		//GUILayout.TextField("Magnet Master 2");
-		// Load the main scene 
-		// The scene needs to be added into build setting to be loaded! 
-		/*if (GUI.Button(new Rect(Screen.width/2, Screen.height/2, 200, 200), newGameButton)) {
-			Application.LoadLevel("Mine"); 
-		}*/
+	private GameObject startButton;
+	private Camera guiCamera;
 
-		if (GUILayout.Button("\n\nNew Game\n\n")) 
-		{ 
-			Application.LoadLevel("IntroScene"); 
+	void Start() {
+		startButton = GameObject.Find("Start Button");
+		guiCamera = GameObject.Find("GUI Camera").camera;
+	}
+
+	void Update() {
+		if (Time.time % 1 > 0 && Time.time % 1 < 0.5f) {
+			startButton.renderer.enabled = false;
+		} else {
+			startButton.renderer.enabled = true;
 		}
-		
-		if (GUILayout.Button("\n\nExit\n\n")) 
-		{ 
-			Application.Quit(); 
-			Debug.Log ("Application.Quit() only works in build, not in editor"); 
-		} 
-		
-		GUILayout.EndArea(); 
-	} 
+
+		Ray ray = guiCamera.ScreenPointToRay(Input.mousePosition);
+		if (Physics.Raycast(ray) && Input.GetMouseButtonDown(0))
+			Application.LoadLevel("IntroScene");
+	}
 }
