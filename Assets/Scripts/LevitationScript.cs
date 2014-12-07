@@ -96,14 +96,16 @@ public class LevitationScript : MonoBehaviour {
 			}
 
 			// initial levitation
+			/*
 			Vector3 levitatedPosition = currentlyLevitatingObj.transform.position;
 			levitatedPosition.y = objInitialPosition.y + 
 				(levitationGain * LEVITATION_RAW_AMOUNT);
 			iTween.MoveTo(currentlyLevitatingObj, levitatedPosition, 0.5f);
+			*/
 
 			if (initialLevitationSound) initialLevitationSound.Play();
 
-			yield return new WaitForSeconds(0.5f);
+			//yield return new WaitForSeconds(0.5f);
 			canControlLevitation = true;
 			//currentlyLevitatingObj.transform.position = levitatedPosition;
 		}
