@@ -16,7 +16,7 @@ Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Dat
 Loading C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
 Loading C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-- Completed reload, in  0.077 seconds
+- Completed reload, in  0.079 seconds
 desktop: 3200x1800 60Hz; virtual: 3200x1800 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -43,7 +43,7 @@ Default clip could not be found in attached animations list.
 
 WARNING: Shader Unsupported: 'Hidden/Nature/Tree Creator Leaves Optimized' - Pass '' shader state not supported
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 1.001639 ms
+UnloadTime: 0.958719 ms
 The AnimationClip 'idle' used by the Animation component 'Lucina' must be marked as Legacy.
  
 (Filename:  Line: 1998)
@@ -66,8 +66,8 @@ Default clip could not be found in attached animations list.
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 75 unused Assets to reduce memory usage. Loaded Objects now: 5494.
-Total: 1.795207 ms (FindLiveObjects: 0.205739 ms CreateObjectMapping: 0.039188 ms MarkObjects: 0.373223 ms  DeleteObjects: 0.769774 ms)
+Unloading 75 unused Assets to reduce memory usage. Loaded Objects now: 5497.
+Total: 1.715430 ms (FindLiveObjects: 0.206672 ms CreateObjectMapping: 0.063914 ms MarkObjects: 0.367159 ms  DeleteObjects: 0.685332 ms)
 
 Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\System.dll (this message is harmless)
 NullReferenceException: Object reference not set to an instance of an object
@@ -77,11 +77,7 @@ NullReferenceException: Object reference not set to an instance of an object
 
 Platform assembly: C:\Users\Samantha\Documents\GitHub\Magnet-Master-2\Alpha1_Data\Managed\Boo.Lang.dll (this message is harmless)
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-COUNT OF TARGETS: 0
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 7.287664 ms
+UnloadTime: 16.468973 ms
 The AnimationClip 'idle' used by the Animation component 'Lucina' must be marked as Legacy.
  
 (Filename:  Line: 1998)
@@ -104,106 +100,11 @@ Default clip could not be found in attached animations list.
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 131 unused Assets to reduce memory usage. Loaded Objects now: 1778.
-Total: 4.042482 ms (FindLiveObjects: 0.077910 ms CreateObjectMapping: 0.041054 ms MarkObjects: 0.292980 ms  DeleteObjects: 3.029179 ms)
+Unloading 139 unused Assets to reduce memory usage. Loaded Objects now: 2207.
+Total: 5.218604 ms (FindLiveObjects: 0.137159 ms CreateObjectMapping: 0.055983 ms MarkObjects: 0.361094 ms  DeleteObjects: 3.843740 ms)
 
-Can not play a disabled audio source
+NullReferenceException: Object reference not set to an instance of an object
+  at Level3Script.Start () [0x00000] in <filename unknown>:0 
  
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
-
-Can not play a disabled audio source
- 
-(Filename:  Line: 377)
+(Filename:  Line: -1)
 
