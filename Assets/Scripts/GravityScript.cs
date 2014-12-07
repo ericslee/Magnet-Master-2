@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GravityScript : MonoBehaviour {
 
 	const float INITIAL_GRAVITY_GAIN = 1.0f;
-	const float GRAVITY_RADIUS_RAW = 0.1f;
+	const float GRAVITY_RADIUS_RAW = 0.12f;
 	const float MAX_GRAVITY_GAIN = 1.5f;
 	const float MIN_GRAVITY_GAIN = 0.0f;
 
@@ -68,6 +68,14 @@ public class GravityScript : MonoBehaviour {
 			foreach (GameObject obj in gravityTargets)
 			{
 				obj.transform.parent = null;
+				if (obj.tag.Equals("Barrel"))
+				{
+					Rigidbody objRB = obj.rigidbody;
+					if (objRB)
+					{
+						objRB.isKinematic = false;
+					}
+				}
 			}
 
 			gravityTargets.Clear();
@@ -100,6 +108,16 @@ public class GravityScript : MonoBehaviour {
 		if (!gravityTargets.Contains(obj)) 
 		{
 			gravityTargets.Add(obj);
+
+			if (obj.tag.Equals("Barrel"))
+			{
+				// set to isKinematic
+				Rigidbody objRB = obj.rigidbody;
+				if (objRB)
+				{
+					objRB.isKinematic = true;
+				}
+			}
 
 			// move object over to gravity center
 			if (currentGravityCenter)
