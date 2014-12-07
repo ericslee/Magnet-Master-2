@@ -21,6 +21,9 @@ public class PlayerScript : MonoBehaviour
 	Quaternion leftRotation;
 	Quaternion rightRotation;
 
+	float camZPosition = -20;
+	float camYPlus = 0;
+
 	// Powers
 	GameObject targetingReticle;
 	Object targetingReticlePrefab;
@@ -32,6 +35,7 @@ public class PlayerScript : MonoBehaviour
 	Texture reticleHoverNormalTexture;
 	Texture reticleHoverGlowTexture;
 	Texture reticleHoverGlowRedTexture;
+	float reticleZPos = -108;
 	bool powerIsActive;
 
 	public LayerMask levitationLayerMask;
@@ -61,7 +65,6 @@ public class PlayerScript : MonoBehaviour
 	AudioSource damageVoiceFour;
 	public AudioSource panicVoice;
 
-	// Use this for initialization
 	void Start()
 	{
 		// load resources
@@ -114,7 +117,8 @@ public class PlayerScript : MonoBehaviour
 
 		// follow player with camera
 		Vector3 playerPosition = transform.position;
-		playerPosition.z = -20f;
+		playerPosition.y = playerPosition.y + camYPlus;
+		playerPosition.z = camZPosition;
 		Camera.main.transform.position = playerPosition;
 	}
 	
@@ -188,7 +192,9 @@ public class PlayerScript : MonoBehaviour
 			Vector3 pos = Input.mousePosition;
 			pos.z = transform.position.z - Camera.main.transform.position.z;
 			Vector3 newReticlePos = Camera.main.ScreenToWorldPoint(pos);
-			newReticlePos.z = -2;
+			newReticlePos.z = reticleZPos;
+
+			//Debug.Log (reticleZPos);
 
 			targetingReticle.transform.position = newReticlePos;
 
@@ -258,26 +264,29 @@ public class PlayerScript : MonoBehaviour
 			currentMask = electricyLayerMask;
 		}
     
-		Texture currTex = targetingReticle.renderer.material.GetTexture("_MainTex");
-	    if (Physics.Raycast(ray, out hit, 100, currentMask) && !powerIsActive)
-	    {
-			if (currTex.name != "reticle-glow")
+		if (targetingReticle) 
+		{
+			Texture currTex = targetingReticle.renderer.material.GetTexture("_MainTex");
+		    if (Physics.Raycast(ray, out hit, 100, currentMask) && !powerIsActive)
+		    {
+				if (currTex.name != "reticle-glow")
+				{
+					targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverGlowTexture);
+				}
+		    }
+			else if (powerIsActive)
 			{
-				targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverGlowTexture);
+				if (currTex.name != "reticle-glow-red")
+				{
+					targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverGlowRedTexture);
+	            }
 			}
-	    }
-		else if (powerIsActive)
-		{
-			if (currTex.name != "reticle-glow-red")
+			else
 			{
-				targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverGlowRedTexture);
-            }
-		}
-		else
-		{
-			if (currTex.name != "reticle-normal")
-            {
-			targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverNormalTexture);
+				if (currTex.name != "reticle-normal")
+	            {
+				targetingReticle.renderer.material.SetTexture("_MainTex", reticleHoverNormalTexture);
+				}
 			}
 		}
     }
@@ -515,4 +524,7 @@ public class PlayerScript : MonoBehaviour
 	public int GetHealth() { return health; }
 	public int GetInvincibilityFrames() { return invincibilityFrames; }
 	public void SetHealth(int newHealth) { health = newHealth; }
+	public void SetCameraYPlus(float pos) { camYPlus = pos; }
+	public void SetCameraZPosition(float pos) { camZPosition = pos; }
+	public void SetReticleZPosition(float pos) { reticleZPos = pos; }
 }

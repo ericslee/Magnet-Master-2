@@ -20,7 +20,7 @@ public class GameHUD : MonoBehaviour {
 	void Start () 
 	{
 		// cache references
-		gameManager = GetComponent<GameManager>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		playerScript = GameObject.Find("Lucina").GetComponent<PlayerScript>();
 
 		healthBar = Resources.Load("Materials/Textures/health-bar-with-highlights") as Texture2D;

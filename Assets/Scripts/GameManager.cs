@@ -5,9 +5,18 @@ public class GameManager : MonoBehaviour {
 
 	const int MAX_LIVES = 5;
 	const int START_LEVEL = 1;
+	const float CAM_Y_POS_PLUS_LEVEL_1 = 2;
+	const float CAM_Y_POS_PLUS_LEVEL_2 = 0;
+	const float CAM_Y_POS_PLUS_LEVEL_3 = 0;
+	const float CAM_Z_POS_LEVEL_1 = -10.0f;
+	const float CAM_Z_POS_LEVEL_2 = -332.0f;
+	const float CAM_Z_POS_LEVEL_3 = -20.0f;
+	const float RETICLE_Z_POS_LEVEL_1 = -2.0f;
+	const float RETICLE_Z_POS_LEVEL_2 = -108.0f;
+	const float RETICLE_Z_POS_LEVEL_3 = -2.0f;
 
-	int currentLevel;
-	int totalLives;
+	public int currentLevel = START_LEVEL;
+	int totalLives = MAX_LIVES;
 
 	// Game state
 	bool hasLost = false;
@@ -18,32 +27,47 @@ public class GameManager : MonoBehaviour {
 
 	// Sound
 	AudioSource deathSound;
+	AudioSource level1Music;
+	AudioSource level2Music;
+	AudioSource level3Music;
 	AudioSource level3StartSound;
 
 	// References
 	GameObject player;
 	PlayerScript playerScript;
 
+	void Awake()
+	{
+		DontDestroyOnLoad(gameObject);
+	}
+
 	// Use this for initialization
 	void Start() 
 	{
-		currentLevel = START_LEVEL;
-		totalLives = MAX_LIVES;
+		// set up sounds
+		deathSound = GetComponents<AudioSource>()[0];
+		level3Music = GetComponents<AudioSource>()[1];
+		level1Music = GetComponents<AudioSource>()[3];
+		level3StartSound = GetComponents<AudioSource>()[2];
 
+		SetUpForNewLevel();
+		StartLevel(currentLevel);
+	}
+
+	void SetUpForNewLevel()
+	{
 		// cache references
 		player = GameObject.Find("Lucina");
 		playerScript = player.GetComponent<PlayerScript>();
-
-		// set up sounds
-		deathSound = GetComponents<AudioSource>()[0];
-		level3StartSound = GetComponents<AudioSource>()[2];
 
 		// do not allow certain objects to be sucked in by gravity
 		Physics.IgnoreLayerCollision(13, 9, true); // player
 		Physics.IgnoreLayerCollision(13, 8, true); // reticle
 		Physics.IgnoreLayerCollision(13, 11, true); // gravity centers
 
-		StartLevel(3);
+		// Create game hud
+		GameObject gameHUD = new GameObject("GameHUD");
+		gameHUD.AddComponent<GameHUD>();
 	}
 
 	// Update is called once per frame
@@ -64,11 +88,49 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void StartLevel(int levelNum) 
+	public void StartLevel(int levelNum) 
 	{
-		if (levelNum == 3)
+		if (levelNum == 1)
 		{
+			playerScript.GetComponent<Level2Script>().enabled = false;
+			playerScript.GetComponent<Level3Script>().enabled = false;
+			playerScript.GetComponent<Level1Script>().enabled = true;
+			playerScript.SetCameraYPlus(CAM_Y_POS_PLUS_LEVEL_1);
+			playerScript.SetCameraZPosition(CAM_Z_POS_LEVEL_1);
+			playerScript.SetReticleZPosition(RETICLE_Z_POS_LEVEL_1);
+			level3Music.Stop();
+			level1Music.Play();
+		}
+		else if (levelNum == 2)
+		{
+			playerScript.GetComponent<Level1Script>().enabled = false;
+			playerScript.GetComponent<Level3Script>().enabled = false;
+			playerScript.GetComponent<Level2Script>().enabled = true;
+			playerScript.SetCameraYPlus(CAM_Y_POS_PLUS_LEVEL_2);
+			playerScript.SetCameraZPosition(CAM_Z_POS_LEVEL_2);
+			playerScript.SetReticleZPosition(RETICLE_Z_POS_LEVEL_2);
+		}
+		else if (levelNum == 3)
+		{
+			Application.LoadLevel("FinalLevel"); 
+		}
+	}
+
+	void OnLevelWasLoaded(int level)
+	{
+		Debug.Log (level);
+		SetUpForNewLevel();
+		if (level == 1)
+		{
+			playerScript.GetComponent<Level1Script>().enabled = false;
+			playerScript.GetComponent<Level2Script>().enabled = false;
+			playerScript.GetComponent<Level3Script>().enabled = true;
+			playerScript.SetCameraYPlus(CAM_Y_POS_PLUS_LEVEL_3);
+			playerScript.SetCameraZPosition(CAM_Z_POS_LEVEL_3);
+			playerScript.SetReticleZPosition(RETICLE_Z_POS_LEVEL_3);
 			level3StartSound.Play();
+			level1Music.Stop();
+			level3Music.Play();
 		}
 	}
 
@@ -112,4 +174,5 @@ public class GameManager : MonoBehaviour {
 	public int GetMaxLives() { return MAX_LIVES; }
 	public bool GetHasLost() { return hasLost; }
 	public bool GetHasWon() { return hasWon; }
+	public void SetCurrentLevel(int level) { currentLevel = level; }
 }

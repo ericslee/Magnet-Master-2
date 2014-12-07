@@ -23,7 +23,7 @@ public class GravityPlaneScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject) 
+		if (other.gameObject && other.gameObject.layer != 9) 
 		{
 			gravScript.AddToGravityList(other.gameObject);
 		}

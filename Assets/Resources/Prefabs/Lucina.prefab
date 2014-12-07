@@ -841,6 +841,8 @@ GameObject:
   - 82: {fileID: 8200018}
   - 114: {fileID: 11400012}
   - 82: {fileID: 8200020}
+  - 114: {fileID: 11400014}
+  - 114: {fileID: 11400016}
   m_Layer: 9
   m_Name: Lucina
   m_TagString: Player
@@ -1590,7 +1592,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100108}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 48.6237946, y: 2.60653639, z: .0155785056}
+  m_LocalPosition: {x: 466.656555, y: 2.60653639, z: -315.882416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400106}
@@ -2453,6 +2455,7 @@ MonoBehaviour:
     m_Bits: 4294963450
   normalKnockback: {x: 1000, y: 350, z: 0}
   lavaKnockback: {x: 1000, y: 750, z: 0}
+  panicVoice: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2510,9 +2513,31 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccee6e604cbe3814380f7dca9329e0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858cbaa3b36784046b6664810dd3b119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100108}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051bbc4d366d0de4c9515c1f1b989dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!136 &13600000
