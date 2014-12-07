@@ -32,6 +32,7 @@ public class PlayerScript : MonoBehaviour
 	GravityScript gravScript;
 	PowerType currentActivePower;
 
+	// Reticle
 	Texture reticleHoverNormalTexture;
 	Texture reticleHoverGlowTexture;
 	Texture reticleHoverGlowRedTexture;
@@ -64,6 +65,9 @@ public class PlayerScript : MonoBehaviour
 	AudioSource damageVoiceThree;
 	AudioSource damageVoiceFour;
 	public AudioSource panicVoice;
+
+	// Camera
+	Camera guiCamera;
 
 	void Start()
 	{
@@ -108,6 +112,8 @@ public class PlayerScript : MonoBehaviour
 		reticleHoverGlowTexture = Resources.Load("Materials/Textures/reticle-glow") as Texture;
 		reticleHoverNormalTexture = Resources.Load("Materials/Textures/reticle-normal") as Texture;
 		reticleHoverGlowRedTexture = Resources.Load("Materials/Textures/reticle-glow-red") as Texture;
+
+		guiCamera = GameObject.Find("GUI Camera").camera;
 	}
 
 	void Update()
@@ -120,6 +126,7 @@ public class PlayerScript : MonoBehaviour
 		playerPosition.y = playerPosition.y + camYPlus;
 		playerPosition.z = camZPosition;
 		Camera.main.transform.position = playerPosition;
+		if (guiCamera) guiCamera.transform.position = playerPosition;
 	}
 	
 	void HandleInput()
