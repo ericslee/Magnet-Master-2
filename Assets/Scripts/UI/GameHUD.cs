@@ -225,10 +225,6 @@ public class GameHUD : MonoBehaviour {
 
 		float faded = 0.2f;
 
-		if (Mathf.Abs(windowaspect - targetaspect) < 0.001f) {
-			Debug.Log ("YES");
-		}
-
 		float x = (Mathf.Abs(windowaspect - targetaspect) < 0.001f) ? Screen.width - totalWidth - 10 : viewRectTopRight.x - totalWidth - 10;
 		float y = (Mathf.Abs(windowaspect - targetaspect) < 0.001f) ? 10 : viewRectBottomLeft.y - Screen.height / 10f + 12f;
 
