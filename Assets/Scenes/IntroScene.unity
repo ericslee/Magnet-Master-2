@@ -24223,15 +24223,16 @@ MonoBehaviour:
   jumpHeight: 0
   levitationLayerMask:
     serializedVersion: 2
-    m_Bits: 4294960378
+    m_Bits: 4294698234
   gravityLayerMask:
     serializedVersion: 2
-    m_Bits: 4294961402
+    m_Bits: 4294568186
   electricyLayerMask:
     serializedVersion: 2
-    m_Bits: 4294963450
+    m_Bits: 4294570234
   normalKnockback: {x: 1000, y: 350, z: 0}
   lavaKnockback: {x: 1000, y: 750, z: 0}
+  floorSpikesKnockback: {x: 1000, y: 1000, z: 0}
   panicVoice: {fileID: 0}
 --- !u!136 &541186153
 CapsuleCollider:
@@ -25000,7 +25001,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 733216208}
   m_GameObject: {fileID: 541186148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 858cbaa3b36784046b6664810dd3b119, type: 3}
   m_Name: 
@@ -25012,7 +25013,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 733216208}
   m_GameObject: {fileID: 541186148}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 051bbc4d366d0de4c9515c1f1b989dc2, type: 3}
   m_Name: 

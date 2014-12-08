@@ -20,6 +20,9 @@ public class GameHUD : MonoBehaviour {
 	Vector2 viewRectBottomLeft;
 	Vector2 viewRectTopRight;
 
+	float windowaspect;
+	float targetaspect;
+
 	void Start () 
 	{
 		// cache references
@@ -39,6 +42,9 @@ public class GameHUD : MonoBehaviour {
 
 		viewRectBottomLeft = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x, Camera.main.rect.y, 0));
 		viewRectTopRight = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x + Camera.main.rect.width, Camera.main.rect.y + Camera.main.rect.height, 0));
+
+		windowaspect = (float)Screen.width / (float)Screen.height;
+		targetaspect = 16.0f / 9.0f;
 	}
 	
 	void Update () {
@@ -159,7 +165,10 @@ public class GameHUD : MonoBehaviour {
 		int bw = (int)((float)h / healthBar.height * 7) + 1;
 		int bh = (int)((float)w /healthBar.width * 7) + 1;
 
-		GUI.BeginGroup(new Rect(10, viewRectBottomLeft.y - Screen.height / 10f + 14f, w, h));
+		float x = (int)(Screen.height * 0.025f);
+		float y = (Mathf.Abs(windowaspect - targetaspect) < 0.001f) ? (int)(Screen.height * 0.025f) : viewRectBottomLeft.y - Screen.height / 10f + 14f;
+
+		GUI.BeginGroup(new Rect(x, y, w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), healthBar);
 			if (healthRatio > 0) GUI.DrawTexture(new Rect(bw, bh, (int)((w - bw * 2) * healthRatio), h - bh * 2), healthBarFill);
 		GUI.EndGroup();
@@ -191,6 +200,7 @@ public class GameHUD : MonoBehaviour {
 				gainsBarFill = gainsBarFillElectricity;
 				break;
 		}
+
 		int fillHeight = (int)((h - bh * 2) * gainsRatio);
 		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.2f), w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), gainsBar);
@@ -214,12 +224,25 @@ public class GameHUD : MonoBehaviour {
 		int totalWidth = dim * 3 + padding * 2;
 
 		float faded = 0.2f;
+
+		if (Mathf.Abs(windowaspect - targetaspect) < 0.001f) {
+			Debug.Log ("YES");
+		}
+
+		float x = (Mathf.Abs(windowaspect - targetaspect) < 0.001f) ? Screen.width - totalWidth - 10 : viewRectTopRight.x - totalWidth - 10;
+		float y = (Mathf.Abs(windowaspect - targetaspect) < 0.001f) ? 10 : viewRectBottomLeft.y - Screen.height / 10f + 12f;
+
 		// THE GROUP RECT Y COORDINATE IS SOMEWHAT ARBITRARY BECAUSE I SWEAR TO GOD UNITY'S STUPID COORDINATE SYSTEM ALWAYS GIVES ME SOMETHING WRONG
-		GUI.BeginGroup(new Rect(viewRectTopRight.x - totalWidth - 10, viewRectBottomLeft.y - Screen.height / 10f + 12f, totalWidth, dim));
-			if (gameManager.GetHasLevitation())  DrawIconWithOpacity(0, 0, dim, dim, powerIconLevitation, (playerScript.GetCurrentPower() == PowerType.Levitation) ? 1 : faded);
+		GUI.BeginGroup(new Rect(x, y, totalWidth, dim));
+			if (gameManager.GetHasLevitation()) DrawIconWithOpacity(0, 0, dim, dim, powerIconLevitation, (playerScript.GetCurrentPower() == PowerType.Levitation) ? 1 : faded);
 			if (gameManager.GetHasGravity())DrawIconWithOpacity(dim + padding, 0, dim, dim, powerIconGravity, (playerScript.GetCurrentPower() == PowerType.Gravity) ? 1 : faded);
 			if (gameManager.GetHasElectricity())DrawIconWithOpacity(dim * 2 + padding * 2, 0, dim, dim, powerIconElectricity, (playerScript.GetCurrentPower() == PowerType.Electricity) ? 1 : faded); 
 		GUI.EndGroup();
+	}
+
+	private void DrawLivesIcons() {
+		// TODO: Temp var, hook up to real
+		int numLives = 3;
 	}
 
 	void OnGUI() 
