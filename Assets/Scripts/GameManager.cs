@@ -71,6 +71,9 @@ public class GameManager : MonoBehaviour {
 		Physics.IgnoreLayerCollision(13, 8, true); // reticle
 		Physics.IgnoreLayerCollision(13, 11, true); // gravity centers
 
+		// do not allow spikes platform to be stopped
+		Physics.IgnoreLayerCollision(17, 18, true);
+
 		// Create game hud
 		GameObject gameHUD = new GameObject("GameHUD");
 		gameHUD.AddComponent<GameHUD>();

@@ -50,6 +50,7 @@ public class PlayerScript : MonoBehaviour
 	// Damage
 	public Vector3 normalKnockback = new Vector3(1000, 350, 0);
 	public Vector3 lavaKnockback = new Vector3(1000, 750, 0);
+	public Vector3 floorSpikesKnockback = new Vector3(1000, 1000, 0);
 	Object onFirePrefab;
 	GameObject currentOnFireObject;
 
@@ -215,8 +216,6 @@ public class PlayerScript : MonoBehaviour
 			pos.z = transform.position.z - guiCamera.transform.position.z;
 			Vector3 newReticlePos = guiCamera.ScreenToWorldPoint(pos);
 			newReticlePos.z = reticleZPos;
-
-			//Debug.Log (reticleZPos);
 
 			targetingReticle.transform.position = newReticlePos;
 
@@ -422,7 +421,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (collision.gameObject.tag.Equals("FloorSpikes") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES) 
 		{
-			TakeDamage(lavaKnockback);
+			TakeDamage(floorSpikesKnockback);
 		}
 		else if (collision.gameObject.tag.Equals("Lava") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES)
 		{
@@ -454,7 +453,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (collisionInfo.collider.gameObject.tag.Equals("FloorSpikes") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES) 
 		{
-			TakeDamage(lavaKnockback);
+			TakeDamage(floorSpikesKnockback);
 		}
 		else if (collisionInfo.collider.gameObject.tag.Equals("Lava") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES)
 		{
