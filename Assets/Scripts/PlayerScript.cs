@@ -6,6 +6,9 @@ public enum PowerType {Levitation, Gravity, Electricity};
 
 public class PlayerScript : MonoBehaviour
 {
+	const float MAX_SPEED = 8;
+	const int MAX_INVINCIBILITY_FRAMES = 200;
+
 	GameManager gameManager;
 
 	public float jumpHeight;
@@ -16,6 +19,7 @@ public class PlayerScript : MonoBehaviour
 	float distToGround;
 	bool collidingWall; // used for disabling left, right controls when colliding with a wall
 	float jumpValue = 0;
+	bool isJumping = false;
 
 	Quaternion frontRotation;
 	Quaternion leftRotation;
@@ -46,6 +50,7 @@ public class PlayerScript : MonoBehaviour
 	// Damage
 	public Vector3 normalKnockback = new Vector3(1000, 350, 0);
 	public Vector3 lavaKnockback = new Vector3(1000, 750, 0);
+	public Vector3 floorSpikesKnockback = new Vector3(1000, 1000, 0);
 	Object onFirePrefab;
 	GameObject currentOnFireObject;
 
@@ -95,7 +100,7 @@ public class PlayerScript : MonoBehaviour
 		//distToGround = collider.bounds.extents.y;
 		distToGround = 1.0f;
 		jumpHeight = 100.0f;
-		invincibilityFrames = 100;
+		invincibilityFrames = MAX_INVINCIBILITY_FRAMES;
 		
 		frontRotation = Quaternion.Euler(0,180,0);
 		leftRotation = Quaternion.Euler(0,-90,0);
@@ -129,7 +134,17 @@ public class PlayerScript : MonoBehaviour
 		Camera.main.transform.position = playerPosition;
 		if (guiCamera) guiCamera.transform.position = playerPosition;
 	}
-	
+
+	void FixedUpdate()
+	{
+		// clamp velocity if necessary
+		Vector3 v = rigidbody.velocity;
+		if(v.magnitude > MAX_SPEED)
+		{ 
+			rigidbody.velocity = v.normalized * MAX_SPEED; 
+		}
+	}
+
 	void HandleInput()
 	{
 		HandleMovement();
@@ -201,8 +216,6 @@ public class PlayerScript : MonoBehaviour
 			pos.z = transform.position.z - guiCamera.transform.position.z;
 			Vector3 newReticlePos = guiCamera.ScreenToWorldPoint(pos);
 			newReticlePos.z = reticleZPos;
-
-			//Debug.Log (reticleZPos);
 
 			targetingReticle.transform.position = newReticlePos;
 
@@ -307,7 +320,7 @@ public class PlayerScript : MonoBehaviour
 		invincibilityFrames++;
 
 		// flash character during invincibility
-		if (invincibilityFrames < 100)
+		if (invincibilityFrames < MAX_INVINCIBILITY_FRAMES)
 		{
 			if(lucinaRenderer.enabled)
 				lucinaRenderer.enabled = false;
@@ -351,6 +364,8 @@ public class PlayerScript : MonoBehaviour
 				//animator.SetBool("Walking", false);
 				animator.SetTrigger("Jumping");
 
+				isJumping = true;
+
 				// play sound
 				int soundChoice = Random.Range(0, 2);
 				if (soundChoice == 0)
@@ -388,24 +403,32 @@ public class PlayerScript : MonoBehaviour
 		Vector3 leftBound = new Vector3(transform.position.x - (GetComponent<BoxCollider>().size.x / 2), transformPositionWithOffset.y, transform.position.z);
 		Vector3 rightBound = new Vector3(transform.position.x + (GetComponent<BoxCollider>().size.x / 2), transformPositionWithOffset.y, transform.position.z);
 
-		return (Physics.Raycast(transformPositionWithOffset, -Vector3.up, distToGround + 0.1f)
+		bool isGroundedBool = (Physics.Raycast(transformPositionWithOffset, -Vector3.up, distToGround + 0.1f)
 		        || (Physics.Raycast(leftBound, -Vector3.up, distToGround + 0.1f))
 		        || (Physics.Raycast(rightBound, -Vector3.up, distToGround + 0.1f)));
+
+		if (isGroundedBool) isJumping = false;
+
+		return isGroundedBool;
 	}
 	
 	void OnCollisionEnter(Collision collision)
 	{ 
 		// if collision with hazardous object, lose life
-		if (collision.gameObject.tag.Equals("Hazard") && invincibilityFrames > 100)
+		if (collision.gameObject.tag.Equals("Hazard") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES)
 		{
 			TakeDamage(normalKnockback);
 		}
-		else if (collision.gameObject.tag.Equals("Lava") && invincibilityFrames > 100)
+		else if (collision.gameObject.tag.Equals("FloorSpikes") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES) 
+		{
+			TakeDamage(floorSpikesKnockback);
+		}
+		else if (collision.gameObject.tag.Equals("Lava") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES)
 		{
 			TakeDamage(lavaKnockback);
 			SetOnFire();
 		}
-		else if (collision.gameObject.tag.Equals("InstantDeath") && invincibilityFrames > 100) 
+		else if (collision.gameObject.tag.Equals("InstantDeath") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES) 
 		{
 			gameManager.Die();	
 		}
@@ -424,11 +447,15 @@ public class PlayerScript : MonoBehaviour
 
 	void OnCollisionStay(Collision collisionInfo) 
 	{
-		if (collisionInfo.collider.gameObject.tag.Equals("Hazard") && invincibilityFrames > 100)
+		if (collisionInfo.collider.gameObject.tag.Equals("Hazard") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES)
 		{
 			TakeDamage(normalKnockback);
 		}
-		else if (collisionInfo.collider.gameObject.tag.Equals("Lava") && invincibilityFrames > 100)
+		else if (collisionInfo.collider.gameObject.tag.Equals("FloorSpikes") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES) 
+		{
+			TakeDamage(floorSpikesKnockback);
+		}
+		else if (collisionInfo.collider.gameObject.tag.Equals("Lava") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES)
 		{
 			TakeDamage(lavaKnockback);
 			SetOnFire();

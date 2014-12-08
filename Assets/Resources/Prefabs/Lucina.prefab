@@ -1596,7 +1596,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100108}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -14.5474396, y: 2.60653639, z: .0155860363}
+  m_LocalPosition: {x: 20.2572556, y: 9.87306213, z: .0155819422}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400106}
@@ -2682,15 +2682,16 @@ MonoBehaviour:
   jumpHeight: 0
   levitationLayerMask:
     serializedVersion: 2
-    m_Bits: 4294960378
+    m_Bits: 4294698234
   gravityLayerMask:
     serializedVersion: 2
-    m_Bits: 4294961402
+    m_Bits: 4294568186
   electricyLayerMask:
     serializedVersion: 2
-    m_Bits: 4294963450
+    m_Bits: 4294570234
   normalKnockback: {x: 1000, y: 350, z: 0}
   lavaKnockback: {x: 1000, y: 750, z: 0}
+  floorSpikesKnockback: {x: 1000, y: 1000, z: 0}
   panicVoice: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
@@ -2760,7 +2761,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 858cbaa3b36784046b6664810dd3b119, type: 3}
   m_Name: 
@@ -2771,7 +2772,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100108}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 051bbc4d366d0de4c9515c1f1b989dc2, type: 3}
   m_Name: 
