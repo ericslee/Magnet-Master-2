@@ -5711,7 +5711,7 @@ GameObject:
   - 65: {fileID: 406250267}
   m_Layer: 0
   m_Name: exterior_door
-  m_TagString: Door
+  m_TagString: FinalDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5722,8 +5722,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 7cf7b22edb4914962a931210ef236a94, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 406250263}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.215219066, y: 0, z: 1.07549454e-08}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -1.82090199, y: -1.1920929e-07, z: .661085784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 202674738}
@@ -5766,10 +5766,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 406250263}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1493032, y: 4.46160936, z: 4.46161127}
+  m_Size: {x: 4, y: 4.46160936, z: 4.46161127}
   m_Center: {x: 0, y: 0, z: 2.60770321e-08}
 --- !u!1 &430053353
 GameObject:
@@ -6899,7 +6899,7 @@ Transform:
   m_PrefabInternal: {fileID: 977403398}
   m_GameObject: {fileID: 541186148}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -14.5474396, y: 2.60653639, z: .0155860363}
+  m_LocalPosition: {x: -14.7403107, y: 2.60653639, z: .0155860595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 262566541}
@@ -13034,7 +13034,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -14.5474396
+      value: -14.7403107
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13042,7 +13042,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalPosition.z
-      value: .0155860363
+      value: .0155860595
       objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
       propertyPath: m_LocalRotation.x
@@ -20230,7 +20230,7 @@ GameObject:
   - 82: {fileID: 1537002028}
   m_Layer: 11
   m_Name: ExteriorDoorSliding
-  m_TagString: Untagged
+  m_TagString: FinalDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21301,7 +21301,7 @@ GameObject:
   - 111: {fileID: 1617806765}
   m_Layer: 0
   m_Name: MainExteriorDoor
-  m_TagString: Untagged
+  m_TagString: FinalDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25640,7 +25640,7 @@ GameObject:
   - 54: {fileID: 1988881000}
   m_Layer: 0
   m_Name: collider
-  m_TagString: Untagged
+  m_TagString: FinalDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25669,7 +25669,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1988880999}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 4.5, z: 4.5}

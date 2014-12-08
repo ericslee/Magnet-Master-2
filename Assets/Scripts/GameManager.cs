@@ -23,9 +23,9 @@ public class GameManager : MonoBehaviour {
 	bool hasWon = false;
 
 	// Power state
-	bool hasLevitation = false;
-	bool hasGravity = false;
-	bool hasElectricity = false;
+	bool hasLevitation = true;
+	bool hasGravity = true;
+	bool hasElectricity = true;
 
 	// Checkpoints
 	Vector3 initialSpawnPoint = new Vector3(-15.03494f, 3.715919f, 0.374071f);
@@ -127,10 +127,9 @@ public class GameManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level)
 	{
-		SetUpForNewLevel();
-
 		if (level == 2)
 		{
+			SetUpForNewLevel();
 			playerScript.GetComponent<Level1Script>().enabled = false;
 			playerScript.GetComponent<Level3Script>().enabled = false;
 			playerScript.GetComponent<Level2Script>().enabled = true;
@@ -143,6 +142,7 @@ public class GameManager : MonoBehaviour {
 		}
 		else if (level == 3)
 		{
+			SetUpForNewLevel();
 			playerScript.GetComponent<Level1Script>().enabled = false;
 			playerScript.GetComponent<Level2Script>().enabled = false;
 			playerScript.GetComponent<Level3Script>().enabled = true;
@@ -153,6 +153,14 @@ public class GameManager : MonoBehaviour {
 			level1Music.Stop();
 			level2Music.Stop();
 			level3Music.Play();
+		}
+		else if (level == 4)
+		{
+
+		}
+		else if (level == 5)
+		{
+
 		}
 	}
 
