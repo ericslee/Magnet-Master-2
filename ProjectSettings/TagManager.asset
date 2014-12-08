@@ -22,6 +22,7 @@ TagManager:
   - Level2Door
   - SF_Door
   - Barrel
+  - ReticleTip
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
