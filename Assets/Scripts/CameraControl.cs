@@ -33,7 +33,7 @@ public class CameraControl : MonoBehaviour {
             rect.height = scaleheight;
             rect.x = 0;
             rect.y = (1.0f - scaleheight) / 2.0f;
-            
+
             camera.rect = rect;
         }
         else // add pillarbox
@@ -46,7 +46,7 @@ public class CameraControl : MonoBehaviour {
             rect.height = 1.0f;
             rect.x = (1.0f - scalewidth) / 2.0f;
             rect.y = 0;
-            
+
             camera.rect = rect;
         }
     }
