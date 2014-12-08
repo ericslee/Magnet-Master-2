@@ -90,8 +90,13 @@ public class ElectricityScript : MonoBehaviour {
 			}
 
 			// disable spark once activated
-			Transform sparks = obj.transform.FindChild("Sparks");
-			if (sparks) sparks.gameObject.SetActive(false);
+			foreach (Transform t in obj.transform)
+			{
+				if(t.name.Equals("Sparks"))// Do something to child one
+					t.gameObject.SetActive(false);
+			}
+			//Transform sparks = obj.transform.FindChild("Sparks");
+			//if (sparks) sparks.gameObject.SetActive(false);
 		}
 	}
 

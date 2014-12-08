@@ -73,6 +73,7 @@ public class PlayerScript : MonoBehaviour
 
 	// Camera
 	Camera guiCamera;
+	bool camFollowPlayer = true;
 
 	void Start()
 	{
@@ -128,11 +129,20 @@ public class PlayerScript : MonoBehaviour
 		HandleDamage();
 
 		// follow player with camera
+		Vector3 playerPosition = GetPlayerCamPosition();
+		if (camFollowPlayer)
+		{
+			Camera.main.transform.position = playerPosition;
+		}
+		if (guiCamera) guiCamera.transform.position = playerPosition;
+	}
+
+	public Vector3 GetPlayerCamPosition()
+	{
 		Vector3 playerPosition = transform.position;
 		playerPosition.y = playerPosition.y + camYPlus;
 		playerPosition.z = camZPosition;
-		Camera.main.transform.position = playerPosition;
-		if (guiCamera) guiCamera.transform.position = playerPosition;
+		return playerPosition;
 	}
 
 	void FixedUpdate()
@@ -565,4 +575,5 @@ public class PlayerScript : MonoBehaviour
 	public void SetCameraYPlus(float pos) { camYPlus = pos; }
 	public void SetCameraZPosition(float pos) { camZPosition = pos; }
 	public void SetReticleZPosition(float pos) { reticleZPos = pos; }
+	public void SetCamFollowPlayer(bool b) { camFollowPlayer = b; }
 }

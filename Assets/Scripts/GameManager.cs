@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 	const int MAX_LIVES = 5;
 	const int START_LEVEL = 1;
 	const float CAM_Y_POS_PLUS_LEVEL_1 = 2;
-	const float CAM_Y_POS_PLUS_LEVEL_2 = 0;
+	const float CAM_Y_POS_PLUS_LEVEL_2 = 2;
 	const float CAM_Y_POS_PLUS_LEVEL_3 = 0;
 	const float CAM_Z_POS_LEVEL_1 = -10.0f;
 	const float CAM_Z_POS_LEVEL_2 = -20.0f;
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour {
 		// cache references
 		player = GameObject.Find("Lucina");
 		playerScript = player.GetComponent<PlayerScript>();
+		playerScript.SetCamFollowPlayer(true);
 
 		// do not allow certain objects to be sucked in by gravity
 		Physics.IgnoreLayerCollision(13, 9, true); // player
