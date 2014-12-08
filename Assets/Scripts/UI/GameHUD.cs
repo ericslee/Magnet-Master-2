@@ -17,6 +17,9 @@ public class GameHUD : MonoBehaviour {
 	Texture2D powerIconElectricity;
 	Texture2D powerIconLevitation;
 
+	Vector2 viewRectBottomLeft;
+	Vector2 viewRectTopRight;
+
 	void Start () 
 	{
 		// cache references
@@ -33,6 +36,9 @@ public class GameHUD : MonoBehaviour {
 		powerIconGravity = Resources.Load("Materials/Textures/power-icon-gravity") as Texture2D;
 		powerIconElectricity = Resources.Load("Materials/Textures/power-icon-electricity") as Texture2D;
 		powerIconLevitation = Resources.Load("Materials/Textures/power-icon-levitation") as Texture2D;
+
+		viewRectBottomLeft = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x, Camera.main.rect.y, 0));
+		viewRectTopRight = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x + Camera.main.rect.width, Camera.main.rect.y + Camera.main.rect.height, 0));
 	}
 	
 	void Update () {
@@ -153,7 +159,7 @@ public class GameHUD : MonoBehaviour {
 		int bw = (int)((float)h / healthBar.height * 7) + 1;
 		int bh = (int)((float)w /healthBar.width * 7) + 1;
 
-		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.03f), w, h));
+		GUI.BeginGroup(new Rect(10, viewRectBottomLeft.y - Screen.height / 10f + 14f, w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), healthBar);
 			if (healthRatio > 0) GUI.DrawTexture(new Rect(bw, bh, (int)((w - bw * 2) * healthRatio), h - bh * 2), healthBarFill);
 		GUI.EndGroup();
@@ -208,8 +214,9 @@ public class GameHUD : MonoBehaviour {
 		int totalWidth = dim * 3 + padding * 2;
 
 		float faded = 0.2f;
-		GUI.BeginGroup(new Rect(Screen.width - totalWidth - 10, 10, totalWidth, dim));
-			if (gameManager.GetHasLevitation()) DrawIconWithOpacity(0, 0, dim, dim, powerIconLevitation, (playerScript.GetCurrentPower() == PowerType.Levitation) ? 1 : faded);
+		// THE GROUP RECT Y COORDINATE IS SOMEWHAT ARBITRARY BECAUSE I SWEAR TO GOD UNITY'S STUPID COORDINATE SYSTEM ALWAYS GIVES ME SOMETHING WRONG
+		GUI.BeginGroup(new Rect(viewRectTopRight.x - totalWidth - 10, viewRectBottomLeft.y - Screen.height / 10f + 12f, totalWidth, dim));
+			if (gameManager.GetHasLevitation())  DrawIconWithOpacity(0, 0, dim, dim, powerIconLevitation, (playerScript.GetCurrentPower() == PowerType.Levitation) ? 1 : faded);
 			if (gameManager.GetHasGravity())DrawIconWithOpacity(dim + padding, 0, dim, dim, powerIconGravity, (playerScript.GetCurrentPower() == PowerType.Gravity) ? 1 : faded);
 			if (gameManager.GetHasElectricity())DrawIconWithOpacity(dim * 2 + padding * 2, 0, dim, dim, powerIconElectricity, (playerScript.GetCurrentPower() == PowerType.Electricity) ? 1 : faded); 
 		GUI.EndGroup();
