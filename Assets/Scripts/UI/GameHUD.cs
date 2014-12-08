@@ -16,6 +16,7 @@ public class GameHUD : MonoBehaviour {
 	Texture2D powerIconGravity;
 	Texture2D powerIconElectricity;
 	Texture2D powerIconLevitation;
+	Texture2D livesHeartIcon;
 
 	Vector2 viewRectBottomLeft;
 	Vector2 viewRectTopRight;
@@ -39,6 +40,7 @@ public class GameHUD : MonoBehaviour {
 		powerIconGravity = Resources.Load("Materials/Textures/power-icon-gravity") as Texture2D;
 		powerIconElectricity = Resources.Load("Materials/Textures/power-icon-electricity") as Texture2D;
 		powerIconLevitation = Resources.Load("Materials/Textures/power-icon-levitation") as Texture2D;
+		livesHeartIcon = Resources.Load("Materials/Textures/lives-heart") as Texture2D;
 
 		viewRectBottomLeft = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x, Camera.main.rect.y, 0));
 		viewRectTopRight = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x + Camera.main.rect.width, Camera.main.rect.y + Camera.main.rect.height, 0));
@@ -238,14 +240,33 @@ public class GameHUD : MonoBehaviour {
 
 	private void DrawLivesIcons() {
 		// TODO: Temp var, hook up to real
-		int numLives = 3;
-	}
+		int numLivesLeft = 3;
+		float scale = 0.050f;
+		int dimH = (int)(scale * Screen.height);
+		int dimW = (int)(dimH * 461f/415f);
+		int padding = 20;
+
+		float x = (int)(Screen.height * 0.025f);
+
+		// Height of health bar... just copied and pasted.
+		float mult = 0.35f;
+		int w = (int)(Screen.width * mult);
+		int h = (int)(w * healthBar.height / healthBar.width);
+		float y = (Mathf.Abs(windowaspect - targetaspect) < 0.001f) ? (int)(Screen.height * 0.025f) : viewRectBottomLeft.y - Screen.height / 10f + 14f;
+
+		GUI.BeginGroup(new Rect(x, y + dimH + (int)(0.016f * Screen.height), (dimW + padding) * numLivesLeft, dimH));
+		for (int i = 0; i < numLivesLeft; i++) {
+			GUI.DrawTexture(new Rect(10 + (dimW + padding) * i, 0, dimW, dimH), livesHeartIcon);
+		}
+        GUI.EndGroup();
+    }
 
 	void OnGUI() 
 	{
 		// Powers
 //		GUI.Label(new Rect(50, 75, Screen.width / 5, Screen.height / 10), "GAIN: " + playerScript.GetCurrentPowerGain());
 		DrawPowerIcons();
+		DrawLivesIcons();
 
 		// Health
 		DrawHealthBar();
