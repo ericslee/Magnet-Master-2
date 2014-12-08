@@ -23,9 +23,9 @@ public class GameManager : MonoBehaviour {
 	bool hasWon = false;
 
 	// Power state
-	bool hasLevitation = true;
-	bool hasGravity = true;
-	bool hasElectricity = true;
+	bool hasLevitation = false;
+	bool hasGravity = false;
+	bool hasElectricity = false;
 
 	// Checkpoints
 	Vector3 initialSpawnPoint = new Vector3(-15.03494f, 3.715919f, 0.374071f);
