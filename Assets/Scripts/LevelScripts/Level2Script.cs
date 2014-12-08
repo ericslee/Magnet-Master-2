@@ -13,6 +13,8 @@ public class Level2Script : MonoBehaviour {
 	// Sound
 	AudioSource powerCollectSFX;
 	AudioSource doorRattleSFX;
+	AudioSource thumpSFX;
+	AudioSource brickBreakSFX;
 
 	// Camera
 	Camera mainCamera;
@@ -21,6 +23,7 @@ public class Level2Script : MonoBehaviour {
 	Vector3 zoomOutPos = new Vector3(94.4f, 18, -52.2f);
 
 	bool doorOpen = false;
+	GameObject rockParticleSystem;
 
 	void Start() 
 	{
@@ -35,6 +38,10 @@ public class Level2Script : MonoBehaviour {
 
 		powerCollectSFX = GetComponents<AudioSource>()[13];
 		doorRattleSFX = GetComponents<AudioSource>()[12];
+		thumpSFX = GetComponents<AudioSource>()[15];
+		brickBreakSFX = GetComponents<AudioSource>()[16];
+
+		rockParticleSystem = (GameObject)Resources.Load("Prefabs/Rock_Hit_Prefab");
 	}
 	
 	void Update() 
@@ -99,5 +106,17 @@ public class Level2Script : MonoBehaviour {
 	public void OpenDoor()
 	{
 		doorOpen = true;
+	}
+
+	public void PlayThump()
+	{
+		if (thumpSFX) thumpSFX.Play();
+	}
+
+	public void BreakFloor(Vector3 pos)
+	{
+		if (brickBreakSFX) brickBreakSFX.Play();
+		GameObject rockPieces = (GameObject)Instantiate(rockParticleSystem, pos, Quaternion.identity);
+		Destroy(rockPieces, 2.0f);
 	}
 }
