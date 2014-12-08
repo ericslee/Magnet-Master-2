@@ -82,16 +82,6 @@ public class Level3Script : MonoBehaviour {
 			playerScript.TakeDamage(playerScript.lavaKnockback);
 			playerScript.SetOnFire();
 		}
-		else if (c.gameObject.name.Equals("ElectricityPower"))
-		{
-			gameManager.SetHasElectricity(true);
-			Destroy(c.gameObject);
-			if (powerCollectSFX) powerCollectSFX.Play();
-			
-			electricityText.SetTutorialPosition(electricityTextPosition);
-			electricityText.SetTimeIn(1.0f);
-			electricityText.EnterText();
-		}
 	}
 
 	void HandleObstacles() {
