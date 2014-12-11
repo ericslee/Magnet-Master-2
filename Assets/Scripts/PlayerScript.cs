@@ -200,20 +200,50 @@ public class PlayerScript : MonoBehaviour
 					animator.SetBool("Walking", true);
 				}
 			}
+
+			// FOR DEBUGGING, rapid speed
+			if (Input.GetKey(KeyCode.Alpha2))
+			{
+				transform.rotation = Quaternion.identity;
+				transform.Translate(Vector2.right * 20f * Time.deltaTime);
+				transform.rotation = rightRotation;
+				
+				if (animator.GetCurrentAnimatorStateInfo(0).nameHash != jumpState) 
+				{
+					animator.SetBool("Walking", true);
+				}
+			}
+			else if (Input.GetKey(KeyCode.Alpha1))
+			{
+				transform.rotation = Quaternion.identity;
+				transform.Translate(-Vector2.right * 20f * Time.deltaTime);
+				transform.rotation = leftRotation;
+				
+				if (animator.GetCurrentAnimatorStateInfo(0).nameHash != jumpState) 
+				{
+					animator.SetBool("Walking", true);
+				}
+			}
 		}
 
 		if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) 
-		    || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
+		    || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Alpha2))
 		{
 			animator.SetBool("Walking", false);
 		}
 
 		Jump();
 
-		// FOR DEBUGGING, multi jump
+		///////////// FOR DEBUGGING  /////////////////////////
+		// multi jump
 		if (Input.GetKey(KeyCode.U))
 		{
-			rigidbody.velocity = new Vector3(0, 8, 0);
+			rigidbody.velocity = new Vector3(0, 20, 0);
+		}
+		// take damage
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			TakeDamage(normalKnockback);
 		}
 	}
 
@@ -488,7 +518,7 @@ public class PlayerScript : MonoBehaviour
 
 	public void TakeDamage(Vector3 knockback)
 	{
-		gameManager.LoseLife();
+		gameManager.TakeDamage();
 
 		// SFX
 		int damageVoiceChoice = Random.Range(0, 4);

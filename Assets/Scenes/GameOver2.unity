@@ -5904,15 +5904,16 @@ MonoBehaviour:
   jumpHeight: 0
   levitationLayerMask:
     serializedVersion: 2
-    m_Bits: 4294960378
+    m_Bits: 4294698234
   gravityLayerMask:
     serializedVersion: 2
-    m_Bits: 4294961402
+    m_Bits: 4294568186
   electricyLayerMask:
     serializedVersion: 2
-    m_Bits: 4294963450
+    m_Bits: 4294570234
   normalKnockback: {x: 1000, y: 350, z: 0}
   lavaKnockback: {x: 1000, y: 750, z: 0}
+  floorSpikesKnockback: {x: 1000, y: 1000, z: 0}
   panicVoice: {fileID: 0}
 --- !u!114 &764033756
 MonoBehaviour:
@@ -5963,7 +5964,7 @@ AudioSource:
     type: 2}
   m_PrefabInternal: {fileID: 1229103809}
   m_GameObject: {fileID: 764033730}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 380a1945ab6a53649b4f44c6a440aedf, type: 3}
   m_PlayOnAwake: 0
@@ -9431,6 +9432,14 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200028, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5400000, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3d0371b6144ccf84c863400b4e22f5db, type: 2}
@@ -9637,7 +9646,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1295973048}
-  - 114: {fileID: 1295973049}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -9657,17 +9665,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &1295973049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1295973047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b300f658dfedc47b8fabc8675dfeda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1300802980
 GameObject:
   m_ObjectHideFlags: 0

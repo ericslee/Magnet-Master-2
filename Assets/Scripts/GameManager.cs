@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
-	const int MAX_LIVES = 5;
+	const int MAX_LIVES = 3;
+	const int MAX_HEALTH = 5;
 	const int START_LEVEL = 1;
 	const float CAM_Y_POS_PLUS_LEVEL_1 = 2;
 	const float CAM_Y_POS_PLUS_LEVEL_2 = 2;
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour {
 
 	public int currentLevel = START_LEVEL;
 	int totalLives = MAX_LIVES;
+	int totalHealth = MAX_HEALTH;
 
 	// Game state
 	bool hasLost = false;
@@ -28,7 +31,12 @@ public class GameManager : MonoBehaviour {
 	bool hasElectricity = false;
 
 	// Checkpoints
-	Vector3 initialSpawnPoint = new Vector3(-15.03494f, 3.715919f, 0.374071f);
+	List<Vector3> level1RespawnPoints = new List<Vector3>();
+	List<Vector3> level2RespawnPoints = new List<Vector3>();
+	List<Vector3> level3RespawnPoints = new List<Vector3>();
+	int currentSpawnPoint = 0;
+	List<Vector3> currentRespawnPoints;
+	GameObject respawnEffect;
 
 	// Sound
 	AudioSource deathSound;
@@ -36,6 +44,7 @@ public class GameManager : MonoBehaviour {
 	AudioSource level2Music;
 	AudioSource level3Music;
 	AudioSource level3StartSound;
+	AudioSource respawnSound;
 
 	// References
 	GameObject player;
@@ -49,12 +58,21 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start() 
 	{
+		// cache/load references
+		respawnEffect = (GameObject)Resources.Load("Prefabs/RespawnEffect");
+
 		// set up sounds
 		deathSound = GetComponents<AudioSource>()[0];
 		level3Music = GetComponents<AudioSource>()[1];
 		level1Music = GetComponents<AudioSource>()[3];
 		level3StartSound = GetComponents<AudioSource>()[2];
 		level2Music = GetComponents<AudioSource>()[4];
+		respawnSound = GetComponents<AudioSource>()[5];
+
+		// set up checkpoints
+		level1RespawnPoints.Add(new Vector3(462.1642f, -0.390244f, 5.319216e-07f));
+		level2RespawnPoints.Add(new Vector3(-20.4133f, 6.748564f, 0.01558677f));
+		level3RespawnPoints.Add(new Vector3(-14.74031f, 2.606536f, 0.01558606f));
 
 		SetUpForNewLevel();
 		StartLevel(currentLevel);
@@ -78,6 +96,10 @@ public class GameManager : MonoBehaviour {
 		// Create game hud
 		GameObject gameHUD = new GameObject("GameHUD");
 		gameHUD.AddComponent<GameHUD>();
+
+		// reset variables
+		totalHealth = MAX_HEALTH;
+		currentSpawnPoint = 0;
 	}
 
 	// Update is called once per frame
@@ -92,6 +114,7 @@ public class GameManager : MonoBehaviour {
 		{
 			// restore lives, respawn player
 			totalLives = MAX_LIVES;
+			totalHealth = MAX_HEALTH;
 			hasLost = false;
 			hasWon = false;
 			RespawnPlayer();
@@ -114,6 +137,7 @@ public class GameManager : MonoBehaviour {
 			playerScript.SetReticleZPosition(RETICLE_Z_POS_LEVEL_1);
 			level3Music.Stop();
 			level1Music.Play();
+			currentRespawnPoints = level1RespawnPoints;
 		}
 		else if (levelNum == 2)
 		{
@@ -139,6 +163,7 @@ public class GameManager : MonoBehaviour {
 			level1Music.Stop();
 			level3Music.Stop();
 			level2Music.Play();
+			currentRespawnPoints = level2RespawnPoints;
 		}
 		else if (level == 3)
 		{
@@ -153,6 +178,7 @@ public class GameManager : MonoBehaviour {
 			level1Music.Stop();
 			level2Music.Stop();
 			level3Music.Play();
+			currentRespawnPoints = level3RespawnPoints;
 		}
 		else if (level == 4)
 		{
@@ -164,17 +190,31 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public void TakeDamage()
+	{
+		totalHealth--;
+
+		if (totalHealth <= 0)
+		{
+			LoseLife();
+		}
+	}
+
 	public void LoseLife() 
 	{
 		totalLives--;
 		deathSound.Play();
 
-		// respawn player
-		// RespawnPlayer();
-
 		if (totalLives <= 0) 
 		{
 			Die();
+		}
+		else 
+		{
+			totalHealth = MAX_HEALTH;
+
+			// respawn player
+			RespawnPlayer();
 		}
 	}
 
@@ -186,7 +226,10 @@ public class GameManager : MonoBehaviour {
 
 	void RespawnPlayer()
 	{
-		player.transform.position = initialSpawnPoint;
+		player.transform.position = currentRespawnPoints[currentSpawnPoint];
+		GameObject respawnEffectGO = (GameObject)Instantiate(respawnEffect, player.transform.position, Quaternion.identity);
+		Destroy(respawnEffectGO, 3.0f);
+		respawnSound.Play();
 	}
 
 	public void Lose()
@@ -203,6 +246,8 @@ public class GameManager : MonoBehaviour {
 	// Getters
 	public int GetTotalLives() { return totalLives; }
 	public int GetMaxLives() { return MAX_LIVES; }
+	public int GetTotalHealth() { return totalHealth; }
+	public int GetMaxHealth() { return MAX_HEALTH; }
 	public bool GetHasLevitation() { return hasLevitation; }
 	public bool GetHasGravity() { return hasGravity; }
 	public bool GetHasElectricity() { return hasElectricity; }
