@@ -568,6 +568,11 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
+	public bool PowerIsActive()
+	{
+		return powerIsActive;
+	}
+
 	public PowerType GetCurrentPower() { return currentActivePower; }
 	public int GetHealth() { return health; }
 	public int GetInvincibilityFrames() { return invincibilityFrames; }
