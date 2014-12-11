@@ -241,7 +241,7 @@ public class PlayerScript : MonoBehaviour
 			rigidbody.velocity = new Vector3(0, 20, 0);
 		}
 		// take damage
-		if (Input.GetKey(KeyCode.Alpha3))
+		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			TakeDamage(normalKnockback);
 		}
@@ -518,7 +518,7 @@ public class PlayerScript : MonoBehaviour
 
 	public void TakeDamage(Vector3 knockback)
 	{
-		gameManager.LoseLife();
+		gameManager.TakeDamage();
 
 		// SFX
 		int damageVoiceChoice = Random.Range(0, 4);

@@ -153,7 +153,7 @@ public class GameHUD : MonoBehaviour {
 
 	// Right now this is hooked to num lives, will have to change later
 	private void DrawHealthBar() {
-		float healthRatio = (float)gameManager.GetTotalLives() / gameManager.GetMaxLives();
+		float healthRatio = (float)gameManager.GetTotalHealth() / gameManager.GetMaxHealth();
 
 		// Fraction of the screen width we want the health bar to take up
 		float mult = 0.35f;
@@ -240,7 +240,7 @@ public class GameHUD : MonoBehaviour {
 
 	private void DrawLivesIcons() {
 		// TODO: Temp var, hook up to real
-		int numLivesLeft = 3;
+		int numLivesLeft = gameManager.GetTotalLives();
 		float scale = 0.050f;
 		int dimH = (int)(scale * Screen.height);
 		int dimW = (int)(dimH * 461f/415f);
