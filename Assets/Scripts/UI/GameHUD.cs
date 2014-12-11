@@ -24,6 +24,9 @@ public class GameHUD : MonoBehaviour {
 	float windowaspect;
 	float targetaspect;
 
+	bool powerInUse;
+	Vector3 gainsBarLocation;
+
 	void Start () 
 	{
 		// cache references
@@ -47,6 +50,9 @@ public class GameHUD : MonoBehaviour {
 
 		windowaspect = (float)Screen.width / (float)Screen.height;
 		targetaspect = 16.0f / 9.0f;
+
+		powerInUse = false;
+		gainsBarLocation = Vector3.zero;
 	}
 	
 	void Update () {
@@ -177,10 +183,26 @@ public class GameHUD : MonoBehaviour {
 	}
 
 	private void DrawGainsBar() {
+		// If we're not applying power anymore, flip the bool and don't draw the gains bar
+		if (!playerScript.PowerIsActive()) {
+			if (powerInUse) powerInUse = false;
+			return;
+		}
+
+		// Else if power is active, flip the bool and set the location of the gains bar using
+		// the INITIAL MOUSE CLICK position and some offset
+		if (!powerInUse) {
+			powerInUse = true;
+			// Mouse pos in pixel coordinates
+			Vector3 pos = Input.mousePosition;
+			// GUI takes coordinates where y is flipped from screen/pixel coordinates given from Unity (stupid)
+			gainsBarLocation = new Vector3(pos.x, Screen.height - pos.y, pos.z);
+		}
+
 		float gainsRatio = (float)playerScript.GetCurrentPowerGain() / playerScript.GetCurrentPowerMaxGain();
 		
 		// Fraction of the screen width we want the gains bar to take up
-		float mult = 0.65f;
+		float mult = 0.4f;
 		
 		// New width and height of gains bar on screen w.r.t our Screen size
 		int h = (int)(Screen.height * mult);
@@ -204,7 +226,15 @@ public class GameHUD : MonoBehaviour {
 		}
 
 		int fillHeight = (int)((h - bh * 2) * gainsRatio);
-		GUI.BeginGroup(new Rect(10, (int)(Screen.height * 0.2f), w, h));
+
+		// Calculate position of gains bar so it doesn't go off the screen too
+		float posx = gainsBarLocation.x + (Screen.width * 0.05f);
+		float posy = gainsBarLocation.y - h/2f;
+		if (posx + w > Screen.width - 10) posx = Screen.width - 10 - w;
+		if (posy < 10) posy = 10;
+		else if (posy + h > Screen.height - 10) posy = Screen.height - 10 - h;
+
+		GUI.BeginGroup(new Rect(posx, posy, w, h));
 			GUI.DrawTexture(new Rect(0, 0, w, h), gainsBar);
 			GUI.DrawTexture(new Rect(bw, h - bh - fillHeight, w - bw * 2, fillHeight), gainsBarFill); 
 		GUI.EndGroup();
