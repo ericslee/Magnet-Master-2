@@ -34,9 +34,13 @@ public class GameManager : MonoBehaviour {
 	List<Vector3> level1RespawnPoints = new List<Vector3>();
 	List<Vector3> level2RespawnPoints = new List<Vector3>();
 	List<Vector3> level3RespawnPoints = new List<Vector3>();
-	int currentSpawnPoint = 0;
+	int currentCheckpoint = 0;
 	List<Vector3> currentRespawnPoints;
 	GameObject respawnEffect;
+	string currentLevelString;
+	bool onLevel1 = false;
+	bool onLevel2 = false;
+	bool onLevel3 = false;
 
 	// Sound
 	AudioSource deathSound;
@@ -49,6 +53,8 @@ public class GameManager : MonoBehaviour {
 	// References
 	GameObject player;
 	PlayerScript playerScript;
+	public SkinnedMeshRenderer lucinaRenderer;
+	public GameObject lucinaMesh;
 
 	void Awake()
 	{
@@ -60,7 +66,7 @@ public class GameManager : MonoBehaviour {
 	{
 		// cache/load references
 		respawnEffect = (GameObject)Resources.Load("Prefabs/RespawnEffect");
-
+	
 		// set up sounds
 		deathSound = GetComponents<AudioSource>()[0];
 		level3Music = GetComponents<AudioSource>()[1];
@@ -70,12 +76,17 @@ public class GameManager : MonoBehaviour {
 		respawnSound = GetComponents<AudioSource>()[5];
 
 		// set up checkpoints
-		level1RespawnPoints.Add(new Vector3(462.1642f, -0.390244f, 5.319216e-07f));
-		level2RespawnPoints.Add(new Vector3(-20.4133f, 6.748564f, 0.01558677f));
-		level3RespawnPoints.Add(new Vector3(-14.74031f, 2.606536f, 0.01558606f));
+		level1RespawnPoints.Add(new Vector3(462.1642f, -0.390244f, 0));
+		level2RespawnPoints.Add(new Vector3(-20.4133f, 6.748564f, 0));
+		level2RespawnPoints.Add(new Vector3(19.67843f, 10.55312f, 0));
+		level2RespawnPoints.Add(new Vector3(68.57932f, 7.761245f, 0));
+		level3RespawnPoints.Add(new Vector3(-14.74031f, 2.606536f, 0));
+		level3RespawnPoints.Add(new Vector3(48.50527f, 3.938205f, 0));
+		level3RespawnPoints.Add(new Vector3(174.3493f, 1.867743f, 0));
 
 		SetUpForNewLevel();
 		StartLevel(currentLevel);
+		currentLevelString = "IntroScene";
 	}
 
 	void SetUpForNewLevel()
@@ -84,6 +95,8 @@ public class GameManager : MonoBehaviour {
 		player = GameObject.Find("Lucina");
 		playerScript = player.GetComponent<PlayerScript>();
 		playerScript.SetCamFollowPlayer(true);
+		lucinaRenderer = player.GetComponentInChildren<SkinnedMeshRenderer>();
+		lucinaMesh = player.transform.GetChild(1).gameObject;
 
 		// do not allow certain objects to be sucked in by gravity
 		Physics.IgnoreLayerCollision(13, 9, true); // player
@@ -96,10 +109,13 @@ public class GameManager : MonoBehaviour {
 		// Create game hud
 		GameObject gameHUD = new GameObject("GameHUD");
 		gameHUD.AddComponent<GameHUD>();
+	}
 
+	void ResetVariables()
+	{
 		// reset variables
 		totalHealth = MAX_HEALTH;
-		currentSpawnPoint = 0;
+		currentCheckpoint = 0;
 	}
 
 	// Update is called once per frame
@@ -121,7 +137,7 @@ public class GameManager : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.Escape)) {
 			Application.Quit();
-			Debug.Log ("Application.Quit() only works in build, not in editor"); 
+			Debug.Log("Application.Quit() only works in build, not in editor"); 
 		}
 	}
 
@@ -142,15 +158,35 @@ public class GameManager : MonoBehaviour {
 		else if (levelNum == 2)
 		{
 			Application.LoadLevel("Level2"); 
+			currentLevelString = "Level2";
 		}
 		else if (levelNum == 3)
 		{
 			Application.LoadLevel("FinalLevel"); 
+			currentLevelString = "FinalLevel";
 		}
 	}
 
 	void OnLevelWasLoaded(int level)
 	{
+		if (level == 1)
+		{
+			if (!onLevel1)
+			{
+				onLevel1 = true;
+			}
+			else
+			{
+				SetUpForNewLevel();
+
+				// don't show Lucina until the respawn sequence occurs
+				player.transform.position = currentRespawnPoints[currentCheckpoint];
+				player.rigidbody.isKinematic = true;
+				player.GetComponentInChildren<Renderer>().enabled = false;
+				lucinaMesh.SetActive(false);
+				StartCoroutine(RespawnPlayer());
+			}
+		}
 		if (level == 2)
 		{
 			SetUpForNewLevel();
@@ -160,10 +196,24 @@ public class GameManager : MonoBehaviour {
 			playerScript.SetCameraYPlus(CAM_Y_POS_PLUS_LEVEL_2);
 			playerScript.SetCameraZPosition(CAM_Z_POS_LEVEL_2);
 			playerScript.SetReticleZPosition(RETICLE_Z_POS_LEVEL_2);
-			level1Music.Stop();
-			level3Music.Stop();
-			level2Music.Play();
-			currentRespawnPoints = level2RespawnPoints;
+			if (!onLevel2)
+			{
+				ResetVariables();
+				level1Music.Stop();
+				level3Music.Stop();
+				level2Music.Play();
+				currentRespawnPoints = level2RespawnPoints;
+				onLevel2 = true;
+			}
+			else
+			{
+				// don't show Lucina until the respawn sequence occurs
+				player.transform.position = currentRespawnPoints[currentCheckpoint];
+				player.rigidbody.isKinematic = true;
+				player.GetComponentInChildren<Renderer>().enabled = false;
+				lucinaMesh.SetActive(false);
+				StartCoroutine(RespawnPlayer());
+			}
 		}
 		else if (level == 3)
 		{
@@ -174,11 +224,26 @@ public class GameManager : MonoBehaviour {
 			playerScript.SetCameraYPlus(CAM_Y_POS_PLUS_LEVEL_3);
 			playerScript.SetCameraZPosition(CAM_Z_POS_LEVEL_3);
 			playerScript.SetReticleZPosition(RETICLE_Z_POS_LEVEL_3);
-			level3StartSound.Play();
-			level1Music.Stop();
-			level2Music.Stop();
-			level3Music.Play();
-			currentRespawnPoints = level3RespawnPoints;
+			if (!onLevel3)
+			{
+				ResetVariables();
+				SetUpForNewLevel();
+				level3StartSound.Play();
+				level1Music.Stop();
+				level2Music.Stop();
+				level3Music.Play();
+				currentRespawnPoints = level3RespawnPoints;
+				onLevel3 = true;
+			}
+			else 
+			{
+				// don't show Lucina until the respawn sequence occurs
+				player.transform.position = currentRespawnPoints[currentCheckpoint];
+				player.rigidbody.isKinematic = true;
+				player.GetComponentInChildren<Renderer>().enabled = false;
+				lucinaMesh.SetActive(false);
+				StartCoroutine(RespawnPlayer());
+			}
 		}
 		else if (level == 4)
 		{
@@ -213,8 +278,8 @@ public class GameManager : MonoBehaviour {
 		{
 			totalHealth = MAX_HEALTH;
 
-			// respawn player
-			RespawnPlayer();
+			// reload level so puzzles reset
+			Application.LoadLevel(currentLevelString);
 		}
 	}
 
@@ -224,12 +289,19 @@ public class GameManager : MonoBehaviour {
 		Application.LoadLevel("GameOver2"); 
 	}
 
-	void RespawnPlayer()
+	IEnumerator RespawnPlayer()
 	{
-		player.transform.position = currentRespawnPoints[currentSpawnPoint];
+		yield return new WaitForSeconds(0.5f);
+		player.transform.position = currentRespawnPoints[currentCheckpoint];
 		GameObject respawnEffectGO = (GameObject)Instantiate(respawnEffect, player.transform.position, Quaternion.identity);
 		Destroy(respawnEffectGO, 3.0f);
 		respawnSound.Play();
+		player.rigidbody.isKinematic = false;
+		lucinaMesh.SetActive(true);
+		lucinaRenderer.enabled = true;
+		playerScript.SetLucinaRenderer();
+
+		yield return null;
 	}
 
 	public void Lose()
@@ -257,4 +329,8 @@ public class GameManager : MonoBehaviour {
 	public void SetHasLevitation(bool b) { hasLevitation = b; }
 	public void SetHasGravity(bool b) { hasGravity = b; }
 	public void SetHasElectricity(bool b) { hasElectricity = b; }
+	public void SetCurrentCheckpoint(int checkpoint) 
+	{ 
+		if (currentCheckpoint < checkpoint) currentCheckpoint = checkpoint; 
+	}
 }

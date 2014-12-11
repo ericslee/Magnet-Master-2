@@ -57,18 +57,27 @@ public class Level3Script : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider c) {
-		if (c.tag.Equals("WallDrop") && !crushingWallDrop) {
+		if (c.tag.Equals("WallDrop") && !crushingWallDrop) 
+		{
 			wallDrop = true;
 			crushingWallDrop = true;
 			playerScript.panicVoice.PlayDelayed(1.0f);
-		} else if (c.tag.Equals("FireWall")) {
+		} 
+		else if (c.tag.Equals("FireWall")) 
+		{
 			fireWall = true;
 			enemyOne.GetComponent<EnemyScript>().StartAttacking();
-		} else if (c.tag.Equals("FireBall")) {
+		} 
+		else if (c.tag.Equals("FireBall")) 
+		{
 			enemyTwo.GetComponent<EnemyScript>().StartAttacking();
-		} else if (c.tag.Equals("KeyDrop")) {
+		} 
+		else if (c.tag.Equals("KeyDrop")) 
+		{
 			keyDrop = true;
-		} else if (c.tag.Equals ("FinalDoor")) {
+		} 
+		else if (c.tag.Equals ("FinalDoor")) 
+		{
 			//Level over
 			gameManager.Win();
 			Debug.Log("LEVEL COMPLETE");
@@ -81,6 +90,14 @@ public class Level3Script : MonoBehaviour {
 		{
 			playerScript.TakeDamage(playerScript.lavaKnockback);
 			playerScript.SetOnFire();
+		}
+		else if (c.gameObject.name.Equals("Checkpoint_1_Final_Level"))
+		{
+			gameManager.SetCurrentCheckpoint(1);
+		}
+		else if (c.gameObject.name.Equals("Checkpoint_2_Final_Level"))
+		{
+			gameManager.SetCurrentCheckpoint(2);
 		}
 	}
 
