@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 9453b9743d1da4c2b808c6d3e5d6ee16
+guid: a36fd5c1b365e48f782f5179134d5046
 TextureImporter:
   fileIDToRecycleName:
-    21300000: magnet-master-2-logo-FINAL
+    21300000: magnet-master-log-resized2-FLATTENED_FINAL
+    21300002: magnet-master-log-FINAL
+    21300004: magnet-master-logo-FINAL
+    21300006: magnet-master-2-logo-FINAL
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,7 +25,7 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 1024
   textureSettings:
     filterMode: 2
