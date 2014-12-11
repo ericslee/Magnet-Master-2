@@ -101,6 +101,14 @@ public class Level2Script : MonoBehaviour {
 			electricityText.SetTimeIn(1.0f);
 			electricityText.EnterText();
 		}
+		else if (c.gameObject.name.Equals("Checkpoint_1_Level_2"))
+		{
+			gameManager.SetCurrentCheckpoint(1);
+		}
+		else if (c.gameObject.name.Equals("Checkpoint_2_Level_2"))
+		{
+			gameManager.SetCurrentCheckpoint(2);
+		} 
 	}
 
 	public void OpenDoor()

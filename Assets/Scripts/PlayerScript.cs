@@ -362,12 +362,15 @@ public class PlayerScript : MonoBehaviour
 		// flash character during invincibility
 		if (invincibilityFrames < MAX_INVINCIBILITY_FRAMES)
 		{
-			if(lucinaRenderer.enabled)
-				lucinaRenderer.enabled = false;
-			else
-				lucinaRenderer.enabled = true;
+			if (lucinaRenderer)
+			{
+				if(lucinaRenderer.enabled)
+					lucinaRenderer.enabled = false;
+				else 
+					lucinaRenderer.enabled = true;
+			}
 		}
-		else if (!lucinaRenderer.enabled) 
+		else if (lucinaRenderer && !lucinaRenderer.enabled) 
 		{
 			lucinaRenderer.enabled = true;
 		}
@@ -470,7 +473,7 @@ public class PlayerScript : MonoBehaviour
 		}
 		else if (collision.gameObject.tag.Equals("InstantDeath") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES) 
 		{
-			gameManager.Die();	
+			gameManager.LoseLife();	
 		}
 		// environment tag needed in case we want to be able to control 
 		if (collision.gameObject.tag.Equals("Environment") && !IsGrounded())
@@ -611,4 +614,5 @@ public class PlayerScript : MonoBehaviour
 	public void SetCameraZPosition(float pos) { camZPosition = pos; }
 	public void SetReticleZPosition(float pos) { reticleZPos = pos; }
 	public void SetCamFollowPlayer(bool b) { camFollowPlayer = b; }
+	public void SetLucinaRenderer() { lucinaRenderer = GetComponentInChildren<SkinnedMeshRenderer>(); }
 }
