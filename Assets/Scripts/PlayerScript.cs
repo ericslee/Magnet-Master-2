@@ -181,7 +181,7 @@ public class PlayerScript : MonoBehaviour
 			if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
 			{
 				transform.rotation = Quaternion.identity;
-				transform.Translate(Vector2.right * 4f * Time.deltaTime);
+				transform.Translate(Vector2.right * 6.5f * Time.deltaTime);
 				transform.rotation = rightRotation;
 
 				if (animator.GetCurrentAnimatorStateInfo(0).nameHash != jumpState) 
@@ -192,7 +192,7 @@ public class PlayerScript : MonoBehaviour
 			else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
 			{
 				transform.rotation = Quaternion.identity;
-				transform.Translate(-Vector2.right * 4f * Time.deltaTime);
+				transform.Translate(-Vector2.right * 6.5f * Time.deltaTime);
 				transform.rotation = leftRotation;
 
 				if (animator.GetCurrentAnimatorStateInfo(0).nameHash != jumpState) 
