@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TitleScript : MonoBehaviour {
+public class RestartButton : MonoBehaviour {
 
-	private GameObject startButton;
+	private GameObject restartButton;
 	private Camera guiCamera;
 
 	void Start() {
-		startButton = GameObject.Find("Start Button");
+		restartButton = GameObject.FindGameObjectWithTag("RestartButton");
 		guiCamera = GameObject.Find("GUI Camera").camera;
 	}
 
 	void Update() {
 		if (Time.time % 1 > 0 && Time.time % 1 < 0.5f) {
-			startButton.renderer.enabled = false;
+			restartButton.renderer.enabled = false;
 		} else {
-			startButton.renderer.enabled = true;
+			restartButton.renderer.enabled = true;
 		}
 
 		Ray ray = guiCamera.ScreenPointToRay(Input.mousePosition);

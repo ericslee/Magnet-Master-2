@@ -5774,9 +5774,10 @@ GameObject:
   - 4: {fileID: 734246539}
   - 212: {fileID: 734246538}
   - 61: {fileID: 734246540}
+  - 114: {fileID: 734246541}
   m_Layer: 16
   m_Name: Start Button
-  m_TagString: Untagged
+  m_TagString: RestartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5826,6 +5827,17 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 10, y: 3.29999995}
   m_Center: {x: 0, y: 0}
+--- !u!114 &734246541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734246537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b300f658dfedc47b8fabc8675dfeda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &739226470
 GameObject:
   m_ObjectHideFlags: 0
@@ -12027,7 +12039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1295973048
 Transform:
   m_ObjectHideFlags: 0
