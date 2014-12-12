@@ -17,7 +17,7 @@ public class WinScene : MonoBehaviour {
 	GameObject endCredit;
 	bool lucinaIsDisabled;
 
-	const float threshold = 9.25568f;
+	const float threshold = 8.5f;
 	float creditsYTranslate = 0.02f;
 
 	//0.9568
