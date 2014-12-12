@@ -5,13 +5,16 @@ public class GameHUD : MonoBehaviour {
 
 	GameManager gameManager;
 	PlayerScript playerScript;
+	ElectricityScript elecScript;
 
 	Texture2D healthBar;
 	Texture2D healthBarFill;
 	Texture2D gainsBar;
 	Texture2D gainsBarFill;
 	Texture2D gainsBarFillGravity;
-	Texture2D gainsBarFillElectricity;
+	Texture2D gainsBarFillElectricityHigh;
+	Texture2D gainsBarFillElectricityMid;
+	Texture2D gainsBarFillElectricityLow;
 	Texture2D gainsBarFillLevitation;
 	Texture2D powerIconGravity;
 	Texture2D powerIconElectricity;
@@ -20,6 +23,8 @@ public class GameHUD : MonoBehaviour {
 
 	Vector2 viewRectBottomLeft;
 	Vector2 viewRectTopRight;
+
+	Vector2 elecThresh;
 
 	float windowaspect;
 	float targetaspect;
@@ -32,18 +37,23 @@ public class GameHUD : MonoBehaviour {
 		// cache references
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		playerScript = GameObject.Find("Lucina").GetComponent<PlayerScript>();
+		elecScript = GameObject.Find("Lucina").GetComponent<ElectricityScript>();
 
 		healthBar = Resources.Load("Materials/Textures/health-bar-with-highlights") as Texture2D;
 		healthBarFill = CreateHealthBarTexture();
 		gainsBar = Resources.Load("Materials/Textures/gains-bar-with-highlights") as Texture2D;
-		gainsBarFillGravity = CreateGainsBarTexture(PowerType.Gravity);
-		gainsBarFillElectricity = CreateGainsBarTexture(PowerType.Electricity);
-		gainsBarFillLevitation = CreateGainsBarTexture(PowerType.Levitation);
+		gainsBarFillGravity = CreateGainsBarTexture(PowerType.Gravity, 0);
+		gainsBarFillElectricityHigh = CreateGainsBarTexture(PowerType.Electricity, 0);
+		gainsBarFillElectricityMid = CreateGainsBarTexture(PowerType.Electricity, 1);
+		gainsBarFillElectricityLow = CreateGainsBarTexture(PowerType.Electricity, 2);
+		gainsBarFillLevitation = CreateGainsBarTexture(PowerType.Levitation, 0);
 		gainsBarFill = gainsBarFillLevitation;
 		powerIconGravity = Resources.Load("Materials/Textures/power-icon-gravity") as Texture2D;
 		powerIconElectricity = Resources.Load("Materials/Textures/power-icon-electricity") as Texture2D;
 		powerIconLevitation = Resources.Load("Materials/Textures/power-icon-levitation") as Texture2D;
 		livesHeartIcon = Resources.Load("Materials/Textures/lives-heart") as Texture2D;
+
+		elecThresh = Vector2.zero;
 
 		viewRectBottomLeft = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x, Camera.main.rect.y, 0));
 		viewRectTopRight = Camera.main.ViewportToScreenPoint(new Vector3(Camera.main.rect.x + Camera.main.rect.width, Camera.main.rect.y + Camera.main.rect.height, 0));
@@ -94,7 +104,8 @@ public class GameHUD : MonoBehaviour {
 		return hBarFill;
 	}
 
-	private Texture2D CreateGainsBarTexture(PowerType power) {
+	// electricityTier - 0 for high, 1 for mid, 2 for low
+	private Texture2D CreateGainsBarTexture(PowerType power, int electricityTier) {
 		int width = gainsBar.width;
 		int height = gainsBar.height;
 
@@ -112,10 +123,20 @@ public class GameHUD : MonoBehaviour {
 		Vector3 gMid = new Vector3(112, 94, 184);
 		Vector3 gLow = new Vector3(80, 61, 154);
 
-		// Electricity
-		Vector3 eHigh = new Vector3(165, 218, 218);
-		Vector3 eMid = new Vector3(82, 172, 172);
-		Vector3 eLow = new Vector3(45, 137, 138);
+		// Electricity High
+		Vector3 eHHigh = new Vector3(231, 76, 76);
+		Vector3 eHMid = new Vector3(182, 30, 24);
+		Vector3 eHLow = new Vector3(156, 12, 15);
+
+		// Electricity Mid
+		Vector3 eMHigh = new Vector3(72, 225, 142);
+		Vector3 eMMid = new Vector3(24, 182, 104);
+		Vector3 eMLow = new Vector3(12, 156, 76);
+
+		// Electricity Low
+		Vector3 eLHigh = new Vector3(250, 223, 93);
+		Vector3 eLMid = new Vector3(239, 209, 11);
+		Vector3 eLLow = new Vector3(213, 172, 5);
 
 		Vector3 high;
 		Vector3 mid;
@@ -127,15 +148,29 @@ public class GameHUD : MonoBehaviour {
 				mid = lMid;
 				low = lLow;
 				break;
-			case PowerType.Gravity:
+			case PowerType.Electricity:
+				if (electricityTier == 0) {
+					// High (red)
+					high = eHHigh;
+					mid = eHMid;
+					low = eHLow;
+				} else if (electricityTier == 1) {
+					// Mid (green)
+					high = eMHigh;
+					mid = eMMid;
+					low = eMLow;
+				} else {
+					// Low (yellow)
+					high = eLHigh;
+					mid = eLMid;
+					low = eLLow;
+				}
+				break;
+			default:
+				// Gravity
 				high = gHigh;
 				mid = gMid;
 				low = gLow;
-				break;
-			default:
-				high = eHigh;
-				mid = eMid;
-				low = eLow;
 				break;
 		}
 
@@ -217,11 +252,19 @@ public class GameHUD : MonoBehaviour {
 			case PowerType.Levitation:
 				gainsBarFill = gainsBarFillLevitation;
 				break;
-			case PowerType.Gravity:
-				gainsBarFill = gainsBarFillGravity;
+			case PowerType.Electricity:
+			Debug.Log (gainsRatio);
+			Debug.Log (elecThresh);
+				if (gainsRatio < elecThresh.x/100f) {
+					gainsBarFill = gainsBarFillElectricityLow;
+				} else if (gainsRatio >= elecThresh.x/100f && gainsRatio <= elecThresh.y/100f) {
+					gainsBarFill = gainsBarFillElectricityMid;
+				} else if (gainsRatio > elecThresh.y/100f) {
+					gainsBarFill = gainsBarFillElectricityHigh;
+				}
 				break;
 			default:
-				gainsBarFill = gainsBarFillElectricity;
+				gainsBarFill = gainsBarFillGravity;
 				break;
 		}
 
@@ -291,10 +334,13 @@ public class GameHUD : MonoBehaviour {
         GUI.EndGroup();
     }
 
+	public void SetElectricityThresholds(Vector2 thresh) {
+		elecThresh = thresh;
+	}
+
 	void OnGUI() 
 	{
 		// Powers
-//		GUI.Label(new Rect(50, 75, Screen.width / 5, Screen.height / 10), "GAIN: " + playerScript.GetCurrentPowerGain());
 		DrawPowerIcons();
 		DrawLivesIcons();
 

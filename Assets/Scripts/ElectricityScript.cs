@@ -10,6 +10,7 @@ public class ElectricityScript : MonoBehaviour {
 	GameObject currentlyElectrifiedObject;
 
 	PlayerScript playerScript;
+	GameHUD gameHUD;
 
 	// adjusting gain
 	float electricityGain;
@@ -41,6 +42,7 @@ public class ElectricityScript : MonoBehaviour {
 		lightningEmitter = transform.GetChild(2).gameObject;
 		lightningBoltScript = transform.GetChild(2).GetComponent<LightningBolt>();
 		playerScript = GetComponent<PlayerScript>();
+		gameHUD = GameObject.Find("GameHUD").GetComponent<GameHUD>();
 		explosionPrefab = (GameObject)Resources.Load("Prefabs/Explosion");
 
 		// set up sounds
@@ -139,16 +141,19 @@ public class ElectricityScript : MonoBehaviour {
 			{
 				poweredThreshold = pylonPoweringThresholds.x;
 				overchargedThreshold = pylonPoweringThresholds.y;
+				gameHUD.SetElectricityThresholds(pylonPoweringThresholds);
 			}
 			else if (obj.name.Equals("Conveyor"))
 			{
 				poweredThreshold = conveyorPoweringThresholds.x;
 				overchargedThreshold = conveyorPoweringThresholds.y;
+				gameHUD.SetElectricityThresholds(conveyorPoweringThresholds);
 			}
 			else if (obj.name.Equals("Lever"))
 			{
 				poweredThreshold = wallPoweringThresholds.x;
 				overchargedThreshold = wallPoweringThresholds.y;
+				gameHUD.SetElectricityThresholds(wallPoweringThresholds);
 			}
 		}
 	}
