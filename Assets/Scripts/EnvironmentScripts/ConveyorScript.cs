@@ -11,6 +11,6 @@ public class ConveyorScript : MonoBehaviour {
 	
 	void Update() 
 	{
-		transform.Rotate(rotation * 10f * Time.deltaTime);
+		transform.Rotate(rotation * 20f * Time.deltaTime);
 	}
 }
