@@ -38,8 +38,8 @@ public class Level2Script : MonoBehaviour {
 
 		powerCollectSFX = GetComponents<AudioSource>()[13];
 		doorRattleSFX = GetComponents<AudioSource>()[12];
-		thumpSFX = GetComponents<AudioSource>()[15];
-		brickBreakSFX = GetComponents<AudioSource>()[16];
+		thumpSFX = GetComponents<AudioSource>()[17];
+		brickBreakSFX = GetComponents<AudioSource>()[18];
 
 		rockParticleSystem = (GameObject)Resources.Load("Prefabs/Rock_Hit_Prefab");
 	}
