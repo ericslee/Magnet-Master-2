@@ -58,7 +58,7 @@ public class WinScene : MonoBehaviour {
 			if (animator) {
 				animator.SetTrigger("Win");
 			}
-			Invoke("ShowNewGameButton", 2.5f);
+			Invoke("ShowNewGameButton", 4.2f);
 		}
 	}
 }

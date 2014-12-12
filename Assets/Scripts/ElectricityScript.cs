@@ -9,6 +9,8 @@ public class ElectricityScript : MonoBehaviour {
 
 	GameObject currentlyElectrifiedObject;
 
+	PlayerScript playerScript;
+
 	// adjusting gain
 	float electricityGain;
 	bool increasingGain = true;
@@ -17,6 +19,8 @@ public class ElectricityScript : MonoBehaviour {
 	public LightningBolt lightningBoltScript;
 	float poweredThreshold;
 	float overchargedThreshold;
+	GameObject explosionGO;
+	GameObject explosionPrefab;
 
 	Vector2 pylonPoweringThresholds = new Vector2(30f, 60f);
 	Vector2 conveyorPoweringThresholds = new Vector2(40f, 50f);
@@ -25,6 +29,9 @@ public class ElectricityScript : MonoBehaviour {
 	// Sounds
 	AudioSource electricityPowerSound;
 	AudioSource turnOnMachinarySound;
+	AudioSource correctThresholdSound;
+	AudioSource belowThresholdSound;
+	AudioSource overchargeSound;
 	
 	void Start() 
 	{
@@ -33,10 +40,15 @@ public class ElectricityScript : MonoBehaviour {
 		// cache references
 		lightningEmitter = transform.GetChild(2).gameObject;
 		lightningBoltScript = transform.GetChild(2).GetComponent<LightningBolt>();
+		playerScript = GetComponent<PlayerScript>();
+		explosionPrefab = (GameObject)Resources.Load("Prefabs/Explosion");
 
 		// set up sounds
 		electricityPowerSound = GetComponents<AudioSource>()[0];
 		turnOnMachinarySound = GetComponents<AudioSource>()[1];
+		correctThresholdSound = GetComponents<AudioSource>()[14];
+		belowThresholdSound = GetComponents<AudioSource>()[15];
+		overchargeSound = GetComponents<AudioSource>()[16];
 	}
 	
 	void Update() 
@@ -54,36 +66,31 @@ public class ElectricityScript : MonoBehaviour {
 			}
 			if (electricityGain >= 100f) increasingGain = false;
 			else if (electricityGain <= 0f) increasingGain = true;
-
-			// adjust gain if necessary
-			/*
-			if (Input.mousePosition.y != mouseClickYPos) 
-			{
-				float newElectricityGain = (float)(Input.mousePosition.y - mouseClickYPos) / 50.0f;
-				if (newElectricityGain > MAX_ELECTRICITY_GAIN) newElectricityGain = MAX_ELECTRICITY_GAIN;
-				else if (newElectricityGain < MIN_ELECTRICITY_GAIN) 
-					newElectricityGain = MIN_ELECTRICITY_GAIN;
-				
-				electricityGain = newElectricityGain;
-			}*/
 		}
 
-		// stop applying electricity
+		// applying electricity
 		if (Input.GetMouseButtonUp(0) && currentlyElectrifiedObject)
 		{
-			Debug.Log(electricityGain);
-
-			// activate electricity
-
 			// if in range, activate
 			if (electricityGain >= poweredThreshold && electricityGain <= overchargedThreshold)
 			{
 				// play zelda sound
 				ActivateObject();
+				correctThresholdSound.Play();
 			}
 			// if too low, play slow (wrong noise)
-
+			else if (electricityGain < poweredThreshold)
+			{
+				belowThresholdSound.Play();
+			}
 			// if too high, explosion and damage player
+			else if (electricityGain > overchargedThreshold)
+			{
+				overchargeSound.Play();
+				playerScript.TakeDamage(playerScript.normalKnockback);
+				explosionGO = (GameObject)Instantiate(explosionPrefab, currentlyElectrifiedObject.transform.position, Quaternion.identity);
+				Destroy(explosionGO, 5.0f);
+			}
 
 			currentlyElectrifiedObject = null;
 			lightningBoltScript.target = null;
@@ -96,7 +103,6 @@ public class ElectricityScript : MonoBehaviour {
 	void ActivateObject()
 	{
 		// activate object 
-		//TODO: (only if gain is at certain threshold)
 		MonoBehaviour[] objectScripts = currentlyElectrifiedObject.GetComponents<MonoBehaviour>();
 		foreach (MonoBehaviour script in objectScripts)
 		{
@@ -144,8 +150,6 @@ public class ElectricityScript : MonoBehaviour {
 				poweredThreshold = wallPoweringThresholds.x;
 				overchargedThreshold = wallPoweringThresholds.y;
 			}
-			Debug.Log ("powered threshold: " + poweredThreshold);
-			Debug.Log ("overchaged threshold: " + overchargedThreshold);
 		}
 	}
 
