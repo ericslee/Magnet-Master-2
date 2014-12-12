@@ -7,6 +7,7 @@ public class LucinaAnimations : MonoBehaviour {
 	static int walkState = Animator.StringToHash("Base Layer.walk");
 	static int jumpState = Animator.StringToHash("Base Layer.jump");
 	static int pantsuState = Animator.StringToHash("Base Layer.pantsu");
+	static int winState = Animator.StringToHash("Base Layer.win");
 
 //	private AnimatorStateInfo currentBaseState;
 	protected Animator animator;
