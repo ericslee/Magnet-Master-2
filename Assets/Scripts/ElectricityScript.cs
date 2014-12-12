@@ -60,11 +60,11 @@ public class ElectricityScript : MonoBehaviour {
 			// adjust gain automatically
 			if (increasingGain)
 			{
-				electricityGain++;
+				electricityGain+=3;
 			}
 			else
 			{
-				electricityGain--;
+				electricityGain-=3;
 			}
 			if (electricityGain >= 100f) increasingGain = false;
 			else if (electricityGain <= 0f) increasingGain = true;
