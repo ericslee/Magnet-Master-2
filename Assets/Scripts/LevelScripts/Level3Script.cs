@@ -63,13 +63,14 @@ public class Level3Script : MonoBehaviour {
 			crushingWallDrop = true;
 			playerScript.panicVoice.PlayDelayed(1.0f);
 		} 
-		else if (c.tag.Equals("FireWall")) 
+		else if (c.tag.Equals("FireWall") && !fireWall) 
 		{
 			fireWall = true;
 			enemyOne.GetComponent<EnemyScript>().StartAttacking();
 		} 
-		else if (c.tag.Equals("FireBall")) 
+		else if (c.tag.Equals("FireBall") && !fireBall) 
 		{
+			fireBall = true;
 			enemyTwo.GetComponent<EnemyScript>().StartAttacking();
 		} 
 		else if (c.tag.Equals("KeyDrop")) 
