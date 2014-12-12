@@ -548,6 +548,9 @@ public class PlayerScript : MonoBehaviour
 		gameObject.GetComponent<Rigidbody>().AddForce(knockbackForce);
 		
 		invincibilityFrames = 0;
+
+		// Damage animation
+		animator.SetTrigger("Damage");
 	}
 
 	public void SetOnFire()
