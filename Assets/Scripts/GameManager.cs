@@ -135,9 +135,25 @@ public class GameManager : MonoBehaviour {
 			hasWon = false;
 			RespawnPlayer();
 		}
-		if (Input.GetKey (KeyCode.Escape)) {
+		if (Input.GetKey(KeyCode.Escape)) 
+		{
 			Application.Quit();
 			Debug.Log("Application.Quit() only works in build, not in editor"); 
+		}
+		if (Input.GetKey(KeyCode.Alpha4))
+		{
+			if (currentLevel == 1)
+			{
+				player.transform.position = new Vector3(490.9159f, -1.954842f, 0);
+			}
+			else if (currentLevel == 2)
+			{
+				player.transform.position = level2RespawnPoints[2];
+			}
+			else if (currentLevel == 3)
+			{
+				player.transform.position = level3RespawnPoints[2];
+			}
 		}
 	}
 
@@ -159,11 +175,13 @@ public class GameManager : MonoBehaviour {
 		{
 			Application.LoadLevel("Level2"); 
 			currentLevelString = "Level2";
+			currentLevel = 2;
 		}
 		else if (levelNum == 3)
 		{
 			Application.LoadLevel("FinalLevel"); 
 			currentLevelString = "FinalLevel";
+			currentLevel = 3;
 		}
 	}
 
@@ -228,7 +246,7 @@ public class GameManager : MonoBehaviour {
 			{
 				ResetVariables();
 				SetUpForNewLevel();
-				level3StartSound.Play();
+				level3StartSound.PlayDelayed(1);
 				level1Music.Stop();
 				level2Music.Stop();
 				level3Music.Play();

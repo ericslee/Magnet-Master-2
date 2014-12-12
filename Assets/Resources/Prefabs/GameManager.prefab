@@ -158,9 +158,9 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 922de5afffd597841abb9b6c503a7881, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a95ae624847384b4cbd2b298827ba7da, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .186000004
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -394,6 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 1
+  lucinaRenderer: {fileID: 0}
+  lucinaMesh: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
