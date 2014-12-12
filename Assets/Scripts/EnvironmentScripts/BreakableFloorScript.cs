@@ -21,12 +21,15 @@ public class BreakableFloorScript : MonoBehaviour {
 	{
 		if (collision.gameObject.name.Equals("Weight"))
 		{
-			level2Script.PlayThump();
-
-			if (collision.relativeVelocity.magnitude > 7)
+			if (collision.relativeVelocity.magnitude > 2)
 			{
-				level2Script.BreakFloor(gameObject.transform.position);
-				Destroy(gameObject);
+				level2Script.PlayThump();
+
+				if (collision.relativeVelocity.magnitude > 7)
+				{
+					level2Script.BreakFloor(gameObject.transform.position);
+					Destroy(gameObject);
+				}
 			}
 		}
 	}
