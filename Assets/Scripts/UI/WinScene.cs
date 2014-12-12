@@ -18,6 +18,7 @@ public class WinScene : MonoBehaviour {
 	bool lucinaIsDisabled;
 
 	const float threshold = 9.25568f;
+	float creditsYTranslate = 0.02f;
 
 	//0.9568
 
@@ -39,9 +40,18 @@ public class WinScene : MonoBehaviour {
 	}
 
 	void Update() {
+		if (Input.GetKey(KeyCode.Alpha1))
+		{
+			creditsYTranslate = 1.0f;
+		}
+		if (Input.GetKeyUp(KeyCode.Alpha1))
+		{
+			creditsYTranslate = 0.02f;
+		}
+
 		Vector3 oldPos = endCredit.transform.position;
 
-		if (oldPos.y < threshold) endCredit.transform.Translate(0, 0.02f, 0);
+		if (oldPos.y < threshold) endCredit.transform.Translate(0, creditsYTranslate, 0);
 		if (oldPos.y > threshold && lucinaIsDisabled) {
 			lucinaIsDisabled = false;
 			lucinaMesh.renderer.enabled = true;

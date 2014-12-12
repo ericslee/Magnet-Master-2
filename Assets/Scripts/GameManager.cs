@@ -142,6 +142,9 @@ public class GameManager : MonoBehaviour {
 		}
 		if (Input.GetKey(KeyCode.Alpha4))
 		{
+			hasLevitation = true;
+			hasGravity = true;
+			hasElectricity = true;
 			if (currentLevel == 1)
 			{
 				player.transform.position = new Vector3(490.9159f, -1.954842f, 0);
@@ -330,7 +333,7 @@ public class GameManager : MonoBehaviour {
 	public void Win()
 	{
 		hasWon = true;
-		Application.LoadLevel("WinScene"); 
+		Application.LoadLevel("WinScene2"); 
 	}
 
 	// Getters
