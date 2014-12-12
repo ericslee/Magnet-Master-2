@@ -270,12 +270,10 @@ public class GameManager : MonoBehaviour {
 		}
 		else if (level == 4)
 		{
-			Debug.Log ("Loading lose screen");
 			Destroy(gameObject);
 		}
 		else if (level == 5)
 		{
-			Debug.Log ("Loading Win screen");
 			Destroy(gameObject);
 		}
 	}

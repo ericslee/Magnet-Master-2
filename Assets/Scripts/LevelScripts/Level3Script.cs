@@ -48,7 +48,6 @@ public class Level3Script : MonoBehaviour {
 		wall1 = GameObject.FindWithTag("Wall1");
 		wall2 = GameObject.FindWithTag("Wall2");
 		wall3 = GameObject.FindWithTag("Wall3");
-		key = GameObject.FindWithTag("Key");
 	}
 
 	void Update () 
@@ -122,9 +121,6 @@ public class Level3Script : MonoBehaviour {
 		}
 		if (fireWall) {
 			//Handle particle system fire here
-		}
-		if (keyDrop) {
-			key.transform.Translate(-Vector2.up * 4f * Time.deltaTime);
 		}
 	}
 }
