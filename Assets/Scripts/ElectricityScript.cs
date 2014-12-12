@@ -3,17 +3,24 @@ using System.Collections;
 
 public class ElectricityScript : MonoBehaviour {
 
-	const float INITIAL_ELECTRICITY_GAIN = 2.5f;
-	const float MAX_ELECTRICITY_GAIN = 6.0f;
-	const float MIN_ELECTRICITY_GAIN = 1.8f;
+	const float INITIAL_ELECTRICITY_GAIN = 0f;
+	const float MAX_ELECTRICITY_GAIN = 100f;
+	const float MIN_ELECTRICITY_GAIN = 0f;
 
 	GameObject currentlyElectrifiedObject;
 
 	// adjusting gain
 	float electricityGain;
+	bool increasingGain = true;
 	float mouseClickYPos;
 	GameObject lightningEmitter;
 	public LightningBolt lightningBoltScript;
+	float poweredThreshold;
+	float overchargedThreshold;
+
+	Vector2 pylonPoweringThresholds = new Vector2(30f, 60f);
+	Vector2 conveyorPoweringThresholds = new Vector2(40f, 50f);
+	Vector2 wallPoweringThresholds = new Vector2(60f, 80f);
 
 	// Sounds
 	AudioSource electricityPowerSound;
@@ -36,7 +43,20 @@ public class ElectricityScript : MonoBehaviour {
 	{
 		if (Input.GetMouseButton(0) && currentlyElectrifiedObject) 
 		{
+			// adjust gain automatically
+			if (increasingGain)
+			{
+				electricityGain++;
+			}
+			else
+			{
+				electricityGain--;
+			}
+			if (electricityGain >= 100f) increasingGain = false;
+			else if (electricityGain <= 0f) increasingGain = true;
+
 			// adjust gain if necessary
+			/*
 			if (Input.mousePosition.y != mouseClickYPos) 
 			{
 				float newElectricityGain = (float)(Input.mousePosition.y - mouseClickYPos) / 50.0f;
@@ -45,20 +65,52 @@ public class ElectricityScript : MonoBehaviour {
 					newElectricityGain = MIN_ELECTRICITY_GAIN;
 				
 				electricityGain = newElectricityGain;
-
-				// adjust scale of electricity (visuals only)
-				lightningBoltScript.scale = electricityGain;
-			}
+			}*/
 		}
 
 		// stop applying electricity
-		if (Input.GetMouseButtonUp(0))
+		if (Input.GetMouseButtonUp(0) && currentlyElectrifiedObject)
 		{
+			Debug.Log(electricityGain);
+
+			// activate electricity
+
+			// if in range, activate
+			if (electricityGain >= poweredThreshold && electricityGain <= overchargedThreshold)
+			{
+				// play zelda sound
+				ActivateObject();
+			}
+			// if too low, play slow (wrong noise)
+
+			// if too high, explosion and damage player
+
 			currentlyElectrifiedObject = null;
 			lightningBoltScript.target = null;
 			lightningBoltScript.enabled = false;
 			lightningEmitter.GetComponent<ParticleRenderer>().enabled = false;
 			electricityPowerSound.Stop();
+		}
+	}
+
+	void ActivateObject()
+	{
+		// activate object 
+		//TODO: (only if gain is at certain threshold)
+		MonoBehaviour[] objectScripts = currentlyElectrifiedObject.GetComponents<MonoBehaviour>();
+		foreach (MonoBehaviour script in objectScripts)
+		{
+			if (script.enabled == false)
+			{
+				script.enabled = true;
+				turnOnMachinarySound.Play();
+			}
+		}
+		
+		// disable spark once activated
+		foreach (Transform t in currentlyElectrifiedObject.transform)
+		{
+			if(t.name.Equals("Sparks"))	t.gameObject.SetActive(false);
 		}
 	}
 
@@ -77,26 +129,23 @@ public class ElectricityScript : MonoBehaviour {
 			lightningEmitter.GetComponent<ParticleRenderer>().enabled = true;
 			electricityPowerSound.Play();
 
-			// activate object 
-			//TODO: (only if gain is at certain threshold)
-			MonoBehaviour[] objectScripts = obj.GetComponents<MonoBehaviour>();
-			foreach (MonoBehaviour script in objectScripts)
+			if (obj.name.Equals("PylonGO"))
 			{
-				if (script.enabled == false)
-				{
-					script.enabled = true;
-					turnOnMachinarySound.Play();
-				}
+				poweredThreshold = pylonPoweringThresholds.x;
+				overchargedThreshold = pylonPoweringThresholds.y;
 			}
-
-			// disable spark once activated
-			foreach (Transform t in obj.transform)
+			else if (obj.name.Equals("Conveyor"))
 			{
-				if(t.name.Equals("Sparks"))// Do something to child one
-					t.gameObject.SetActive(false);
+				poweredThreshold = conveyorPoweringThresholds.x;
+				overchargedThreshold = conveyorPoweringThresholds.y;
 			}
-			//Transform sparks = obj.transform.FindChild("Sparks");
-			//if (sparks) sparks.gameObject.SetActive(false);
+			else if (obj.name.Equals("Lever"))
+			{
+				poweredThreshold = wallPoweringThresholds.x;
+				overchargedThreshold = wallPoweringThresholds.y;
+			}
+			Debug.Log ("powered threshold: " + poweredThreshold);
+			Debug.Log ("overchaged threshold: " + overchargedThreshold);
 		}
 	}
 
