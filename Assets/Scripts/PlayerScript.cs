@@ -471,7 +471,7 @@ public class PlayerScript : MonoBehaviour
 			TakeDamage(lavaKnockback);
 			SetOnFire();
 		}
-		else if (collision.gameObject.tag.Equals("InstantDeath") && invincibilityFrames > MAX_INVINCIBILITY_FRAMES) 
+		else if (collision.gameObject.tag.Equals("InstantDeath")) 
 		{
 			gameManager.LoseLife();	
 		}
