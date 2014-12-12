@@ -18,6 +18,11 @@ public class EnemyScript : MonoBehaviour {
 	Vector3 attackSpawnPoint;
 	bool inMidAttack = false;
 
+	// Sounds
+	AudioSource initialRoarSFX;
+	AudioSource attackRoarSFX;
+	AudioSource fireballSFX;
+
 	// references
 	public GameObject player;
 	PlayerScript playerScript;
@@ -34,6 +39,9 @@ public class EnemyScript : MonoBehaviour {
 		fireballPrefab = Resources.Load("Prefabs/Flame");
 		player = GameObject.Find("Lucina");
 		playerScript = player.GetComponent<PlayerScript>();
+		initialRoarSFX = GetComponents<AudioSource>()[0];
+		attackRoarSFX = GetComponents<AudioSource>()[1];
+		fireballSFX = GetComponents<AudioSource>()[2];
 	}
 	
 	void Update() 
@@ -45,6 +53,8 @@ public class EnemyScript : MonoBehaviour {
 	{
 		// continuously shoot fireballs
 		InvokeRepeating("AttackWrapper", 0, 1.0f);
+
+		initialRoarSFX.Play();
 	}
 
 	void AttackWrapper()
@@ -59,7 +69,9 @@ public class EnemyScript : MonoBehaviour {
 	{
 		inMidAttack = true;
 		animator.SetTrigger("attack");
+		attackRoarSFX.Play();
 		yield return new WaitForSeconds(0.65f);
+		fireballSFX.Play();
 		currentFireball = (GameObject)Instantiate(fireballPrefab, attackSpawnPoint, Quaternion.identity);
 		Vector3 directionToPlayer = player.transform.position - attackSpawnPoint;
 			
