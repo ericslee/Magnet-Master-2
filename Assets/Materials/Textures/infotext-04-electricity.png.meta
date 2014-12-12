@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6033296c2818c4e4b9971c063b251fd9
+guid: 119c4679454fe44b3b9086494b5ffe22
 TextureImporter:
   fileIDToRecycleName:
     21300000: infotext-04-electricity
@@ -22,7 +22,7 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 1024
   textureSettings:
     filterMode: 2

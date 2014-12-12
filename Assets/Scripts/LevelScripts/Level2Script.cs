@@ -34,7 +34,7 @@ public class Level2Script : MonoBehaviour {
 		mainCamera = Camera.main;
 
 		electricityText = GameObject.Find("ElectricityText").GetComponent<TutorialTextScript>();
-		electricityTextPosition = new Vector3(81.29794f, 9.026501f, 1f);
+		electricityTextPosition = new Vector3(81.29794f, 9.926501f, 1f);
 
 		powerCollectSFX = GetComponents<AudioSource>()[13];
 		doorRattleSFX = GetComponents<AudioSource>()[12];
