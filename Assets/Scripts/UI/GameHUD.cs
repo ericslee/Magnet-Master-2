@@ -253,8 +253,6 @@ public class GameHUD : MonoBehaviour {
 				gainsBarFill = gainsBarFillLevitation;
 				break;
 			case PowerType.Electricity:
-			Debug.Log (gainsRatio);
-			Debug.Log (elecThresh);
 				if (gainsRatio < elecThresh.x/100f) {
 					gainsBarFill = gainsBarFillElectricityLow;
 				} else if (gainsRatio >= elecThresh.x/100f && gainsRatio <= elecThresh.y/100f) {

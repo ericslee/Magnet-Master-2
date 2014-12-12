@@ -26,6 +26,7 @@ public class ElectricityScript : MonoBehaviour {
 	Vector2 pylonPoweringThresholds = new Vector2(30f, 60f);
 	Vector2 conveyorPoweringThresholds = new Vector2(40f, 50f);
 	Vector2 wallPoweringThresholds = new Vector2(60f, 80f);
+	Vector2 enemyKillingThresholds = new Vector2(95f, 100f);
 
 	// Sounds
 	AudioSource electricityPowerSound;
@@ -76,9 +77,7 @@ public class ElectricityScript : MonoBehaviour {
 			// if in range, activate
 			if (electricityGain >= poweredThreshold && electricityGain <= overchargedThreshold)
 			{
-				// play zelda sound
 				ActivateObject();
-				correctThresholdSound.Play();
 			}
 			// if too low, play slow (wrong noise)
 			else if (electricityGain < poweredThreshold)
@@ -105,20 +104,35 @@ public class ElectricityScript : MonoBehaviour {
 	void ActivateObject()
 	{
 		// activate object 
-		MonoBehaviour[] objectScripts = currentlyElectrifiedObject.GetComponents<MonoBehaviour>();
-		foreach (MonoBehaviour script in objectScripts)
+		string objName = currentlyElectrifiedObject.name;
+		if (objName.Equals("PylonGO") || objName.Equals("Conveyor") || objName.Equals("Lever"))
 		{
-			if (script.enabled == false)
+			// play zelda sound
+			correctThresholdSound.Play();
+
+			MonoBehaviour[] objectScripts = currentlyElectrifiedObject.GetComponents<MonoBehaviour>();
+			foreach (MonoBehaviour script in objectScripts)
 			{
-				script.enabled = true;
-				turnOnMachinarySound.Play();
+				if (script.enabled == false)
+				{
+					script.enabled = true;
+					turnOnMachinarySound.Play();
+				}
+			}
+			
+			// disable spark once activated
+			foreach (Transform t in currentlyElectrifiedObject.transform)
+			{
+				if(t.name.Equals("Sparks"))	t.gameObject.SetActive(false);
 			}
 		}
-		
-		// disable spark once activated
-		foreach (Transform t in currentlyElectrifiedObject.transform)
+		// or kill enemy
+		else if (objName.Equals("Enemy1") || objName.Equals("Enemy2"))
 		{
-			if(t.name.Equals("Sparks"))	t.gameObject.SetActive(false);
+			Destroy(currentlyElectrifiedObject);
+			overchargeSound.Play();
+			explosionGO = (GameObject)Instantiate(explosionPrefab, currentlyElectrifiedObject.transform.position, Quaternion.identity);
+			Destroy(explosionGO, 5.0f);
 		}
 	}
 
@@ -154,6 +168,13 @@ public class ElectricityScript : MonoBehaviour {
 				poweredThreshold = wallPoweringThresholds.x;
 				overchargedThreshold = wallPoweringThresholds.y;
 				gameHUD.SetElectricityThresholds(wallPoweringThresholds);
+			}
+			else if (obj.name.Equals("Enemy1") || obj.name.Equals("Enemy2"))
+			{
+				Debug.Log ("attacking enemy");
+				poweredThreshold = enemyKillingThresholds.x;
+				overchargedThreshold = enemyKillingThresholds.y;
+				gameHUD.SetElectricityThresholds(enemyKillingThresholds);
 			}
 		}
 	}
