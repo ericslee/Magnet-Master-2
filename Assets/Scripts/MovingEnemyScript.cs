@@ -19,6 +19,7 @@ public class MovingEnemyScript : MonoBehaviour {
 	bool inMidAttack = false;
 
 	bool isChasing = false;
+	bool isGoingLeft = true;
 
 	// Sounds
 	AudioSource initialRoarSFX;
@@ -53,9 +54,18 @@ public class MovingEnemyScript : MonoBehaviour {
 		// move
 		if (isChasing)
 		{
-			CharacterController controller = GetComponent<CharacterController>();
-			controller.Move(Vector3.left * 6.0f * Time.deltaTime);
-			transform.Rotate(new Vector3(0, 180, 0));
+			if (transform.position.x >= player.transform.position.x)
+			{
+				CharacterController controller = GetComponent<CharacterController>();
+				controller.Move(Vector3.left * 4.0f * Time.deltaTime);
+			}
+			else 
+			{
+				CharacterController controller = GetComponent<CharacterController>();
+				controller.Move(Vector3.right * 4.0f * Time.deltaTime);
+			}
+
+			//transform.Rotate(new Vector3(0, 180, 0));
 		}
 	}
 
