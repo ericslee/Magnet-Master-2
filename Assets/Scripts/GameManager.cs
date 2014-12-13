@@ -251,7 +251,7 @@ public class GameManager : MonoBehaviour {
 			{
 				ResetVariables();
 				SetUpForNewLevel();
-				level3StartSound.PlayDelayed(1);
+				//level3StartSound.PlayDelayed(1);
 				level1Music.Stop();
 				level2Music.Stop();
 				level3Music.Play();
