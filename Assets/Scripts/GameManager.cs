@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour {
 
 	void HandleInput()
 	{
+		/*
 		if (Input.GetKey(KeyCode.L))
 		{
 			// restore lives, respawn player
@@ -135,11 +136,13 @@ public class GameManager : MonoBehaviour {
 			hasWon = false;
 			RespawnPlayer();
 		}
+		*/
 		if (Input.GetKey(KeyCode.Escape)) 
 		{
 			Application.Quit();
 			Debug.Log("Application.Quit() only works in build, not in editor"); 
 		}
+		/*
 		if (Input.GetKey(KeyCode.Alpha4))
 		{
 			hasLevitation = true;
@@ -158,6 +161,7 @@ public class GameManager : MonoBehaviour {
 				player.transform.position = level3RespawnPoints[2];
 			}
 		}
+		*/
 	}
 
 	public void StartLevel(int levelNum) 

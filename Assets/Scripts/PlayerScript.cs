@@ -202,6 +202,7 @@ public class PlayerScript : MonoBehaviour
 			}
 
 			// FOR DEBUGGING, rapid speed
+			/*
 			if (Input.GetKey(KeyCode.Alpha2))
 			{
 				transform.rotation = Quaternion.identity;
@@ -224,6 +225,7 @@ public class PlayerScript : MonoBehaviour
 					animator.SetBool("Walking", true);
 				}
 			}
+			*/
 		}
 
 		if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) 
@@ -236,6 +238,7 @@ public class PlayerScript : MonoBehaviour
 
 		///////////// FOR DEBUGGING  /////////////////////////
 		// multi jump
+		/*
 		if (Input.GetKey(KeyCode.U))
 		{
 			rigidbody.velocity = new Vector3(0, 20, 0);
@@ -245,6 +248,7 @@ public class PlayerScript : MonoBehaviour
 		{
 			TakeDamage(normalKnockback);
 		}
+		*/
 	}
 
 	void HandlePowersInput() 
