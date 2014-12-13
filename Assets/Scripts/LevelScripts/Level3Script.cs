@@ -40,7 +40,7 @@ public class Level3Script : MonoBehaviour {
 		// cache references
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		enemyOne = GameObject.Find("Enemies").transform.GetChild(0).transform.GetChild(0).gameObject;
-		enemyTwo = GameObject.Find("Enemies").transform.GetChild(1).transform.GetChild(0).gameObject;
+		enemyTwo = GameObject.Find("Enemies").transform.GetChild(1).gameObject;
 		powerCollectSFX = GetComponents<AudioSource>()[13];
 		playerScript = GetComponent<PlayerScript>();
 		electricityText = GameObject.Find("ElectricityText").GetComponent<TutorialTextScript>();;
@@ -70,7 +70,7 @@ public class Level3Script : MonoBehaviour {
 		else if (c.tag.Equals("FireBall") && !fireBall) 
 		{
 			fireBall = true;
-			enemyTwo.GetComponent<EnemyScript>().StartAttacking();
+			enemyTwo.GetComponent<MovingEnemyScript>().StartAttacking();
 		} 
 		else if (c.tag.Equals("KeyDrop")) 
 		{
