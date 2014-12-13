@@ -4,7 +4,7 @@ using System.Collections;
 public class MovingEnemyScript : MonoBehaviour {
 
 	const float MAX_HEALTH = 100.0f;
-	const float FIREBALL_SPEED = 300;
+	const float FIREBALL_SPEED = 600;
 	const float FIREBALL_RAND = 1.5f;
 
 	public float health;
@@ -84,8 +84,8 @@ public class MovingEnemyScript : MonoBehaviour {
 		attackRoarSFX.Play();
 		yield return new WaitForSeconds(0.65f);
 		fireballSFX.Play();
-		currentFireball = (GameObject)Instantiate(fireballPrefab, attackSpawnPoint, Quaternion.identity);
-		Vector3 directionToPlayer = player.transform.position - attackSpawnPoint;
+		currentFireball = (GameObject)Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+		Vector3 directionToPlayer = player.transform.position - transform.position;
 			
 		// add rand element in y
 		directionToPlayer.y = directionToPlayer.y + Random.Range(-FIREBALL_RAND, FIREBALL_RAND);
