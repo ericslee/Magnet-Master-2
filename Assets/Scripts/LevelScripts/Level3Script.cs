@@ -115,8 +115,8 @@ public class Level3Script : MonoBehaviour {
 			}
 		}
 		if (crushingWallDrop) {
-			if (wall2.transform.position.y > 10) {
-				wall2.transform.Translate(-Vector2.up * 1f * Time.deltaTime);
+			if (wall2.transform.position.y > -14) {
+				wall2.transform.Translate(new Vector3(0, 0, -1f) * 1f * Time.deltaTime);
 			} 
 		}
 		if (fireWall) {
