@@ -24,9 +24,9 @@ public class ElectricityScript : MonoBehaviour {
 	GameObject explosionPrefab;
 
 	Vector2 pylonPoweringThresholds = new Vector2(30f, 60f);
-	Vector2 conveyorPoweringThresholds = new Vector2(40f, 50f);
-	Vector2 wallPoweringThresholds = new Vector2(60f, 80f);
-	Vector2 enemyKillingThresholds = new Vector2(95f, 100f);
+	Vector2 conveyorPoweringThresholds = new Vector2(35f, 60f);
+	Vector2 wallPoweringThresholds = new Vector2(60f, 90f);
+	Vector2 enemyKillingThresholds = new Vector2(90f, 100f);
 
 	// Sounds
 	AudioSource electricityPowerSound;
