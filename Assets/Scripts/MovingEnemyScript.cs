@@ -20,6 +20,8 @@ public class MovingEnemyScript : MonoBehaviour {
 
 	bool isChasing = false;
 	bool isGoingLeft = true;
+	float gravity = 1.0F;
+	Vector3 moveDirection = Vector3.zero;
 
 	// Sounds
 	AudioSource initialRoarSFX;
@@ -29,6 +31,7 @@ public class MovingEnemyScript : MonoBehaviour {
 	// references
 	public GameObject player;
 	PlayerScript playerScript;
+	CharacterController controller;
 
 	void Start() 
 	{
@@ -45,6 +48,7 @@ public class MovingEnemyScript : MonoBehaviour {
 		initialRoarSFX = GetComponents<AudioSource>()[0];
 		attackRoarSFX = GetComponents<AudioSource>()[1];
 		fireballSFX = GetComponents<AudioSource>()[2];
+		controller = GetComponent<CharacterController>();
 
 		animator.SetBool("run", true);
 	}
@@ -54,18 +58,27 @@ public class MovingEnemyScript : MonoBehaviour {
 		// move
 		if (isChasing)
 		{
-			if (transform.position.x >= player.transform.position.x)
+			if (transform.position.x >= player.transform.position.x && !isGoingLeft)
 			{
-				CharacterController controller = GetComponent<CharacterController>();
-				controller.Move(Vector3.left * 4.0f * Time.deltaTime);
+				isGoingLeft = true;
+				transform.Rotate(new Vector3(0, 180, 0));
+			}
+			else if (transform.position.x < player.transform.position.x && isGoingLeft)
+			{
+				isGoingLeft = false;
+				transform.Rotate(new Vector3(0, 180, 0));
+			}
+
+			if (isGoingLeft)
+			{
+				moveDirection = Vector3.left * 5.0f;
 			}
 			else 
 			{
-				CharacterController controller = GetComponent<CharacterController>();
-				controller.Move(Vector3.right * 4.0f * Time.deltaTime);
+				moveDirection = Vector3.right * 5.0f;
 			}
 
-			//transform.Rotate(new Vector3(0, 180, 0));
+			controller.Move(moveDirection * Time.deltaTime);
 		}
 	}
 
